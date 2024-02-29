@@ -8,12 +8,18 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Booking;
+use App\Models\Room;
 
 class AuthController extends Controller
 {
     public function getLogin()
     {
-        return view('auth.login');
+        $data = [
+            'title' => 'จองห้องประชุม'
+        ];
+        $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
+        return view('auth.login',compact( 'bookings'), $data);
     }
 
     public function postLogin(Request $request)

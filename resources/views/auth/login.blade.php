@@ -19,65 +19,87 @@
     <!-- sweetalert2 -->
     <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="{{ asset('login-register/css/style.css') }}">
+    <!-- Tempusdominus Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
     <div class="container">
-        <section class="ftco-section login">
-            <div class="row justify-content-center">
-                <div class="col-md-12 col-lg-10">
-                    <div class="wrap d-md-flex">
-                        <div class="img" style="background-image: url(assets/images/login.png);">
+        <section class="">
+            <div class="wrap my-3 p-5">
+                <div class="row justify-content-center">
+
+                    <div class="col-12 mb-4">
+                        <div class="row text-center my-3">
+                            <h1>ตารางการใช้งานหอประชุม</h1>
                         </div>
-                        <div class="login-wrap p-3 p-md-5">
-                            <div class="d-flex">
-                                <div class="w-100">
-                                    <h3 class="mb-4">เข้าสู่ระบบ</h3>
+                        <div id="carouselExample" class="carousel slide">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="assets/images/img-1.jpg" class="d-block w-100" alt="...">
                                 </div>
-                                <div class="w-100">
-                                    <p class="d-flex justify-content-end">
-                                        <a href="{{ route('home') }}"
-                                            class="nav-link d-flex align-items-center justify-content-center">
-                                            <i class="fa-solid fa-house-chimney mx-1"></i>หน้าแรก
-                                        </a>
-                                    </p>
+                                <div class="carousel-item">
+                                    <img src="assets/images/img-2.jpg" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="assets/images/img-3.jpg" class="d-block w-100" alt="...">
                                 </div>
                             </div>
-                            <form action="{{ route('postLogin') }}" method="post" class="signin-form">
-                                @csrf
-                                @if ($message = Session::get('error'))
-                                    <span class="text-center text-danger">{{ $message }}</span>
-                                @endif
-                                <div class="form-group mb-3">
-                                    <label class="label" for="username">Username</label>
-                                    <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                        placeholder="Username" id="username" name="username"
-                                        value="{{ old('username') }}">
-                                    @if ($errors->has('username'))
-                                        <span class="text-danger">{{ $errors->first('username') }}</span>
-                                    @endif
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="label" for="password">Password</label>
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                        id="password" name="password" placeholder="Password">
-                                    @if ($errors->has('password'))
-                                        <span class="text-danger">{{ $errors->first('password') }}</span>
-                                    @endif
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" class="form-control btn btn-primary rounded submit px-3"
-                                        value="เข้าสู่ระบบ">
-                                </div>
-                            </form>
-                            <p class="text-center">ไม่ใช่สมาชิก ? <a data-toggle="tab"
-                                    href="{{ route('getRegister') }}">สมัครสมาชิก</a></p>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 p-3 p-md-5 ">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">เข้าสู่ระบบ</h3>
+                            </div>
+                            <div class="w-100">
+                                <p class="d-flex justify-content-end">
+                                    <a href="{{ route('home') }}"
+                                        class="nav-link d-flex align-items-center justify-content-center">
+                                        <i class="fa-solid fa-house-chimney mx-1"></i> หน้าแรก
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <form action="{{ route('postLogin') }}" method="post" class="signin-form">
+                            @csrf
+                            @if ($message = Session::get('error'))
+                                <span class="text-center text-danger">{{ $message }}</span>
+                            @endif
+                            <div class="form-group mb-3">
+                                <label class="label" for="username">Username</label>
+                                <input type="text" class="form-control @error('username') is-invalid @enderror"
+                                    placeholder="Username" id="username" name="username" value="{{ old('username') }}">
+                                @if ($errors->has('username'))
+                                    <span class="text-danger">{{ $errors->first('username') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group mb-3">
+                                <label class="label" for="password">Password</label>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                    id="password" name="password" placeholder="Password">
+                                @if ($errors->has('password'))
+                                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="form-control btn btn-primary rounded submit px-3"
+                                    value="เข้าสู่ระบบ">
+                            </div>
+                        </form>
+                        <p class="text-center">ไม่ใช่สมาชิก ? <a data-toggle="tab"
+                                href="{{ route('getRegister') }}">สมัครสมาชิก</a></p>
                     </div>
                 </div>
             </div>
