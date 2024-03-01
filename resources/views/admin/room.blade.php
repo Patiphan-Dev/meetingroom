@@ -6,7 +6,7 @@
             <i class="fa-solid fa-plus"></i> เพิ่มหอประชุม
         </button>
         <div class="modal fade" id="addRoom" aria-hidden="true" aria-labelledby="addRoomLabel" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered  modal-lg">
+            <div class="modal-dialog modal-dialog-centered  modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="addRoomLabel">เพิ่มหอประชุม</h1>
@@ -23,6 +23,7 @@
         @foreach ($rooms as $room)
             @php
                 $image = explode(',', $room->room_img_path);
+                $diagram = explode(',', $room->room_diagram_path);
             @endphp
 
             <div class="col-6 col-sm-4 col-md-3 text-center">
@@ -36,7 +37,7 @@
 
             <div class="modal fade" id="roomDetail{{ $room->id }}" tabindex="-1"
                 aria-labelledby="roomDetailLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
                             <div id="roomName"></div>
@@ -63,7 +64,7 @@
             <div class="modal fade" id="editModal{{ $room->id }}" aria-hidden="true"
                 aria-labelledby="editModalLabel{{ $room->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="editModalLabel">แก้ไขหอประชุม</h1>
@@ -151,10 +152,6 @@
             });
 
             $('#room_details').summernote({
-                tabsize: 2,
-                height: 150
-            });
-            $('#room_facilities').summernote({
                 tabsize: 2,
                 height: 150
             });

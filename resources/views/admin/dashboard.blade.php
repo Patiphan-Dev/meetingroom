@@ -34,7 +34,7 @@
                     <div class="card-body">
                         <p><i class="fa-solid fa-medal" style="font-size: 6vh;"></i></p> 
                         <h5 class="card-title">ห้องทั้งหมด</h5>
-                        {{-- <h1 class="fw-bold">{{ count($rooms) }}</h1> --}}
+                        <h1 class="fw-bold">{{ count($rooms) }}</h1>
                     </div>
                 </div>
             </div>

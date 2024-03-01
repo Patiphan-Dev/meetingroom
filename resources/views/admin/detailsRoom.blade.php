@@ -22,20 +22,58 @@
         <h4 class="pb-4 mb-3 fst-italic border-bottom">
             {{ $room->room_name }} ราคา {{ $room->room_price }} บาท / ชั่วโมง
         </h4>
-        <article class="blog-post mb-3">
+        <article class="blog-post mb-5">
             <h3>รายละเอียด</h3>
             {!! $room->room_details !!}
         </article>
-        <article class="blog-post mb-3">
-            <h3>สิ่งอำนวยความสะดวก</h3>
-            {!! $room->room_facilities !!}
-        </article>
+        <table class="table table-bordered border-primary">
+            <thead class="text-center">
+                <th>ค่าบำรุงสถานที่</th>
+                <th>ค่าสารณูปโภค</th>
+                <th>ค่าตอบแทนเจ้าหน้าที่</th>
+                <th>ค่าใช้จ่ายอื่นๆ</th>
+                <th>ค่าใช้จ่ายรวม</th>
+                <th>ค่าประกันความเสียหาย</th>
+            </thead>
+            <tbody>
+                <td class="text-end">{{ $room->maintenance }}</td>
+                <td class="text-end">{{ $room->utilities }}</td>
+                <td class="text-end">{{ $room->officer_compensation }}</td>
+                <td class="text-end">{{ $room->other_expenses }}</td>
+                <td class="text-end">{{ $room->total }}</td>
+                <td class="text-end">{{ $room->damage_insurance }}</td>
+            </tbody>
+            {{-- <article class="col-auto mb-3">
+                <h5>ค่าบำรุงสถานที่ </h5>
+                <p class="text-end">{{ $room->maintenance }}</p>
+            </article>
+            <article class="col-auto mb-3">
+                <h5>ค่าสารณูปโภค </h5>
+                <p class="text-end">{{ $room->utilities }}</p>
+            </article>
+            <article class="col-auto mb-3">
+                <h5>ค่าตอบแทนเจ้าหน้าที่ </h5>
+                <p class="text-end">{{ $room->officer_compensation }}</p>
+            </article>
+            <article class="col-auto mb-3">
+                <h5>ค่าใช้จ่ายอื่นๆ </h5>
+                <p class="text-end">{{ $room->other_expenses }}</p>
+            </article>
+            <article class="col-auto mb-3">
+                <h5>ค่าใช้จ่ายรวม </h5>
+                <p class="text-end">{{ $room->total }}</p>
+            </article>
+            <article class="col-auto mb-3">
+                <h5>ค่าประกันความเสียหาย </h5>
+                <p class="text-end">{{ $room->damage_insurance }}</p>
+            </article> --}}
+        </table>
         <div class="clearfix">
             <h5><i class="fa-solid fa-shield-halved"></i> สถานะ</h5>
             @if ($room->room_status == 1)
-                <button class="btn btn-primary">เปิดใช้บริการหอประชุม</button>
+                <button class="btn btn-primary">ว่าง</button>
             @else
-                <button class="btn btn-danger">ปิดใช้บริการหอประชุมbutton>
+                <button class="btn btn-danger">ไม่ว่าง<button>
             @endif
         </div>
     </div>

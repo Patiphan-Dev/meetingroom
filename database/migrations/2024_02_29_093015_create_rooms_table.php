@@ -16,14 +16,15 @@ return new class extends Migration
             $table->string('room_name')->nullable()->comment('ชื่อหอประชุม');
             $table->text('room_details')->nullable()->comment('รายละเอียดหอประชุม');
             $table->text('room_img_path')->nullable()->comment('รูปภาพ');
+            $table->text('room_diagram_path')->nullable()->comment('แผนภาพ');
             $table->double('maintenance', 7)->default(0)->comment('ค่าบำรุงสถานที่');
             $table->double('utilities', 7)->default(0)->comment('ค่าสารณูปโภค');
             $table->double('officer_compensation', 7)->default(0)->comment('ค่าตอบแทนเจ้าหน้าที่');
             $table->double('other_expenses', 7)->default(0)->comment('ค่าใช้จ่ายอื่นๆ');
             $table->double('total', 7)->default(0)->comment('ค่าใช้จ่ายรวม');
             $table->double('damage_insurance', 7)->default(0)->comment('ค่าประกันความเสียหาย');
-             $table->string('room_status')->default('1')->comment('สถานะหอประชุม');
-             $table->timestamps();
+            $table->string('room_status')->default('1')->comment('สถานะหอประชุม');
+            $table->timestamps();
         });
     }
 

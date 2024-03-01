@@ -16,11 +16,11 @@ class DashboardController extends Controller
         $data = [
             'title' => 'แดชบอร์ด'
         ];
-        $room = Room::all();
+        $rooms = Room::all();
         $bookings = Booking::all();
         $bookday = Booking::where('bk_str_date', Carbon::now()->toDateString())->get();
         $bookstatus = Booking::where('bk_status', 2)->get();
         // dd(Carbon::now()->toDateString());
-        return view('admin.dashboard', compact('room', 'bookings', 'bookday','bookstatus'), $data);
+        return view('admin.dashboard', compact('rooms', 'bookings', 'bookday','bookstatus'), $data);
     }
 }
