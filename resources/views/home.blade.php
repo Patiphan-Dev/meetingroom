@@ -31,7 +31,7 @@
                                         <h4>{{ $room->room_price }} / ชั่วโมง</h4>
 
                                         {{-- <a href="{{ route('booking', ['id' => $room->id]) }}" class="btn btn-warning btn-sm">
-                                        <i class="fa-solid fa-check"></i> จองสนาม
+                                        <i class="fa-solid fa-check"></i> จองหอประชุม
                                     </a>
                                     <a href="{{ route('getroom', ['id' => $room->id]) }}"
                                         class="btn btn-primary btn-sm getroom"> ดูข้อมูลเพิ่มเติม

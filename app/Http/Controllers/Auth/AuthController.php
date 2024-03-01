@@ -16,7 +16,7 @@ class AuthController extends Controller
     public function getLogin()
     {
         $data = [
-            'title' => 'จองห้องประชุม'
+            'title' => 'จองหอประชุม'
         ];
         $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
         return view('auth.login',compact( 'bookings'), $data);
@@ -66,20 +66,32 @@ class AuthController extends Controller
     {
         $request->validate([
             'username' => 'required|string|max:30',
-            'email' => 'required|email|max:30|unique:users',
-            'password' => 'required|min:8|confirmed',
-
-        ], [
-            'username.required' => 'กรุณากรอกชื่อผู้ใช้งาน',
-            'email.required' => 'กรุณากรอกอีเมล',
-            'password.required' => 'กรุณากรอกรหัสผ่าน',
+            'password' => 'required|min:6|confirmed',
+            'fullname' => 'required|string|max:50',
+            'phone' => 'required|string|max:10',
+            'housenumber' => 'required|string|max:20',
+            'village' => 'required|string|max:3',
+            'alley' => 'string|max:50',
+            'road' => 'string|max:50',
+            'subdistrict' => 'required|string|max:50',
+            'district' => 'required|string|max:50',
+            'province' => 'required|string|max:50',
 
         ]);
 
         User::create([
             'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'fullname' => $request->fullname,
+            'phone' => $request->phone,
+            'housenumber' => $request->housenumber,
+            'village' => $request->village,
+            'alley' => $request->alley,
+            'road' => $request->road,
+            'subdistrict' => $request->subdistrict,
+            'district' => $request->district,
+            'province' => $request->province,
+
         ]);
 
         $validated = auth()->attempt([

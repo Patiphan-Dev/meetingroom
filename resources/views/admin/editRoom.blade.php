@@ -2,8 +2,8 @@
     @csrf
     <div class="row">
         <div class="col-12 col-md-6 mb-3">
-            <label for="room_name" class="form-label">ชื่อสนาม <span>*</span></label>
-            <input type="text" class="form-control" id="room_name" name="room_name" placeholder="สนามกีฬา"
+            <label for="room_name" class="form-label">ชื่อหอประชุม <span>*</span></label>
+            <input type="text" class="form-control" id="room_name" name="room_name" placeholder="หอประชุม"
                 value="{{ $room->room_name }}" required>
         </div>
         <div class="col-12 col-md-6 mb-3">
@@ -22,27 +22,27 @@
         </div>
         <div class="col-12 mb-3">
             <div class="form-group">
-                <label for="room_status" class="form-label">สถานะสนาม <span>*</span> </label>
+                <label for="room_status" class="form-label">สถานะหอประชุม <span>*</span> </label>
                 <div class="form-group clearfix">
                     <div class="btn btn-primary icheck-success">
                         <input class="d-inline" type="radio" id="room_status1" value="1" name="room_status"
                             @if ($room->room_status == 1) checked @endif required>
                         <label for="car1">
-                            เปิดใช้บริการสนาม
+                            เปิดใช้บริการหอประชุม
                         </label>
                     </div>
                     <div class="btn btn-danger icheck-success">
                         <input class="d-inline" type="radio" id="room_status2" value="0" name="room_status"
                             @if ($room->room_status == 0) checked @endif required>
                         <label for="car2">
-                            ปิดใช้บริการสนาม
+                            ปิดใช้บริการหอประชุม
                         </label>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-12 mb-3">
-            <label class="form-label">รูปภาพสนาม <span>*</span></label>
+            <label class="form-label">รูปภาพหอประชุม <span>*</span></label>
             <input type="file" class="form-control" id="imageInput{{ $room->id }}" name="room_img_path[]"
                 accept="image/gif, image/jpeg, image/png" onchange="inputFile('{{ $room->id }}')" multiple>
         </div>

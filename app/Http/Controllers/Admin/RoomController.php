@@ -7,18 +7,16 @@ use Illuminate\Http\Request;
 use App\Models\Room;
 use RealRashid\SweetAlert\Facades\Alert;
 use File;
+
 class RoomController extends Controller
 {
     public function index(Request $request)
     {
         $data = [
-            'title' => 'สนามกีฬา'
+            'title' => 'หอประชุม'
         ];
-
-        $id = $request->input('id');
-
-        $room = Room::all();
-        return view('admin.room', compact('room'), $data);
+        $rooms = Room::all();
+        return view('admin.room', compact('rooms'), $data);
     }
 
     public function addRoom(Request $request)
@@ -42,9 +40,14 @@ class RoomController extends Controller
             $Room = new room;
             $Room->room_name = $request->room_name;
             $Room->room_details = $request->room_details;
-            $Room->room_price = $request->room_price;
             $Room->room_facilities = $request->room_facilities;
             $Room->room_img_path = $room_img_path;
+            $Room->maintenance = $request->maintenance;
+            $Room->utilities = $request->utilities;
+            $Room->officer_compensation = $request->officer_compensation;
+            $Room->other_expenses = $request->other_expenses;
+            $Room->total = $request->total;
+            $Room->damage_insurance = $request->damage_insurance;
             $Room->room_status = '1';
             $Room->save();
         }
@@ -92,9 +95,14 @@ class RoomController extends Controller
                     [
                         'room_name' => $request->room_name,
                         'room_details' => $request->room_details,
-                        'room_price' => $request->room_price,
                         'room_facilities' => $request->room_facilities,
                         'room_img_path' => $room_img_path,
+                        'maintenance' => $request->maintenance,
+                        'utilities' => $request->utilities,
+                        'officer_compensation' => $request->officer_compensation,
+                        'other_expenses' => $request->other_expenses,
+                        'total' => $request->total,
+                        'damage_insurance' => $request->damage_insurance,
                         'room_status' => $request->room_status,
                     ]
                 );
@@ -105,8 +113,13 @@ class RoomController extends Controller
                 [
                     'room_name' => $request->room_name,
                     'room_details' => $request->room_details,
-                    'room_price' => $request->room_price,
                     'room_facilities' => $request->room_facilities,
+                    'maintenance' => $request->maintenance,
+                    'utilities' => $request->utilities,
+                    'officer_compensation' => $request->officer_compensation,
+                    'other_expenses' => $request->other_expenses,
+                    'total' => $request->total,
+                    'damage_insurance' => $request->damage_insurance,
                     'room_status' => $request->room_status,
                 ]
             );
@@ -134,10 +147,10 @@ class RoomController extends Controller
     public function getRoom($id)
     {
         $data = [
-            'title' => 'ข้อมูลสนามกีฬา'
+            'title' => 'ข้อมูลหอประชุม'
         ];
-        $room = Room::all();
-        $Room = Room::find($id);
-        return view('Room', compact('Room','room'), $data);
+        $rooms = Room::all();
+        $room = Room::find($id);
+        return view('Room', compact('rooms', 'room'), $data);
     }
 }

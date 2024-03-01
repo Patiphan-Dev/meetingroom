@@ -1,30 +1,46 @@
 <form action="{{ route('addRoom') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
-        <div class="col-12 col-md-6 mb-3">
-            <label for="room_name" class="form-label">ชื่อสนาม <span>*</span></label>
-            <input type="text" class="form-control" id="room_name" name="room_name" placeholder="สนามกีฬา" required>
+        <div class="col-12 col-md-4 mb-3">
+            <label for="room_name" class="form-label">ชื่อหอประชุม <span>*</span></label>
+            <input type="text" class="form-control" id="room_name" name="room_name" placeholder="หอประชุม" required>
         </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label for="room_price" class="form-label">ราคา <span>*</span></label>
-            <input type="number" class="form-control" id="room_price" name="room_price" placeholder="999" required>
-
+        <div class="col-12 col-md-4 mb-3">
+            <label for="maintenance" class="form-label">ค่าบำรุงสถานที่ <span>*</span></label>
+            <input type="number" class="form-control" id="maintenance" name="maintenance" placeholder="999" required>
+        </div>
+        <div class="col-12 col-md-4 mb-3">
+            <label for="utilities" class="form-label">ค่าสารณูปโภค <span>*</span></label>
+            <input type="number" class="form-control" id="utilities" name="utilities" placeholder="999" required>
+        </div>
+        <div class="col-12 col-md-4 mb-3">
+            <label for="officer_compensation" class="form-label">ค่าตอบแทนเจ้าหน้าที่ <span>*</span></label>
+            <input type="number" class="form-control" id="officer_compensation" name="officer_compensation" placeholder="999" required>
+        </div>
+        <div class="col-12 col-md-4 mb-3">
+            <label for="other_expenses" class="form-label">ค่าใช้จ่ายอื่นๆ <span>*</span></label>
+            <input type="number" class="form-control" id="other_expenses" name="other_expenses" placeholder="999" required>
+        </div>
+        <div class="col-12 col-md-4 mb-3">
+            <label for="total" class="form-label">ค่าใช้จ่ายรวม</label>
+            <input type="number" class="form-control" id="total" name="total" placeholder="999" required>
+        </div>
+        
+        <div class="col-12 mb-3">
+            <label for="damage_insurance" class="form-label">ค่าประกันความเสียหาย</label>
+            <input type="number" class="form-control" id="other_expenses" name="other_expenses" placeholder="999" required>
         </div>
         <div class="col-12 mb-3">
             <label for="room_details" class="form-label">รายละเอียด</label>
             <textarea id="room_details" name="room_details" required></textarea>
         </div>
         <div class="col-12 mb-3">
-            <label for="room_facilities" class="form-label">สิ่งอำนวยความสะดวก</label>
-            <textarea id="room_facilities" name="room_facilities" required></textarea>
-        </div>
-        <div class="col-12 mb-3">
-            <label class="form-label">รูปภาพสนาม <span>*</span></label>
+            <label class="form-label">รูปภาพหอประชุม <span>*</span></label>
             <input type="file" class="form-control" id="imageRoom" name="room_img_path[]"
                 accept="image/gif, image/jpeg, image/png" multiple required>
         </div>
         <div class="row mb-3">
-            
+
             <div id="imageRoomPreview"></div>
         </div>
     </div>

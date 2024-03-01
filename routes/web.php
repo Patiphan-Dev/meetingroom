@@ -29,17 +29,15 @@ Route::post('/login', [AuthController::class, 'postLogin'])->name('postLogin');
 Route::get('/register', [AuthController::class, 'getRegister'])->name('getRegister');
 Route::post('/register', [AuthController::class, 'postRegister'])->name('postRegister');
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/about', [HomeController::class, 'about'])->name('about');
-Route::get('/room/{id}', [RoomController::class, 'getRoom'])->name('getRoom');
-
-Route::get('/rule', [RuleController::class, 'index'])->name('rule');
-
 Route::group(['middleware' => ['login_auth']], function () { // ล็อคอินถึงจะเข้าได้
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/about', [HomeController::class, 'about'])->name('about');
+    Route::get('/room/{id}', [RoomController::class, 'getRoom'])->name('getRoom');
 
+    Route::get('/rule', [RuleController::class, 'index'])->name('rule');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/booking/{id}', [BookingController::class,'index'])->name('booking');
+    Route::get('/booking/{id}', [BookingController::class, 'index'])->name('booking');
     Route::get('/booking', [BookingController::class,  'indexAll'])->name('bookingAll');
     Route::post('/addbooking', [BookingController::class, 'addBooking'])->name('addBooking');
     Route::get('/editbooking', [BookingController::class, 'editBooking'])->name('editBooking');
@@ -64,6 +62,5 @@ Route::group(['middleware' => ['login_auth']], function () { // ล็อคอ�
 
         Route::post('/addrule', [RuleController::class, 'addRule'])->name('addRule');
         Route::post('/updaterule', [RuleController::class, 'updateRule'])->name('updateRule');
-
     });
 });

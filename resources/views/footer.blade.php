@@ -17,11 +17,11 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link fw-bold py-1 text-white {{ $current_route == 'getRoom' ? 'active' : '' }}"
-                    href="{{ route('getRoom', ['id' => 1]) }}">สนามกีฬา</a>
+                    href="{{ route('getRoom', ['id' => 1]) }}">หอประชุม</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link fw-bold py-1 text-white {{ $current_route == 'bookingAll' ? 'active' : '' }}"
-                    href="{{ route('bookingAll') }}">จองสนาม</a>
+                    href="{{ route('bookingAll') }}">จองหอประชุม</a>
             </li>
         </ul>
         <p class="text-center text-white">© 2023 Company, Inc</p>

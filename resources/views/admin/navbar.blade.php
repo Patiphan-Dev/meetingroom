@@ -29,10 +29,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('room') }}"
+                    <a href="{{ route('Room') }}"
                         class="nav-link text-white fw-bold py-1 {{ $current_route == 'room' ? 'active' : '' }}">
                         <i class="fa-solid fa-medal"></i>
-                        สนามกีฬา
+                        หอประชุม
                     </a>
                 </li>
                 <li>

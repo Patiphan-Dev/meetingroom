@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('fullname')->nullable()->comment('ชื่อ-นามสกุล');
             $table->string('phone')->nullable()->comment('เบอร์โทร');
             $table->string('housenumber')->nullable()->comment('บ้านเลขที่');
-            $table->string('village')->nullable()->comment('หมู่บ้าน');
+            $table->string('village')->nullable()->comment('หมู่ที่');
+            $table->string('alley')->nullable()->comment('ตรอก/ซอย');
             $table->string('road')->nullable()->comment('ถนน');
             $table->string('subdistrict')->nullable()->comment('ตำบล/แขวง');
             $table->string('district')->nullable()->comment('อำเภอ/เขต');

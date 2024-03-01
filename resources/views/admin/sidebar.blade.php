@@ -14,7 +14,7 @@
         <img src="{{ asset('assets/images/logo.png') }}" alt="" style="width:10vw">
     </a><br>
     <a href="/" class="align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <span class="fs-4">ระบบจองสนามกีฬา</span>
+        <span class="fs-4">ระบบจองหอประชุม</span>
     </a></div>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
@@ -26,10 +26,10 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('room') }}"
+            <a href="{{ route('Room') }}"
                 class="nav-link text-white {{ $current_route == 'room' ? 'active' : '' }}">
                 <i class="fa-solid fa-medal"></i>
-                สนามกีฬา
+                หอประชุม
             </a>
         </li>
         <li>

@@ -27,7 +27,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
-
+<style>
+    label span{
+        color: red 
+    }
+</style>
 <body>
     <div class="container">
         <section class="register">
@@ -39,7 +43,7 @@
                         </div>
                         <div class="w-100">
                             <p class="d-flex justify-content-end">
-                                <a href="{{ route('home') }}" class="d-flex align-items-center justify-content-center">
+                                <a href="{{ route('home') }}" class="nav-link d-flex align-items-center justify-content-center">
                                     <i class="fa-solid fa-house-chimney mx-1"></i> หน้าแรก
                                 </a>
                             </p>
@@ -54,7 +58,7 @@
                                 <span class="text-center text-danger">{{ $message }}</span>
                             @endif
                             <div class="col-6 col-sm-4 col-md-4 mb-3">
-                                <label class="label" for="username">ชื่อผู้ใช้งาน</label>
+                                <label class="label" for="username">ชื่อผู้ใช้งาน <span>*</span></label>
                                 <input type="text" class="form-control @error('username') is-invalid @enderror"
                                     placeholder="Username" id="username" name="username" value="{{ old('username') }}">
                                 @if ($errors->has('username'))
@@ -62,7 +66,7 @@
                                 @endif
                             </div>
                             <div class="col-6 col-sm-4 col-md-4 mb-3">
-                                <label class="label" for="password">รหัสผ่าน</label>
+                                <label class="label" for="password">รหัสผ่าน <span>*</span></label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
                                     id="password" name="password" placeholder="Password">
                             </div>
@@ -76,7 +80,7 @@
                                 @endif
                             </div>
                             <div class="col-6 col-sm-4 col-md-4 mb-3">
-                                <label class="label" for="fullname">ชื่อ-นามสกุล</label>
+                                <label class="label" for="fullname">ชื่อ-นามสกุล <span>*</span></label>
                                 <input type="text" class="form-control @error('fullname') is-invalid @enderror"
                                     placeholder="fullname" id="fullname" name="fullname" value="{{ old('fullname') }}">
                                 @if ($errors->has('fullname'))
@@ -84,7 +88,7 @@
                                 @endif
                             </div>
                             <div class="col-6 col-sm-4 col-md-4 mb-3">
-                                <label class="label" for="phone">เบอร์โทร</label>
+                                <label class="label" for="phone">เบอร์โทรศัพน์ <span>*</span></label>
                                 <input type="tel" class="form-control @error('phone') is-invalid @enderror"
                                     placeholder="phone" id="phone" name="phone" value="{{ old('phone') }}">
                                 @if ($errors->has('phone'))
@@ -92,7 +96,7 @@
                                 @endif
                             </div>
                             <div class="col-6 col-sm-4 col-md-4 mb-3">
-                                <label class="label" for="housenumber">บ้านเลขที่</label>
+                                <label class="label" for="housenumber">บ้านเลขที่ <span>*</span></label>
                                 <input type="text" class="form-control @error('housenumber') is-invalid @enderror"
                                     placeholder="housenumber" id="housenumber" name="housenumber"
                                     value="{{ old('housenumber') }}">
@@ -101,12 +105,20 @@
                                 @endif
                             </div>
                             <div class="col-6 col-sm-4 col-md-4 mb-3">
-                                <label class="label" for="village">หมู่บ้าน</label>
+                                <label class="label" for="village">หมู่ที่ <span>*</span></label>
                                 <input type="text" class="form-control @error('village') is-invalid @enderror"
                                     placeholder="village" id="village" name="village"
                                     value="{{ old('village') }}">
                                 @if ($errors->has('village'))
                                     <span class="text-danger">{{ $errors->first('village') }}</span>
+                                @endif
+                            </div>
+                            <div class="col-6 col-sm-4 col-md-4 mb-3">
+                                <label class="label" for="alley">ตรอก/ซอย</label>
+                                <input type="text" class="form-control @error('alley') is-invalid @enderror"
+                                    placeholder="alley" id="alley" name="alley" value="{{ old('alley') }}">
+                                @if ($errors->has('alley'))
+                                    <span class="text-danger">{{ $errors->first('alley') }}</span>
                                 @endif
                             </div>
                             <div class="col-6 col-sm-4 col-md-4 mb-3">
@@ -118,7 +130,7 @@
                                 @endif
                             </div>
                             <div class="col-6 col-sm-4 col-md-4 mb-3">
-                                <label class="label" for="subdistrict">ตำบล/แขวง</label>
+                                <label class="label" for="subdistrict">ตำบล/แขวง <span>*</span></label>
                                 <input type="text" class="form-control @error('subdistrict') is-invalid @enderror"
                                     placeholder="subdistrict" id="subdistrict" name="subdistrict"
                                     value="{{ old('subdistrict') }}">
@@ -127,7 +139,7 @@
                                 @endif
                             </div>
                             <div class="col-6 col-sm-4 col-md-4 mb-3">
-                                <label class="label" for="district">อำเภอ/เขต</label>
+                                <label class="label" for="district">อำเภอ/เขต <span>*</span></label>
                                 <input type="text" class="form-control @error('district') is-invalid @enderror"
                                     placeholder="district" id="district" name="district"
                                     value="{{ old('district') }}">
@@ -136,7 +148,7 @@
                                 @endif
                             </div>
                             <div class="col-6 col-sm-4 col-md-4 mb-5">
-                                <label class="label" for="province">จังหวัด</label>
+                                <label class="label" for="province">จังหวัด <span>*</span></label>
                                 <input type="text" class="form-control @error('province') is-invalid @enderror"
                                     placeholder="province" id="province" name="province"
                                     value="{{ old('province') }}">

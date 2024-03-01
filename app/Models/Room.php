@@ -14,7 +14,6 @@ class Room extends Model
         'room_facilities',
         'room_img_path',
         'room_status',
-        
         'maintenance',
         'utilities',
         'officer_compensation',

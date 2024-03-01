@@ -69,9 +69,9 @@
     @endphp
     <div class="row justify-content-center mb-3">
         <div class="col-12 col-sm-12 col-md-12 mb-3">
-            <label for="room_id" class="form-label">สนามกีฬา :</label>
+            <label for="room_id" class="form-label">หอประชุม :</label>
             <select class="form-select" name="bk_room_id" id="bk_room_id" required onchange="Calculate()">
-                <option value="" disabled selected>--- กรุณาเลือกสนาม ---</option>
+                <option value="" disabled selected>--- กรุณาเลือกหอประชุม ---</option>
                 @foreach ($rooms as $room)
                     <option value="{{ $room->id }}" data-price="{{ $room->room_price }}"
                         @if (!empty($search)) @if ($search->id == $room->id) selected @endif
@@ -112,7 +112,7 @@
         <div class="col-8 col-sm-6 col-md-6 mt-3">
             <div class="form-btn">
                 <button type="submit" class="btn btn-primary w-100">
-                    <i class="fa-regular fa-calendar-plus"></i> จองสนาม
+                    <i class="fa-regular fa-calendar-plus"></i> จองหอประชุม
                 </button>
             </div>
         </div>

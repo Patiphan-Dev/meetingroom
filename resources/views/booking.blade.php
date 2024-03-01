@@ -46,7 +46,7 @@
             <h3>ประวัติการจอง</h3>
             @if (count($history) == 0)
                 <div class="alert alert-warning" role="alert">
-                    ไม่มีประวัติการจองสนาม !!
+                    ไม่มีประวัติการจองหอประชุม !!
                 </div>
             @else
                 <div class="row g-3">

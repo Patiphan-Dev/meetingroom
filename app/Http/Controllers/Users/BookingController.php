@@ -15,7 +15,7 @@ class BookingController extends Controller
     public function index($id)
     {
         $data = [
-            'title' => 'จองห้องประชุม'
+            'title' => 'จองหอประชุม'
         ];
         $booking = Booking::where('bk_room_id', $id)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
         $history = Booking::where('bk_username', auth()->user()->username)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->paginate(10);
@@ -28,7 +28,7 @@ class BookingController extends Controller
     public function indexAll()
     {
         $data = [
-            'title' => 'จองห้องประชุม'
+            'title' => 'จองหอประชุม'
         ];
         $booking = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
         $history = Booking::where('bk_username', auth()->user()->username)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
@@ -96,8 +96,8 @@ class BookingController extends Controller
             $booking->bk_status = 1;
             $booking->save();
 
-            Alert::success('สำเร็จ', 'จองสนามสำเสร็จ');
-            return redirect()->back()->with('สำเร็จ', 'จองสนามสำเสร็จ');
+            Alert::success('สำเร็จ', 'จองหอประชุมสำเสร็จ');
+            return redirect()->back()->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
         } else {
 
             Alert::error('ไม่สำเร็จ', 'ไม่สามารถจองในช่วงเวลาดังกล่าวได้');

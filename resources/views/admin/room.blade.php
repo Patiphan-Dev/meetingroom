@@ -3,13 +3,13 @@
 @section('body')
     <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4">
         <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addRoom">
-            <i class="fa-solid fa-plus"></i> เพิ่มสนาม
+            <i class="fa-solid fa-plus"></i> เพิ่มหอประชุม
         </button>
         <div class="modal fade" id="addRoom" aria-hidden="true" aria-labelledby="addRoomLabel" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered  modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="addRoomLabel">เพิ่มสนามกีฬา</h1>
+                        <h1 class="modal-title fs-5" id="addRoomLabel">เพิ่มหอประชุม</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -49,7 +49,7 @@
                         <div class="clearfix">
                             <div class="modal-footer">
                                 <button class="btn btn-danger"
-                                    onclick="deleteroom('{{ $room->id }}')">ลบสนาม</button>
+                                    onclick="deleteroom('{{ $room->id }}')">ลบหอประชุม</button>
                                 <button class="btn btn-warning editModal" data-id="{{ $room->id }}"
                                     data-bs-target="#editModal{{ $room->id }}"
                                     data-bs-toggle="modal">แก้ไขข้อมูล</button>
@@ -66,7 +66,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="editModalLabel">แก้ไขสนามกีฬา</h1>
+                            <h1 class="modal-title fs-5" id="editModalLabel">แก้ไขหอประชุม</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -184,7 +184,7 @@
                         success: function(response) {
                             Swal.fire({
                                 title: "ลบแล้ว!",
-                                text: "สนามของคุณถูกลบแล้ว.",
+                                text: "หอประชุมของคุณถูกลบแล้ว.",
                                 icon: "success"
                             }).then(() => {
                                 // Reload the page after successful deletion
@@ -194,7 +194,7 @@
                         error: function(xhr, status, error) {
                             Swal.fire({
                                 title: "ลบไม่สำเร็จ!",
-                                text: "สนามของคุณยังไม่ถูกลบ.",
+                                text: "หอประชุมของคุณยังไม่ถูกลบ.",
                                 icon: "error"
                             });
                             // console.log("AJAX Request Error:", status, error);

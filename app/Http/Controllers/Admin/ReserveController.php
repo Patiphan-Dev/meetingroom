@@ -82,8 +82,8 @@ class ReserveController extends Controller
             $reserve->bk_status = 1;
             $reserve->save();
 
-            Alert::success('สำเร็จ', 'จองสนามสำเสร็จ');
-            return redirect()->back()->with('สำเร็จ', 'จองสนามสำเสร็จ');
+            Alert::success('สำเร็จ', 'จองหอประชุมสำเร็จ');
+            return redirect()->back()->with('สำเร็จ', 'จองหอประชุมสำเร็จ');
         } else {
 
             Alert::error('ไม่สำเร็จ', 'ไม่สามารถจองในช่วงเวลาดังกล่าวได้');

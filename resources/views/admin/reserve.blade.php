@@ -3,13 +3,13 @@
 @section('body')
     <div class="d-grid gap-2 d-md-flex justify-content-end">
         <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addroom">
-            <i class="fa-solid fa-plus"></i> จองสนาม
+            <i class="fa-solid fa-plus"></i> จองหอประชุม
         </button>
         <div class="modal fade" id="addroom" aria-hidden="true" aria-labelledby="addroomLabel" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="addroomLabel">จองสนามกีฬา</h1>
+                        <h1 class="modal-title fs-5" id="addroomLabel">จองหอประชุม</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -21,12 +21,12 @@
     </div>
 
     <div class="row mt-3">
-        <h3 class="strong">รายงานการจองสนามกีฬา</h3>
+        <h3 class="strong">รายงานการจองหอประชุม</h3>
         <table class="display responsive  nowrap" id="reserveTable" style="width:100%">
             <thead>
                 <tr class="text-center">
                     <th scope="col">#</th>
-                    <th scope="col">สนาม</th>
+                    <th scope="col">หอประชุม</th>
                     <th scope="col">ชื่อผู้จอง</th>
                     <th scope="col">วันที่จอง</th>
                     <th scope="col">เวลาจอง</th>

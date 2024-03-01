@@ -13,7 +13,7 @@
                                 <img src="{{ asset($img) }}" class="d-block w-100" alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                     <a href="{{ route('booking', ['id' => $room->id]) }}" class="btn btn-warning">
-                                        <i class="fa-solid fa-check"></i>จองสนาม
+                                        <i class="fa-solid fa-check"></i>จองหอประชุม
                                     </a>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
             <div class="position-sticky" style="top: 8.5rem;">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="fst-italic">สนามกีฬาเพิ่มเติม</h4>
+                        <h4 class="fst-italic">หอประชุมเพิ่มเติม</h4>
                         <ul class="list-unstyled">
                             @foreach ($Rooms as $key => $room)
                                 <li @if ($room->id == $room->id) hidden @endif>

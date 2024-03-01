@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('bk_room_id',2)->nullable()->comment('รหัสสนาม');
+            $table->string('bk_room_id',2)->nullable()->comment('รหัสหอประชุม');
             $table->string('bk_user_id')->nullable()->comment('รหัสผู้จอง');
             $table->date('bk_str_date')->nullable()->comment('วันที่เริ่ม');
             $table->date('bk_end_date')->nullable()->comment('วันที่สิ้นสุด');

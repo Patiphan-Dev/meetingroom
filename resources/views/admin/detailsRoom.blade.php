@@ -33,9 +33,9 @@
         <div class="clearfix">
             <h5><i class="fa-solid fa-shield-halved"></i> สถานะ</h5>
             @if ($room->room_status == 1)
-                <button class="btn btn-primary">เปิดใช้บริการสนาม</button>
+                <button class="btn btn-primary">เปิดใช้บริการหอประชุม</button>
             @else
-                <button class="btn btn-danger">ปิดใช้บริการสนาม</button>
+                <button class="btn btn-danger">ปิดใช้บริการหอประชุมbutton>
             @endif
         </div>
     </div>

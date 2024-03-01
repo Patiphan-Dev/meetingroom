@@ -24,6 +24,7 @@ class User extends Authenticatable
         'phone',
         'housenumber',
         'village',
+        'alley',
         'road',
         'subdistrict',
         'district',
