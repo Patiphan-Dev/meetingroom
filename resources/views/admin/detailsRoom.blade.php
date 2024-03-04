@@ -19,13 +19,21 @@
         </button>
     </div>
     <div class="px-4">
-        <h4 class="pb-4 mb-3 fst-italic border-bottom">
-            {{ $room->room_name }} ราคา {{ $room->room_price }} บาท / ชั่วโมง
-        </h4>
+        <h1 class="pb-4 mb-3 fst-italic border-bottom">
+            {{ $room->room_name }}
+        </h1>
         <article class="blog-post mb-5">
             <h3>รายละเอียด</h3>
             {!! $room->room_details !!}
         </article>
+        <div class="mb-5">
+            <h3>แผนภาพหอประชุม</h3>
+            @foreach ($diagram as $key => $img)
+                <div class="text-center {{ $key == 0 ? 'active' : '' }}">
+                    <img src="{{ asset($img) }}" class="img-fluid w-50" alt="...">
+                </div>
+            @endforeach
+        </div>
         <table class="table table-bordered border-primary">
             <thead class="text-center">
                 <th>ค่าบำรุงสถานที่</th>
@@ -43,30 +51,6 @@
                 <td class="text-end">{{ $room->total }}</td>
                 <td class="text-end">{{ $room->damage_insurance }}</td>
             </tbody>
-            {{-- <article class="col-auto mb-3">
-                <h5>ค่าบำรุงสถานที่ </h5>
-                <p class="text-end">{{ $room->maintenance }}</p>
-            </article>
-            <article class="col-auto mb-3">
-                <h5>ค่าสารณูปโภค </h5>
-                <p class="text-end">{{ $room->utilities }}</p>
-            </article>
-            <article class="col-auto mb-3">
-                <h5>ค่าตอบแทนเจ้าหน้าที่ </h5>
-                <p class="text-end">{{ $room->officer_compensation }}</p>
-            </article>
-            <article class="col-auto mb-3">
-                <h5>ค่าใช้จ่ายอื่นๆ </h5>
-                <p class="text-end">{{ $room->other_expenses }}</p>
-            </article>
-            <article class="col-auto mb-3">
-                <h5>ค่าใช้จ่ายรวม </h5>
-                <p class="text-end">{{ $room->total }}</p>
-            </article>
-            <article class="col-auto mb-3">
-                <h5>ค่าประกันความเสียหาย </h5>
-                <p class="text-end">{{ $room->damage_insurance }}</p>
-            </article> --}}
         </table>
         <div class="clearfix">
             <h5><i class="fa-solid fa-shield-halved"></i> สถานะ</h5>
