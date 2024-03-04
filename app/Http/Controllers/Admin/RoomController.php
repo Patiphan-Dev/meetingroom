@@ -101,6 +101,7 @@ class RoomController extends Controller
             $diagrams = $request->file('room_diagram_path');
 
             if ($files) {
+                $i = 1;
                 foreach ($files as $file) {
                     $room_img_path =  $request->room_name . '-' . $date . '-img-' . $i++;
                     $ext = strtolower($file->getClientOriginalExtension());

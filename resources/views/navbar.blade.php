@@ -27,14 +27,14 @@
                     <a class="nav-link fw-bold py-1 {{ $current_route == 'about' ? 'active' : '' }}"
                         href="{{ route('about') }}">เกี่ยวกับเรา</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link fw-bold py-1 {{ $current_route == 'getRoom' ? 'active' : '' }}"
                         href="{{ route('getRoom', ['id' => 1]) }}">หอประชุม</a>
-                </li>
-                <li class="nav-item">
+                </li> --}}
+                {{-- <li class="nav-item">
                     <a class="nav-link fw-bold py-1 {{ $current_route == 'bookingAll' ? 'active' : '' }}"
                         href="{{ route('bookingAll') }}">จองหอประชุม</a>
-                </li>
+                </li> --}}
             </ul>
             <ul class="navbar-nav ms-auto">
                 @guest

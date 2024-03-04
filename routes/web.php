@@ -33,6 +33,8 @@ Route::group(['middleware' => ['login_auth']], function () { // ล็อคอ�
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/room/{id}', [RoomController::class, 'getRoom'])->name('getRoom');
+    Route::get('/room/{id}/booking', [BookingController::class, 'index'])->name('bookingRoom');
+
 
     Route::get('/rule', [RuleController::class, 'index'])->name('rule');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

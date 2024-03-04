@@ -11,7 +11,6 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open
@@ -80,7 +79,7 @@
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">สร้างการจอง</button>
+        {{-- <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">สร้างการจอง</button> --}}
     </div>
     @if ($rooms != null || $rooms != '')
         <div class="row mt-4">
@@ -111,12 +110,12 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <a class="col-md-8 nav-link" href="{{ route('getRoom', ['id' => $room->id]) }}">
                             <div class="card-body">
                                 <h2 class="card-title"><b>{{ $room->room_name }}</b></h2>
                                 <p class="card-text">{!! $room->room_details !!}</p>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             @endforeach

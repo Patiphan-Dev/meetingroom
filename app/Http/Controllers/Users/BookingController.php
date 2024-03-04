@@ -18,11 +18,11 @@ class BookingController extends Controller
             'title' => 'จองหอประชุม'
         ];
         $booking = Booking::where('bk_room_id', $id)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
-        $history = Booking::where('bk_username', auth()->user()->username)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->paginate(10);
+        $history = Booking::where('bk_user_id', auth()->user()->username)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->paginate(10);
         $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
-        $search = Room::find($id);
+        $room = Room::find($id);
         $rooms = Room::all();
-        return view('booking', compact('booking', 'bookings', 'rooms', 'search', 'history'), $data);
+        return view('booking', compact('booking', 'bookings', 'rooms', 'room', 'history'), $data);
     }
 
     public function indexAll()
@@ -31,7 +31,7 @@ class BookingController extends Controller
             'title' => 'จองหอประชุม'
         ];
         $booking = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
-        $history = Booking::where('bk_username', auth()->user()->username)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
+        $history = Booking::where('bk_user_id', auth()->user()->username)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
         $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
         $rooms = Room::all();
         $search = '';
@@ -87,7 +87,7 @@ class BookingController extends Controller
             //บันทึกข้อมูล;
             $booking = new Booking;
             $booking->bk_room_id = $request->bk_room_id;
-            $booking->bk_username = auth()->user()->username;
+            $booking->bk_user_id = auth()->user()->username;
             $booking->bk_date = $request->bk_date;
             $booking->bk_str_time = $request->bk_str_time;
             $booking->bk_end_time = $request->bk_end_time;
