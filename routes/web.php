@@ -35,13 +35,12 @@ Route::group(['middleware' => ['login_auth']], function () { // ล็อคอ�
     Route::get('/room/{id}', [RoomController::class, 'getRoom'])->name('getRoom');
     Route::get('/room/{id}/booking', [BookingController::class, 'index'])->name('bookingRoom');
 
-
     Route::get('/rule', [RuleController::class, 'index'])->name('rule');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/booking/{id}', [BookingController::class, 'index'])->name('booking');
     Route::get('/booking', [BookingController::class,  'indexAll'])->name('bookingAll');
-    Route::post('/addbooking', [BookingController::class, 'addBooking'])->name('addBooking');
+    Route::get('/addbooking/{id}', [BookingController::class, 'addBooking'])->name('addBooking');
     Route::get('/editbooking', [BookingController::class, 'editBooking'])->name('editBooking');
     Route::post('/updatebooking/{id}', [BookingController::class, 'updateBooking'])->name('updateBooking');
     Route::post('/deletebooking/{id}', [BookingController::class, 'deleteBooking'])->name('deleteBooking');

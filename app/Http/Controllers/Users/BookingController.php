@@ -38,71 +38,70 @@ class BookingController extends Controller
         return view('booking', compact('booking', 'bookings', 'rooms', 'search', 'history'), $data);
     }
 
-    public function addBooking(Request $request)
+    public function addBooking(Request $request,$id)
     {
+        $room = Room::find($id);
         // เช็กช่วงเวลาที่จอง
-        $bk_room_id = $request->bk_room_id;
-        $bk_date = $request->bk_date;
-        $checkin = $request->bk_str_time;
-        $checkout = $request->bk_end_time;
+        // $bk_room_id = $request->bk_room_id;
+        // $bk_str_date = $request->bk_str_date;
+        // $checkin = $request->bk_str_time;
+        // $checkout = $request->bk_end_time;
 
-        $booking = Booking::where(function ($query) use ($bk_room_id, $bk_date, $checkin, $checkout) {
-            $query->where(function ($query) use ($bk_room_id, $bk_date, $checkin, $checkout) {
-                $query->where('bk_room_id', $bk_room_id)
-                    ->where('bk_date', $bk_date)
-                    ->where('bk_str_time', '>=', $checkin)
-                    ->where('bk_str_time', '<', $checkout);
-            })
-                ->orWhere(function ($query) use ($bk_room_id, $bk_date, $checkin, $checkout) {
-                    $query->where('bk_room_id', $bk_room_id)
-                        ->where('bk_date', $bk_date)
-                        ->where('bk_end_time', '>', $checkin)
-                        ->where('bk_end_time', '<=', $checkout);
-                });
-        })
-            ->orWhere(function ($query) use ($bk_room_id, $bk_date, $checkin, $checkout) {
-                $query->where('bk_room_id', $bk_room_id)
-                    ->where('bk_date', $bk_date)
-                    ->where('bk_str_time', '<=', $checkin)
-                    ->where('bk_end_time', '>=', $checkout);
-            })
-            ->first();
+        // $booking = Booking::where(function ($query) use ($bk_room_id, $bk_str_date, $checkin, $checkout) {
+        //     $query->where(function ($query) use ($bk_room_id, $bk_str_date, $checkin, $checkout) {
+        //         $query->where('bk_room_id', $bk_room_id)
+        //             ->where('bk_date', $bk_str_date)
+        //             ->where('bk_str_time', '>=', $checkin)
+        //             ->where('bk_str_time', '<', $checkout);
+        //     })
+        //         ->orWhere(function ($query) use ($bk_room_id, $bk_str_date, $checkin, $checkout) {
+        //             $query->where('bk_room_id', $bk_room_id)
+        //                 ->where('bk_date', $bk_str_date)
+        //                 ->where('bk_end_time', '>', $checkin)
+        //                 ->where('bk_end_time', '<=', $checkout);
+        //         });
+        // })
+        //     ->orWhere(function ($query) use ($bk_room_id, $bk_str_date, $checkin, $checkout) {
+        //         $query->where('bk_room_id', $bk_room_id)
+        //             ->where('bk_date', $bk_str_date)
+        //             ->where('bk_str_time', '<=', $checkin)
+        //             ->where('bk_end_time', '>=', $checkout);
+        //     })
+        //     ->first();
 
 
-        // คำนวณจำนวนชั่วโมง
-        $hoursCheckIn = Carbon::parse($request->bk_str_time);
-        $hoursCheckOut = Carbon::parse($request->bk_end_time);
-        // Calculate the difference in minutes
-        $minutes = $hoursCheckIn->diffInMinutes($hoursCheckOut);
+        // // คำนวณจำนวนชั่วโมง
+        // $hoursCheckIn = Carbon::parse($request->bk_str_time);
+        // $hoursCheckOut = Carbon::parse($request->bk_end_time);
+        // // Calculate the difference in minutes
+        // $minutes = $hoursCheckIn->diffInMinutes($hoursCheckOut);
 
-        $getprice = Room::find($request->bk_room_id);
+        // $getprice = Room::find($request->bk_room_id);
 
-        $price = ($getprice->room_price / 60) * $minutes;
-        $totalPrice = round($price);
-        // dd($getprice->room_price,  $minutes, $totalPrice);
+        // $price = ($getprice->room_price / 60) * $minutes;
+        // $totalPrice = round($price);
 
 
         // dd($booking);
-        if ($booking == null) {
+        // if ($booking == null) {
             //บันทึกข้อมูล;
             $booking = new Booking;
-            $booking->bk_room_id = $request->bk_room_id;
-            $booking->bk_user_id = auth()->user()->username;
-            $booking->bk_date = $request->bk_date;
-            $booking->bk_str_time = $request->bk_str_time;
-            $booking->bk_end_time = $request->bk_end_time;
-            $booking->bk_sumtime = $minutes;
-            $booking->bk_total_price = $totalPrice;
+            $booking->bk_room_id = $room->bk_room_id;
+            $booking->bk_user_id = auth()->user()->id;
+            $booking->bk_str_date = '2020-03-06';
+            $booking->bk_str_time = '00:00:00';
+            $booking->bk_end_time = '00:00:00';
+            $booking->bk_sumtime = 0;
             $booking->bk_status = 1;
             $booking->save();
 
-            Alert::success('สำเร็จ', 'จองหอประชุมสำเสร็จ');
-            return redirect()->back()->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
-        } else {
+            // Alert::success('สำเร็จ', 'จองหอประชุมสำเสร็จ');
+            return redirect()->route('getRoom', ['id' => $id, 'step' => 2])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
+        // } else {
 
-            Alert::error('ไม่สำเร็จ', 'ไม่สามารถจองในช่วงเวลาดังกล่าวได้');
-            return redirect()->back()->with('ไม่สำเร็จ', 'ไม่สามารถจองในช่วงเวลาดังกล่าวได้');
-        }
+        //     Alert::error('ไม่สำเร็จ', 'ไม่สามารถจองในช่วงเวลาดังกล่าวได้');
+        //     return redirect()->back()->with('ไม่สำเร็จ', 'ไม่สามารถจองในช่วงเวลาดังกล่าวได้');
+        // }
     }
 
     public function editBooking($id)

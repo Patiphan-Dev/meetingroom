@@ -26,8 +26,31 @@
         content: counters(item, ".") " ";
     }
 </style>
-<div class="container">
-    <p class="text-center"><b>ข้อตกลงในการใช้อาคารสถานที่ของมหาวิทยาลัยเทคโนโลยีราชมงคลสุวรรณภูมิ</b></p>
+<style>
+    #step2 .form-check-input:checked[type=radio] {
+        --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+        color: #000
+    }
+
+    #step2 .form-check-input[type=radio] {
+        border-radius: 0.25em;
+    }
+
+    #step2 .form-check-input {
+        width: 1.5em;
+        height: 1.5em;
+        background-color: #ffffff;
+        border-color: #ff0000;
+        margin-right: 5px;
+    }
+
+    #step2 .form-check-input:checked {
+        background-color: #000000;
+        border-color: #000000;
+    }
+</style>
+<div class="row" id="step2">
+    <h5 class="text-center"><b>ข้อตกลงในการใช้อาคารสถานที่ของมหาวิทยาลัยเทคโนโลยีราชมงคลสุวรรณภูมิ</b></h5>
     <ol class="list-group list-group-numbered">
         <li class="list-item">การใช้อาคารสถานที่ของมหาวิทยาลัย
             ผู้ได้รับอนุญาตให้ใช้อาคารสถานที่จะต้องปฏิบัติให้เป็นไปตามกฎหมาย
@@ -42,18 +65,18 @@
             เรียกค่าเสียหายเพิ่ม (หากมี) ได้เต็มจำนวนความเสียหาย หรือจัดการซ่อมแซมให้อยู่ในสภาพเดิม แล้วแต่กรณี
             <div class="row justify-content-center text-center align-items-center">
                 <div class="col-auto form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" required>
-                    <label class="form-check-label" for="flexRadioDefault1">
+                    <input class="form-check-input" type="radio" name="confirm" id="confirm1" required>
+                    <label class="form-check-label" for="confirm1">
                         ยินดีให้มหาวิทยาลัยหักเงินประกันความเสียหาย
                     </label>
                 </div>
                 <div class="col-auto form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                        required>
-                    <label class="form-check-label" for="flexRadioDefault2">
+                    <input class="form-check-input" type="radio" name="confirm" id="confirm2" required>
+                    <label class="form-check-label" for="confirm2">
                         ยินดีแก้ไขให้กลับสู่สภาพเดิม
                     </label>
                 </div>
+                <span style="color: #ff0000">( *** กรุณาเลือกเพื่อดำเนินการต่อ *** )</span>
             </div>
         </li>
         <li class="list-item">ผู้ได้รับอนุญาตต้องชำระค่าธรรมเนียมการใช้อาคารสถานที่และค่าประกันความเสียหาย
@@ -107,3 +130,50 @@
         </div>
     </div>
 </div>
+
+<script>
+    function confirmStep2(id) {
+        Swal.fire({
+            title: "คุณแน่ใจไหม?",
+            text: "คุณจะไม่สามารถย้อนกลับสิ่งนี้ได้!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "แน่ใจ!",
+            cancelButtonText: "ยกเลิก"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: '/deleteroom/' + id,
+                    method: 'POST',
+                    data: {
+                        id: id
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            title: "ลบแล้ว!",
+                            text: "หอประชุมของคุณถูกลบแล้ว.",
+                            icon: "success"
+                        }).then(() => {
+                            // Reload the page after successful deletion
+                            location.reload();
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            title: "ลบไม่สำเร็จ!",
+                            text: "หอประชุมของคุณยังไม่ถูกลบ.",
+                            icon: "error"
+                        });
+                        // console.log("AJAX Request Error:", status, error);
+                    }
+                });
+
+            }
+        });
+    }
+</script>

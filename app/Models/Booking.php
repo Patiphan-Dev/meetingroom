@@ -19,7 +19,7 @@ class Booking extends Model
         'bk_node',
         'bk_sumtime',
         'bk_status',
-        
+        'confirm',
         'maintenance',
         'utilities',
         'officer_compensation',
