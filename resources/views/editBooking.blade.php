@@ -13,7 +13,7 @@
                         <span>วันที่จอง : {{ $row->created_at }}</span><br>
                     </div>
                     @if ($row->bk_status == 1)
-                        <span class="badge bg-warning rounded-pill"> รอชำระเงิน</span>
+                        <span class="badge bg-warning rounded-pill"> รอชาระเงิน</span>
                     @elseif($row->bk_status == 2)
                         <span class="badge bg-primary rounded-pill"> รอตรวจสอบ</span>
                     @elseif($row->bk_status == 3)
@@ -93,7 +93,7 @@
             <div class="col-12 col-lg-5">
                 <div class="col-12 text-center mt-3">
                     <label for="bk_end_time" class="form-label">
-                        หลักฐานการชำระเงิน <span>*</span>
+                        หลักฐานการชาระเงิน <span>*</span>
                     </label>
                     <img id="img_bk_slip{{ $row->id }}" alt="อัพโหลดสลิปโอนเงิน"
                         @if ($row->bk_slip != null) src="{{ asset($row->bk_slip) }}" @endif
@@ -200,7 +200,7 @@
                     },
                     error: function(xhr, status, error) {
                         Swal.fire({
-                            title: "ลบไม่สำเร็จ!",
+                            title: "ลบไม่สาเร็จ!",
                             text: "ไฟล์ของคุณยังไม่ถูกลบ.",
                             icon: "error"
                         });

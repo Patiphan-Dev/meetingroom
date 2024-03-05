@@ -1,3 +1,28 @@
+<style>
+    .form-check-input:checked[type=radio] {
+        --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+        color: #000
+    }
+
+    .form-check-input[type=radio] {
+        border-radius: 0.25em;
+    }
+
+    .form-check-input {
+        flex-shrink: 0;
+        width: 1.5em;
+        height: 1.5em;
+        background-color: #ffffff;
+        border-color: #000000;
+        margin-right: 5px;
+    }
+
+    .form-check-input:checked {
+        background-color: #000000;
+        border-color: #000000;
+    }
+</style>
+
 <div class="row mb-4 mt-5">
     <h1 class="p-4 mb-4 text-center border-top border-bottom">
         <b>{{ $room->room_name }}</b>
@@ -75,7 +100,7 @@
         <div class="position-sticky" style="top: 8.5rem;">
             <h1 class="fst-italic">
                 {{-- href="{{ url('/room/'.$room->id.'/booking') }}" --}}
-                <button class="btn btn-warning btn-lg col-auto" data-bs-toggle="modal"
+                <button class="btn btn-warning btn-md" data-bs-toggle="modal"
                     data-bs-target="#exampleModal{{ $room->id }}">
                     <b> <i class="fa-solid fa-check"></i> สร้างการจอง</b>
                 </button>
@@ -111,38 +136,17 @@
                         และมหาวิทยาสัยมีสิทธิเรียกค่าเสียหายเพิ่ม (หากมี) ได้เต็มจำนวนความเสียหาย
                         หรือจัดการซ่อมแชมให้อยู่ในสภาพเดิม แล้วแต่กรณี
                     <div class="row justify-content-center text-center align-items-center">
-                        <style>
-                            .form-check-input:checked[type=radio] {
-                                --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
-                            color: #000
-                            }
-                            .form-check-input[type=radio] {
-                                border-radius: 0.25em;
-                            }
 
-                            .form-check-input {
-                                flex-shrink: 0;
-                                width: 1.5em;
-                                height: 1.5em;
-                                background-color: #ffffff;
-                                border-color: #000000;
-                                margin-right: 5px;
-                            }
-                            .form-check-input:checked {
-                                background-color: #000000;
-                                border-color: #000000;
-                            }
-                        </style>
                         <div class="col-auto form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                id="flexRadioDefault1">
+                                id="flexRadioDefault1" required>
                             <label class="form-check-label" for="flexRadioDefault1">
                                 ยินดีให้มหาวิทยาลัยหักเงินประกันความเสียหาย
                             </label>
                         </div>
                         <div class="col-auto form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                id="flexRadioDefault2" checked>
+                                id="flexRadioDefault2" required>
                             <label class="form-check-label" for="flexRadioDefault2">
                                 ยินดีแก้ไขให้กลับสู่สภาพเดิม
                             </label>
@@ -180,6 +184,23 @@
                         ทั้งนี้
                         ข้าพเจ้าทราบข้อตกลงในการใช้อาคารสถานที่ของมหาวิทยาสัยเทคโนโลยีราชมงคลสุวรรณภูมิดังกล่าวเรียบร้อยแล้ว
                         จึงได้ลงลายมือชื่อไว้เป็นสำคัญและต่างยึดถือฝ่ายละหนึ่งฉบับ</p>
+
+                    <div class="row justify-content-center text-center align-items-center">
+                        <div class="col-auto form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                id="flexRadioDefault1" required>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                ยินดีให้มหาวิทยาลัยหักเงินประกันความเสียหาย
+                            </label>
+                        </div>
+                        <div class="col-auto form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                id="flexRadioDefault2" required>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                ยินดีแก้ไขให้กลับสู่สภาพเดิม
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

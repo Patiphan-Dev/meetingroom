@@ -1,207 +1,82 @@
-<script>
-    function Calculate() {
-        // Get the input values
-        const bookInTime = document.getElementById("bk_str_time").value;
-        const bookOutTime = document.getElementById("bk_end_time").value;
-        // Get the selected option
-        var selectedOption = $('#bk_room_id option:selected');
-        // Retrieve the data-price attribute value
-        var price = parseFloat(selectedOption.data('price'));
-        // Convert the input values to Date objects
-        const bookInDate = new Date(`2000-01-01T${bookInTime}:00Z`);
-        const bookOutDate = new Date(`2000-01-01T${bookOutTime}:00Z`);
+<div class="container">
+                    <b class="text-center">ข้อตกลงในการใช้อาคารสถานที่ของมหาวิทยาลัยเทคโนโลยีราชมงคลสุวรรณภูมิ</b>
+                    <br>
+                    <p>1. การใช้อาคารสถานที่ของมหาวิทยาลัย
+                        ผู้ได้รับอนุญาตให้ใช้อาคารสถานที่จะต้องปฏิบัติให้เป็นไปตามกฎหมายระเบียบ ข้อบังคับ วัฒนธรรม
+                        ประเพณี
+                        และไม่ขัดต่อความสงบเรียบร้อยและศีลธรรมอันดีและหลักเกณฑ์ที่มหาวิทยาลัยกำหนด
+                        หากมีการใช้อาคารสถานที่เพื่อการอย่างอื่นนอกเหนือจากที่ได้รับอนุญาต
+                        ให้อธิการบดีหรือผู้ที่อธิการบดีมอบหมายเพิกถอนการอนุญาตนั้นและผู้ได้รับอนุญาตดังกล่าวจะต้องรับผิดชอบต่อความเสียหาย
+                        ที่เกิดขึ้นทั้งสิ้นทุกประการ</p>
+                    <p>2.
+                        ผู้ได้รับอนุญาตให้ใช้อาคารสถานที่ต้องสงวนและใช้ทรัพย์สินเช่นวิญญชนจะพึงปฏิบัติต่อทรัพย์สินของตนเองหาทในระหว่างการใช้อาคารสถานที่ปรากฏว่าอาคารสถานที่ที่ขอใช้สูญหายหรือเกิดความชำรุดเสียหาย
+                        อันเนื่องมาจากการใช้งาน ผู้ได้รับอนุญาตต้องรับผิดชอบชดใช้ต่อการสูญหายหรือเสียหาย
+                        และมหาวิทยาสัยมีสิทธิเรียกค่าเสียหายเพิ่ม (หากมี) ได้เต็มจำนวนความเสียหาย
+                        หรือจัดการซ่อมแชมให้อยู่ในสภาพเดิม แล้วแต่กรณี
+                    <div class="row justify-content-center text-center align-items-center">
 
-        // Calculate the time difference in minutes
-        const timeDifference = (bookOutDate - bookInDate) / (1000 * 60);
+                        <div class="col-auto form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                id="flexRadioDefault1" required>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                ยินดีให้มหาวิทยาลัยหักเงินประกันความเสียหาย
+                            </label>
+                        </div>
+                        <div class="col-auto form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                id="flexRadioDefault2" required>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                ยินดีแก้ไขให้กลับสู่สภาพเดิม
+                            </label>
+                        </div>
+                    </div>
+                    </p>
+                    <p>3. ผู้ได้รับอนุญาตต้องชำระค่าธรรมเนียมการใช้อาคารสถานที่และค่าประกันความเสียหาย
+                        ตามที่มหาวิทยาลัยประกาศกำหนดโดยให้ชำระเงินมัดจำให้มหาวิทยาลัยภายใน 7 วันทำการ
+                        หลังจากที่ได้รับหนังสือแจ้งการอนุญาตให้ใช้อาคารสถานที่
+                        และชำระส่วนที่เหลือทั้งหมดก่อนวันจัดงานไม่น้อยกว่า 7 วันทำการ หากไม่ชำระตามระยะเวลา ที่กำหนด
+                        มหาวิทยาลัยขอสงวนสิทธิ์ในการบอกเลิกการใช้อาคารสถานที่ และจะไม่คืนเงินมัดจำที่ได้รับชำระไว้แล้ว
+                    </p>
+                    <p>4. กรณีผู้ได้รับอนุญาตขอยกเลิกหรือถูกเพิกถอนการอนุญาต
+                        มหาวิทยาลัยอาจคืนเงินค่าธรรมเนียมการใช้อาคารสถานที่ในส่วนของค่าสาธารณูปโภคและค่าตอบแทนเจ้าหน้าที่ให้ผู้ได้รับอนุญาตแล้วแต่กรณี
+                    <p>5. กรณีทีมหาวิทยาลัยเป็นผู้ขอยกเลิกการใช้อาคารสถานที่ มหาวิทยาลัยจะคืนเงินค่าธรรมเนียม
+                        การขอใช้อาคารสถานที่ในส่วนที่ได้ชำระกับมหาวิทยาลัยไว้แล้วให้กับผู้ได้รับอนุญาต</p>
+                    <p>6. ผู้ได้รับอนุญาตต้องกำกับดูแลร้านประกอบอาหารไม่ให้ทิ้งเศษอาหารไว้ในมหาวิทยาลัย
+                        หากมหาวิทยาลัยพบว่าร้านประกอบการทิ้งเศษอาหารไว้ ข้าพเจ้า/หน่วยงาน
+                        ยินยอมให้หักเงินประกันความเสียหาย</p>
+                    <p>7. กรณีมีการใช้ไฟฟ้ามากกว่าปกติ เช่น ติดตั้งระบบไฟฟ้าทางเข้างาน หรือระบบแสง สี
+                        เสียงบนเวทีการแสดง เป็นต้นจะต้องชำระค่าไฟฟ้าเพิ่ม ชั่วโมงละ 1,000 บาท/ระบบ
+                        หรือนำเครื่องปั่นไฟมาใช้ในการจัดงาน</p>
+                    <p>8. กรณีที่ใช้เครื่องปรับอากาศ มหาวิทยาลัยจะเปิดเครื่องปรับอากาศให้เฉพาะวันที่จัดงานเท่านั้น
+                        และจะเปิดให้ก่อนเริ่มงาน 1 ชั่วโมง</p>
+                    <p>9. มหาวิทยาลัยอนุญาตให้เข้ามาจัดเตรียมสถานที่ล่วงหน้าก่อนการจัดงานได้ 1 วัน ตั้งแต่เวลา 08.30 -
+                        16.30 น.
+                        และงดเปิดเครื่องปรับอากาศ หากมหาวิทยาลัยพบว่ามีการเปิดเครื่องปรับอากาศ ข้าพเจ้า/หน่วยงาน
+                        ยินดีชำระค่าไฟฟ้าตามทีมหาวิทยาลัยกำหนด
+                        กรณีที่จะต้องเตรียมงานมากกว่าที่กำหนดจะต้องมีหนังสือขออนุญาตมหาวิทยาลัยและเมื่อเสร็จสิ้นการจัดงานขอให้เก็บสถานที่ให้เรียบร้อยภายในวันจัดงานนั้น
+                    </p>
+                    <p>10. มหาวิทยาลัยอนุญาตให้ใช้สถานที่เพื่อจัดงานเท่านั้น มิใช่สถานที่รับฝากทรัพย์สิน ดังนั้น
+                        มหาวิทยาลัยจะไม่รับผิดชอบต่อทรัพย์สินที่เสียหายหรือสูญหาย</p>
+                    <p>11. เมื่อปรากฏโดยชัดแจ้ง ผู้ได้รับอนุญาตกระทำผิดเงื่อนไขอย่างใดอย่างหนึ่ง
+                        มหาวิทยาลัยมีอำนาจสั่งระงับการใช้สถานที่นั้นได้โดยผู้ได้รับอนุญาตไม่มีสิทธิเรียกร้องค่าเสียหายที่เกิดขึ้น
+                        ทั้งนี้
+                        ข้าพเจ้าทราบข้อตกลงในการใช้อาคารสถานที่ของมหาวิทยาสัยเทคโนโลยีราชมงคลสุวรรณภูมิดังกล่าวเรียบร้อยแล้ว
+                        จึงได้ลงลายมือชื่อไว้เป็นสำคัญและต่างยึดถือฝ่ายละหนึ่งฉบับ</p>
 
-        // Calculate the Total Price 
-        const totalPrice = (price / 60) * timeDifference
-
-        const roundedNumber = Math.round(totalPrice);
-
-        // Display
-        document.getElementById("bk_price").value = `${price}`;
-        document.getElementById("bk_sumtime").value = `${timeDifference}`;
-        document.getElementById("bk_total_price").value = `${roundedNumber}`;
-    }
-</script>
-<style>
-    #imagePreview,
-    #imageDiagram {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .previewImage,
-    .previewDiagram {
-        margin: 5px;
-        max-width: 12vw;
-        max-height: 30vh;
-        object-fit: cover;
-        border: 1px solid #000009;
-        border-radius: 6px;
-        padding: 2px;
-    }
-</style>
-<script>
-    document.getElementById('imageRoom').addEventListener('change', handleFileRoom);
-
-    function handleFileRoom(event) {
-        const files = event.target.files;
-        const previewContainer = document.getElementById('imageRoomPreview');
-
-        // Clear the existing preview
-        previewContainer.innerHTML = '';
-
-        for (const file of files) {
-            // Check if the file is an image
-            if (file.type.startsWith('image/')) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    const previewImage = document.createElement('img');
-                    previewImage.classList.add('previewImage');
-                    previewImage.src = e.target.result;
-                    previewContainer.appendChild(previewImage);
-                };
-
-                // Read the image file as a data URL
-                reader.readAsDataURL(file);
-            }
-        }
-    }
-</script>
-<script>
-    document.getElementById('imageDiagram').addEventListener('change', handleFileDiagram);
-
-    function handleFileDiagram(event) {
-        const files = event.target.files;
-        const previewContainer = document.getElementById('imageDiagramPreview');
-
-        // Clear the existing preview
-        previewContainer.innerHTML = '';
-
-        for (const file of files) {
-            // Check if the file is an image
-            if (file.type.startsWith('image/')) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    const previewImage = document.createElement('img');
-                    previewImage.classList.add('previewImage');
-                    previewImage.src = e.target.result;
-                    previewContainer.appendChild(previewImage);
-                };
-
-                // Read the image file as a data URL
-                reader.readAsDataURL(file);
-            }
-        }
-    }
-</script>
-
-
-<form action="{{ route('addBooking') }}" method="post" enctype="multipart/form-data">
-    @csrf
-    @php
-        $str_date = date('Y-m-d');
-        $end_date = date('Y-m-d', strtotime('+6 day'));
-
-        $str_time = date('H:i:s');
-        $end_time = date('H:i:s', strtotime('+5 hour'));
-
-        $image = explode(',', $room->room_img_path);
-        $diagram = explode(',', $room->room_diagram_path);
-
-    @endphp
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-6 mb-3">
-            <label for="bk_str_date" class="form-label">วันที่จอง : </label>
-            <input type="date" class="form-control" name="bk_str_date" id="bk_str_date" value="{{ $str_date }}"
-                required>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 mb-3">
-            <label for="bk_end_date" class="form-label">วันที่จอง : </label>
-            <input type="date" class="form-control" name="bk_end_date" id="bk_end_date" value="{{ $end_date }}"
-                required>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 mb-3">
-            <label for="bk_str_time" class="form-label">เวลาเข้า : </label>
-            <input type="time" class="form-control" name="bk_str_time" id="bk_str_time" value="{{ $str_time }}"
-                required onchange="Calculate()">
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 mb-3">
-            <label for="bk_end_time" class="form-label">เวลาออก : </label>
-            <input type="time" class="form-control" name="bk_end_time" id="bk_end_time" value="{{ $end_time }}"
-                required onchange="Calculate()">
-        </div>
-        <div class="col-12 mb-3">
-            <label for="room_name" class="form-label">ชื่อหอประชุม <span>*</span></label>
-            <input type="text" class="form-control" id="room_name" name="room_name" placeholder="หอประชุม"
-                value="{{ $room->room_name }}" required>
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label for="maintenance" class="form-label">ค่าบำรุงสถานที่ <span>*</span></label>
-            <input type="number" class="form-control" id="maintenance" name="maintenance" placeholder="999"
-                value="{{ $room->maintenance }}" required>
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label for="utilities" class="form-label">ค่าสารณูปโภค <span>*</span></label>
-            <input type="number" class="form-control" id="utilities" name="utilities" placeholder="999"
-                value="{{ $room->utilities }}" required>
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label for="officer_compensation" class="form-label">ค่าตอบแทนเจ้าหน้าที่ <span>*</span></label>
-            <input type="number" class="form-control" id="officer_compensation" name="officer_compensation"
-                placeholder="999" value="{{ $room->officer_compensation }}" required>
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label for="other_expenses" class="form-label">ค่าใช้จ่ายอื่นๆ</label>
-            <input type="number" class="form-control" id="other_expenses" name="other_expenses" placeholder="999"
-                value="{{ $room->other_expenses }}" required>
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label for="total" class="form-label">ค่าใช้จ่ายรวม <span>*</span></label>
-            <input type="number" class="form-control" id="total" name="total" placeholder="999"
-                value="{{ $room->total }}" required>
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label for="damage_insurance" class="form-label">ค่าประกันความเสียหาย <span>*</span></label>
-            <input type="number" class="form-control" id="damage_insurance" name="damage_insurance" placeholder="999"
-                value="{{ $room->damage_insurance }}" required>
-        </div>
-        <div class="col-12 mb-3">
-            <label for="room_details" class="form-label">สิ่งที่ผู้จัดงานตั้งเตรียมให้ฝ่ายโสตทัศนูปกรณ์</label>
-        </div>
-        <div class="col-12 mb-3">
-            <label for="room_details" class="form-label">วงดนตรีที่ผู้จัดงานเตรียมมานั้นเป็นแบบใด</label>
-        </div>
-        <div class="col-12 mb-3">
-            <label for="room_details" class="form-label">
-                รายการขอใช้วัสดุ อุปกรณ์ (ด้านโสตทัศนูปกรณ์)
-                ในการขอใช้หอประชุม{{ $room->room_name }}
-            </label>
-        </div>
-        <table class="table table-bordered border-primary">
-            <thead class="text-center">
-                <th>ที่</th>
-                <th>รายการ</th>
-                <th>ต้องการ</th>
-                <th>ไม่ต้องการ</th>
-                <th>หมายเหตุ</th>
-            </thead>
-            <tbody>
-                <td class="text-end">{{ $room->maintenance }}</td>
-                <td class="text-end">{{ $room->utilities }}</td>
-                <td class="text-end">{{ $room->officer_compensation }}</td>
-                <td class="text-end">{{ $room->other_expenses }}</td>
-                <td class="text-end">{{ $room->total }}</td>
-            </tbody>
-        </table>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-        <input type="submit" class="btn btn-primary" id="submit" value="บันทึก">
-    </div>
-</form>
-
+                    <div class="row justify-content-center text-center align-items-center">
+                        <div class="col-auto form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                id="flexRadioDefault1" required>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                ยินดีให้มหาวิทยาลัยหักเงินประกันความเสียหาย
+                            </label>
+                        </div>
+                        <div class="col-auto form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                id="flexRadioDefault2" required>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                ยินดีแก้ไขให้กลับสู่สภาพเดิม
+                            </label>
+                        </div>
+                    </div>
+                </div>
