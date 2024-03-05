@@ -1,15 +1,14 @@
 <style>
-    .form-check-input:checked[type=radio] {
+    #step1 .form-check-input:checked[type=radio] {
         --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
         color: #000
     }
 
-    .form-check-input[type=radio] {
+    #step1 .form-check-input[type=radio] {
         border-radius: 0.25em;
     }
 
-    .form-check-input {
-        flex-shrink: 0;
+    #step1 .form-check-input {
         width: 1.5em;
         height: 1.5em;
         background-color: #ffffff;
@@ -17,13 +16,13 @@
         margin-right: 5px;
     }
 
-    .form-check-input:checked {
+    #step1 .form-check-input:checked {
         background-color: #000000;
         border-color: #000000;
     }
 </style>
 
-<div class="row mb-4 mt-5">
+<div class="row mb-4 mt-5" id="step1">
     <h1 class="p-4 mb-4 text-center border-top border-bottom">
         <b>{{ $room->room_name }}</b>
     </h1>

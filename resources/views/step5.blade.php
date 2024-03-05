@@ -1,180 +1,111 @@
-<script>
-    function Calculate() {
-        // Get the input values
-        const bookInTime = document.getElementById("bk_str_time").value;
-        const bookOutTime = document.getElementById("bk_end_time").value;
-        // Get the selected option
-        var selectedOption = $('#bk_room_id option:selected');
-        // Retrieve the data-price attribute value
-        var price = parseFloat(selectedOption.data('price'));
-        // Convert the input values to Date objects
-        const bookInDate = new Date(`2000-01-01T${bookInTime}:00Z`);
-        const bookOutDate = new Date(`2000-01-01T${bookOutTime}:00Z`);
-
-        // Calculate the time difference in minutes
-        const timeDifference = (bookOutDate - bookInDate) / (1000 * 60);
-
-        // Calculate the Total Price 
-        const totalPrice = (price / 60) * timeDifference
-
-        const roundedNumber = Math.round(totalPrice);
-
-        // Display
-        document.getElementById("bk_price").value = `${price}`;
-        document.getElementById("bk_sumtime").value = `${timeDifference}`;
-        document.getElementById("bk_total_price").value = `${roundedNumber}`;
-    }
-</script>
-<style>
-    #imagePreview,
-    #imageDiagram {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .previewImage,
-    .previewDiagram {
-        margin: 5px;
-        max-width: 12vw;
-        max-height: 30vh;
-        object-fit: cover;
-        border: 1px solid #000009;
-        border-radius: 6px;
-        padding: 2px;
-    }
-</style>
-<script>
-    document.getElementById('imageRoom').addEventListener('change', handleFileRoom);
-
-    function handleFileRoom(event) {
-        const files = event.target.files;
-        const previewContainer = document.getElementById('imageRoomPreview');
-
-        // Clear the existing preview
-        previewContainer.innerHTML = '';
-
-        for (const file of files) {
-            // Check if the file is an image
-            if (file.type.startsWith('image/')) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    const previewImage = document.createElement('img');
-                    previewImage.classList.add('previewImage');
-                    previewImage.src = e.target.result;
-                    previewContainer.appendChild(previewImage);
-                };
-
-                // Read the image file as a data URL
-                reader.readAsDataURL(file);
-            }
-        }
-    }
-</script>
-<script>
-    document.getElementById('imageDiagram').addEventListener('change', handleFileDiagram);
-
-    function handleFileDiagram(event) {
-        const files = event.target.files;
-        const previewContainer = document.getElementById('imageDiagramPreview');
-
-        // Clear the existing preview
-        previewContainer.innerHTML = '';
-
-        for (const file of files) {
-            // Check if the file is an image
-            if (file.type.startsWith('image/')) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    const previewImage = document.createElement('img');
-                    previewImage.classList.add('previewImage');
-                    previewImage.src = e.target.result;
-                    previewContainer.appendChild(previewImage);
-                };
-
-                // Read the image file as a data URL
-                reader.readAsDataURL(file);
-            }
-        }
-    }
-</script>
-
-
-<form action="{{ route('addBooking') }}" method="post" enctype="multipart/form-data">
-    @csrf
-    @php
-        $str_date = date('Y-m-d');
-        $end_date = date('Y-m-d', strtotime('+6 day'));
-
-        $str_time = date('H:i:s');
-        $end_time = date('H:i:s', strtotime('+5 hour'));
-
-        $image = explode(',', $room->room_img_path);
-        $diagram = explode(',', $room->room_diagram_path);
-
-    @endphp
+<div class="container">
     <div class="row">
-        <div class="col-12 col-sm-6 col-md-6 mb-3">
-            <label for="bk_str_date" class="form-label">วันที่จอง : </label>
-            <input type="date" class="form-control" name="bk_str_date" id="bk_str_date" value="{{ $str_date }}"
-                required>
+        <div class="row text-center">
+            <p class="fw-bold">แบบคำขอใช้อาคารสถานที่มหาวิทยาลัยเทคโนโลยีราชมงคลสุวรรณภูมิ</p>
         </div>
-        <div class="col-12 col-sm-6 col-md-6 mb-3">
-            <label for="bk_end_date" class="form-label">วันที่จอง : </label>
-            <input type="date" class="form-control" name="bk_end_date" id="bk_end_date" value="{{ $end_date }}"
-                required>
+        <div class="row text-end">
+            <p>เขียนที่ ..........................................................................</p>
+            <p>วันที่ ............. เดือน ............................. พ.ศ ..............</p>
         </div>
-        <div class="col-12 col-sm-6 col-md-6 mb-3">
-            <label for="bk_str_time" class="form-label">เวลาเข้า : </label>
-            <input type="time" class="form-control" name="bk_str_time" id="bk_str_time" value="{{ $str_time }}"
-                required onchange="Calculate()">
+        <p>เรียน อธิการบดีมหาวิทยาลัยเทคโนโลยีราชมงคลสุวรรณภูมิ</p>
+        <p class="fw-bold">ส่วนที่ 1 สำหรับผู้ขอใช้อาคารสถานที่</p>
+        <p style="text-indent:5vw">
+            ข้าพเจ้า...............................................................................................................................................อยู่บ้านเลขที่........................หมู่ที่....................ถนน.........................................................
+        </p>
+        <p>ตำบล/แขวง...........................................................................อำเภอ/เขต.....................................................................................จังหวัด.......................................................................................................
+        </p>
+        <p>หมายเลขโทรศัพท์.............................................................มีความประสงค์ขอใช้.......................................................................................................................................................................ดังต่อไปนี้
+        </p>
+        <p style="text-indent:5vw">
+            1.ข้าพเจ้ามีความประสงค์ขอใช้สถานที่เพื่อ...............................................................................................................................ในวันที่...................................................................................
+        </p>
+        <p>ตั้งแต่เวลา............................................................................................
+            โดยมีผู้มาร่วมงาน ประมาณ................................... คน</p>
+        <p style="text-indent:5vw">2. ข้าพเจ้ายินดีชำระเงินค่าธรรมเนียมการขอใช้อาคารสถานที่ตามที่มหาวิทยาลัยกำหนด
+            เป็นจำนวนเงิน.......................................................................................................
+            บาท
+            และค่าประกันความเสียหาย...................................................บาท</p>
+        <p style="text-indent:5vw">3. หากการใช้อาคารสถานที่ตลอดจนทรัพย์สินและอุปกรณ์ต่างๆ สูญหาย
+            หรือเกิดความชำรุดเสียหายอันเนื่องมาจากการใช้อาคารสถานที่นั้นๆ ข้าพเจ้ายินดีรับผิดชอบชดใช้ต่อการสูญหาย
+            หรือเสียหาย หรือจัดการซ่อมแซมให้อยู่ในสภาพเดิม</p>
+        <p style="text-indent:5vw">4. ข้าพเจ้ายินดีชำระเงินมัดจำ (ค่าบำรุงสถานที่)
+            ซึ่งเป็นส่วนหนึ่งของค่าธรรมเนียมการขอใช้อาคารสถานที่ เป็นจำนวนเงิน
+            ......................................บาท ภายใน 7 วันทำการ
+            หลังจากที่ได้รับหนังสือแจ้งการอนุญาตให้ใช้อาคารสถานที่
+            และจะชำระส่วนที่เหลือทั้งหมด
+            (ค่าสาธารณูปโภค, ค่าตอบแทนเจ้าหน้าที่, ค่าใช้จ่ายอื่นๆ) ก่อนวันจัดงานไม่น้อยกว่า 7 วันทำการ
+            เป็นจำนวนเงิน................................บาท</p>
+        <p style="text-indent:5vw">ข้าพเจ้าได้ทราบหลักเกณฑ์ และเงื่อนไขการใช้อาคารสถานที่แล้ว
+            และจะปฏิบัติให้ถูกต้องตามข้อบังคับของมหาวิทยาลัย
+            หากมีการฝ่าฝืนหรือการกระทำใด ๆ อันเป็นการผิดข้อบังคับ หรือระเบียบแบบแผนของทางราชการ
+            ข้าพเจ้ายินดีให้ยกเลิกการอนุญาตการใช้
+            อาคารสถานที่ดังกล่าวได้</p>
+        <div class="row text-end">
+            <p>ลงชื่อ.......................................................... ผู้ยื่นคำขอ</p>
+            <p>(...................................................................................)</p>
         </div>
-        <div class="col-12 col-sm-6 col-md-6 mb-3">
-            <label for="bk_end_time" class="form-label">เวลาออก : </label>
-            <input type="time" class="form-control" name="bk_end_time" id="bk_end_time" value="{{ $end_time }}"
-                required onchange="Calculate()">
-        </div>
-        <div class="col-12 mb-3">
-            <label for="room_name" class="form-label">ชื่อหอประชุม <span>*</span></label>
-            <input type="text" class="form-control" id="room_name" name="room_name" placeholder="หอประชุม"
-                value="{{ $room->room_name }}" required>
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label for="maintenance" class="form-label">ค่าบำรุงสถานที่ <span>*</span></label>
-            <input type="number" class="form-control" id="maintenance" name="maintenance" placeholder="999"
-                value="{{ $room->maintenance }}" required>
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label for="utilities" class="form-label">ค่าสารณูปโภค <span>*</span></label>
-            <input type="number" class="form-control" id="utilities" name="utilities" placeholder="999"
-                value="{{ $room->utilities }}" required>
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label for="officer_compensation" class="form-label">ค่าตอบแทนเจ้าหน้าที่ <span>*</span></label>
-            <input type="number" class="form-control" id="officer_compensation" name="officer_compensation"
-                placeholder="999" value="{{ $room->officer_compensation }}" required>
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label for="other_expenses" class="form-label">ค่าใช้จ่ายอื่นๆ</label>
-            <input type="number" class="form-control" id="other_expenses" name="other_expenses" placeholder="999"
-                value="{{ $room->other_expenses }}" required>
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label for="total" class="form-label">ค่าใช้จ่ายรวม <span>*</span></label>
-            <input type="number" class="form-control" id="total" name="total" placeholder="999"
-                value="{{ $room->total }}" required>
-        </div>
-        <div class="col-12 col-md-6 mb-3">
-            <label for="damage_insurance" class="form-label">ค่าประกันความเสียหาย <span>*</span></label>
-            <input type="number" class="form-control" id="damage_insurance" name="damage_insurance" placeholder="999"
-                value="{{ $room->damage_insurance }}" required>
-        </div>
-        
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-        <input type="submit" class="btn btn-primary" id="submit" value="บันทึก">
-    </div>
-</form>
+        <p class="fw-bold"> ส่วนที่ 2 สำหรับเจ้าหน้าที่</p>
+        <p>ความเห็นของผู้รับผิดชอบ</p>
+        <p>
+            <hr style="border-top: 2.5px dotted #000;">
+        </p>
+        <p>รายละเอียดค่าธรรมเนียมการขอใช้อาคารสถานที่</p>
+        <div class="row text-center">
+            <p>
+                <span class="mx-4">1. ค่าบำรุงสถานที่ .................................................. บาท</span>
+                <span class="mx-4">2. ค่าสาธารณูปโภค............................................. บาท</span>
+            </p>
+            <p>
+                <span class="mx-4">3. ค่าตอบแทนเจ้าหน้าที่ ........................................ บาท</span>
+                <span class="mx-4">4. ค่าใช้จ่ายอื่น ๆ ............................................. บาท</span>
+            </p>
+            <p>รวมเป็นจำนวนเงินทั้งสิ้น ........................................................... บาท</p>
+            <p>ค่าประกันความเสียหาย ............................................................ บาท</p>
 
+            <p>ลงชื่อ...................................................................ผู้รับผิดชอบ</p>
+            <p>(......................................................................)</p>
+            <p>วัน............เดือน........................พ.ศ......................</p>
+        </div>
+        <table class="table table-bordered border-dark">
+            <tbody>
+                <tr class="my-5">
+                    <td>
+                        <p class="fw-bold">
+                            ความเห็นของผู้อำนวยการกอง.......................................................
+                        </p>
+                        <p> O เห็นควรอนุญาต</p>
+                        <p> O ไม่เห็นควรอนุญาต เนื่องจาก........................................................</p>
+                        <div class="row text-end">
+                            <p>ลงชื่อ...........................................................</p>
+                            <p>(..............................................................)</p>
+                            <p>วัน...........เดือน.........................พ.ศ. .................</p>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="fw-bold">ความเห็นของอธิการบดีหรือผู้ที่อธิการบดีมอบหมาย</p>
+                        <p> O อนุญาต</p>
+                        <p> O ไม่อนุญาต เนื่องจาก........................................................</p>
+                        <div class="row text-end">
+                            <p> ลงชื่อ...........................................................</p>
+                            <p>(..............................................................)</p>
+                            <p>วัน...........เดือน.........................พ.ศ. .................</p>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="fw-bold">ส่วนที่ 3 การชำระเงิน</p>
+        <p style="text-indent:5vw">
+            ชำระเงินมัดจำเป็นจำนวนเงิน..............................................................บาท
+            ใบเสร็จเล่มที่.........................................เลขที่.....................................วันที่..................................................
+        </p>
+        <p style="text-indent:5vw">ชำระในส่วนที่เหลือทั้งหมด
+            เป็นจำนวนเงิน........................................................บาท
+            ใบเสร็จเล่มที่.........................................เลขที่.....................................วันที่...............................
+        </p>
+        <p style="text-indent:5vw">ชำระค่าประกันความเสียหาย
+            เป็นจำนวนเงิน........................................................บาท
+            ใบเสร็จเล่มที่.........................................เลขที่.....................................วันที่..............................
+        </p>
+    </div>
+</div>
