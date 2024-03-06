@@ -38,7 +38,7 @@ class BookingController extends Controller
         return view('booking', compact('booking', 'bookings', 'rooms', 'search', 'history'), $data);
     }
 
-    public function addBooking(Request $request,$id)
+    public function addBooking(Request $request, $id)
     {
         // $room = Room::find($id);
         // เช็กช่วงเวลาที่จอง
@@ -84,15 +84,17 @@ class BookingController extends Controller
 
         // dd($booking);
         // if ($booking == null) {
-            //บันทึกข้อมูล;
-            $booking = new Booking;
-            $booking->bk_room_id = $id;
-            $booking->bk_user_id = auth()->user()->id;
-            $booking->bk_status = 1;
-            $booking->save();
+        //บันทึกข้อมูล;
+        $booking = new Booking;
+        $booking->bk_room_id = $id;
+        $booking->bk_user_id = auth()->user()->id;
+        $booking->bk_status = 1;
+        $booking->save();
+        $booking_id = $booking->id;
 
-            // Alert::success('สำเร็จ', 'จองหอประชุมสำเสร็จ');
-            return redirect()->route('getRoom', ['id' => $id, 'step' => 2])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
+
+        // Alert::success('สำเร็จ', 'จองหอประชุมสำเสร็จ');
+        return redirect()->route('getRoom', ['id' => $id, 'step' => 2, 'booking_id' => $booking_id])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
         // } else {
 
         //     Alert::error('ไม่สำเร็จ', 'ไม่สามารถจองในช่วงเวลาดังกล่าวได้');
@@ -100,10 +102,16 @@ class BookingController extends Controller
         // }
     }
 
-    public function Confirm($id)
+    public function Confirm(Request $request, $id)
     {
-        $Booking = Booking::find($id);
-        return view('booking', compact('Booking'));
+        echo $request->booking_id;
+        Booking::find($id)->update(
+            [
+                'bk_confirm' => $id,
+            ]
+        );
+
+        return redirect()->route('getRoom', ['id' => $id, 'step' => 3, 'booking_id' => $request->booking_id])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
     }
 
     public function editBooking($id)
