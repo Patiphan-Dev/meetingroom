@@ -91,7 +91,7 @@
                     <td class="text-center">1</td>
                     <td>ระบบเสียงพร้อมไมค์โครโฟน 2 ตัว</td>
                     <td class="text-center">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
                         <label class="form-check-label" for="flexRadioDefault3">
                             ใช้
                         </label>
@@ -108,7 +108,7 @@
                     <td class="text-center">2</td>
                     <td>จอภาพขนาดใหญ่บนเวที่ 1 จอ</td>
                     <td class="text-center">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
                         <label class="form-check-label" for="flexRadioDefault3">
                             ใช้
                         </label>
@@ -125,14 +125,14 @@
                     <td class="text-center">3</td>
                     <td>จอภาพทีวีด้านข้างฝั่งซ้าย 4 จอ</td>
                     <td class="text-center">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
                         <label class="form-check-label" for="flexRadioDefault3">
                             ใช้
                         </label>
                     </td>
                     <td class="text-center">
                         <input class="form-check-input" type="radio" name="flexRadioDefault"
-                            id="flexRadioDefault4">
+                            id="flexRadioDefault4" checked>
                         <label class="form-check-label" for="flexRadioDefault4">
                             ไม่ใช้
                         </label>
@@ -145,7 +145,7 @@
                     <td>จอภาพทีวีด้านข้างฝั่งขวา 4 จอ</td>
                     <td class="text-center">
                         <input class="form-check-input" type="radio" name="flexRadioDefault"
-                            id="flexRadioDefault3">
+                            id="flexRadioDefault3" checked>
                         <label class="form-check-label" for="flexRadioDefault3">
                             ใช้
                         </label>
@@ -165,7 +165,7 @@
                     <td>โต๊ะปฏิบัติการหน้าขาว 10 ตัว</td>
                     <td class="text-center">
                         <input class="form-check-input" type="radio" name="flexRadioDefault"
-                            id="flexRadioDefault3">
+                            id="flexRadioDefault3" checked>
                         <label class="form-check-label" for="flexRadioDefault3">
                             ใช้
                         </label>

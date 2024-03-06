@@ -40,7 +40,7 @@ class BookingController extends Controller
 
     public function addBooking(Request $request,$id)
     {
-        $room = Room::find($id);
+        // $room = Room::find($id);
         // เช็กช่วงเวลาที่จอง
         // $bk_room_id = $request->bk_room_id;
         // $bk_str_date = $request->bk_str_date;
@@ -86,12 +86,8 @@ class BookingController extends Controller
         // if ($booking == null) {
             //บันทึกข้อมูล;
             $booking = new Booking;
-            $booking->bk_room_id = $room->bk_room_id;
+            $booking->bk_room_id = $id;
             $booking->bk_user_id = auth()->user()->id;
-            $booking->bk_str_date = '2020-03-06';
-            $booking->bk_str_time = '00:00:00';
-            $booking->bk_end_time = '00:00:00';
-            $booking->bk_sumtime = 0;
             $booking->bk_status = 1;
             $booking->save();
 
@@ -102,6 +98,12 @@ class BookingController extends Controller
         //     Alert::error('ไม่สำเร็จ', 'ไม่สามารถจองในช่วงเวลาดังกล่าวได้');
         //     return redirect()->back()->with('ไม่สำเร็จ', 'ไม่สามารถจองในช่วงเวลาดังกล่าวได้');
         // }
+    }
+
+    public function Confirm($id)
+    {
+        $Booking = Booking::find($id);
+        return view('booking', compact('Booking'));
     }
 
     public function editBooking($id)
