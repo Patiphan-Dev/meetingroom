@@ -63,21 +63,29 @@
             หากในระหว่างการใช้อาคารสถานที่ปรากฏว่าอาคารสถานที่ที่ขอใช้สูญหายหรือเกิดความชำรุดเสียหาย
             อันเนื่องมาจากการใช้งาน ผู้ได้รับอนุญาตต้องรับผิดชอบชดใช้ต่อการสูญหายหรือเสียหาย และมหาวิทยาลัยมีสิทธิ
             เรียกค่าเสียหายเพิ่ม (หากมี) ได้เต็มจำนวนความเสียหาย หรือจัดการซ่อมแซมให้อยู่ในสภาพเดิม แล้วแต่กรณี
+            @php
+                echo $_GET['step'] . '/' . $_GET['booking_id'];
+            @endphp
             <div class="row justify-content-center text-center align-items-center">
-                <form action="{{route('ConfirmRoom')}}">
-                    <div class="col-auto form-check">
-                        <input class="form-check-input" type="radio" name="confirm" id="confirm1" required>
+                <form action="{{ route('ConfirmRoom', ['id' => $_GET['booking_id']]) }}">
+                    <div class="d-flex col-auto form-check">
+                        
+                        <input class="form-check-input" type="radio" name="bk_confirm" id="confirm1" value="1"
+                            required>
                         <label class="form-check-label" for="confirm1">
                             ยินดีให้มหาวิทยาลัยหักเงินประกันความเสียหาย
                         </label>
                     </div>
                     <div class="col-auto form-check">
-                        <input class="form-check-input" type="radio" name="confirm" id="confirm2" required>
+                        <input class="form-check-input" type="radio" name="bk_confirm" id="confirm2" value="2"
+                            required>
                         <label class="form-check-label" for="confirm2">
                             ยินดีแก้ไขให้กลับสู่สภาพเดิม
                         </label>
                     </div>
                     <span style="color: #ff0000">( *** กรุณาเลือกเพื่อดำเนินการต่อ *** )</span>
+                    <input type="text" name="booking_id" value="{{ $_GET['booking_id'] }}" hidden>
+                    <input type="submit" class="form-control" id="subminConfirm" hidden>
                 </form>
             </div>
         </li>
@@ -134,6 +142,15 @@
 </div>
 
 <script>
+    $(document).ready(function() {
+        $('#confirm1').on('change', function() {
+            $(this).closest("form").submit();
+        });
+        $('#confirm2').on('change', function() {
+            $(this).closest("form").submit();
+        });
+    });
+
     function confirmStep2(id) {
         Swal.fire({
             title: "คุณแน่ใจไหม?",

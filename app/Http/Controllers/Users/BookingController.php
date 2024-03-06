@@ -102,16 +102,50 @@ class BookingController extends Controller
         // }
     }
 
-    public function Confirm(Request $request, $id)
+    public function Confirm(Request $request,$id)
     {
-        echo $request->booking_id;
-        Booking::find($id)->update(
+        $booking = Booking::find($id);
+
+        Booking::find($request->booking_id)->update(
             [
-                'bk_confirm' => $id,
+                'bk_confirm' => $request->bk_confirm,
             ]
         );
 
         return redirect()->route('getRoom', ['id' => $id, 'step' => 3, 'booking_id' => $request->booking_id])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
+    }
+
+    public function formBooking(Request $request,$id)
+    {
+        Booking::find($id)->update(
+            [
+                
+                'bk_str_date' => $request->bk_str_date,
+                'bk_end_date' => $request->bk_end_date,
+                'bk_str_time' => $request->bk_str_time,
+                'bk_end_time' => $request->bk_end_time,
+
+                'bk_location_for' => $request->bk_location_for,
+                'bk_people_number' => $request->bk_people_number,
+
+                'bk_music_brand' => $request->bk_music_brand,
+                'bk_music_equipment' => $request->bk_music_equipment,
+                'bk_music_details' => $request->bk_music_details,
+                'bk_sound' => $request->bk_sound,
+                'bk_sound_node' => $request->bk_sound_node,
+                'bk_screen_big' => $request->bk_screen_big,
+                'bk_screen_big_note' => $request->bk_screen_big_note,
+                'bk_tv_left' => $request->bk_tv_left,
+                'bk_tv_left_note' => $request->bk_tv_left_note,
+                'bk_tv_right' => $request->bk_tv_right,
+                'bk_tv_right_note' => $request->bk_tv_right_note,
+                'bk_table' => $request->bk_table,
+                'bk_table_note' => $request->bk_table_note,
+
+            ]
+        );
+
+        return redirect()->route('getRoom', ['id' => $id, 'step' => 4, 'booking_id' => $request->booking_id])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
     }
 
     public function editBooking($id)
