@@ -38,6 +38,27 @@ class BookingController extends Controller
         return view('booking', compact('booking', 'bookings', 'rooms', 'search', 'history'), $data);
     }
 
+    public function getRoom($id)
+    {
+        $data = [
+            'title' => 'ข้อมูลหอประชุม'
+        ];
+        $booking = Booking::where('bk_room_id', $id)
+            ->join('rooms', 'bookings.bk_room_id', 'rooms.id')
+            ->join('users', 'bookings.bk_user_id', 'users.id')
+            ->select('bookings.*', 'rooms.*', 'users.*')->get();
+        $history = Booking::where('bk_user_id', auth()->user()->username)
+            ->join('rooms', 'bookings.bk_room_id', 'rooms.id')
+            ->join('users', 'bookings.bk_user_id', 'users.id')
+            ->select('bookings.*', 'rooms.*', 'users.*')->get(10);
+        $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
+
+        $rooms = Room::all();
+        $room = Room::find($id);
+        return view('room', compact('rooms', 'room', 'booking', 'bookings', 'rooms', 'room', 'history'), $data);
+    }
+
+
     public function addBooking(Request $request, $id)
     {
         // $room = Room::find($id);
@@ -102,7 +123,7 @@ class BookingController extends Controller
         // }
     }
 
-    public function Confirm(Request $request,$id)
+    public function Confirm(Request $request, $id)
     {
         $booking = Booking::find($id);
 
@@ -115,11 +136,11 @@ class BookingController extends Controller
         return redirect()->route('getRoom', ['id' => $id, 'step' => 3, 'booking_id' => $request->booking_id])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
     }
 
-    public function formBooking(Request $request,$id)
+    public function formBooking(Request $request, $id)
     {
         Booking::find($id)->update(
             [
-                
+
                 'bk_str_date' => $request->bk_str_date,
                 'bk_end_date' => $request->bk_end_date,
                 'bk_str_time' => $request->bk_str_time,
@@ -145,7 +166,7 @@ class BookingController extends Controller
             ]
         );
 
-        return redirect()->route('getRoom', ['id' => $id, 'step' => 4, 'booking_id' => $request->booking_id])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
+        return redirect()->route('getRoom', ['id' => $request->room_id, 'step' => 4, 'booking_id' => $id])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
     }
 
     public function editBooking($id)

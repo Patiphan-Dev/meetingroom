@@ -177,13 +177,5 @@ class RoomController extends Controller
         return redirect()->back()->with('success', 'ลบข้อมูสำเร็จ');
     }
 
-    public function getRoom($id)
-    {
-        $data = [
-            'title' => 'ข้อมูลหอประชุม'
-        ];
-        $rooms = Room::all();
-        $room = Room::find($id);
-        return view('Room', compact('rooms', 'room'), $data);
-    }
+    
 }
