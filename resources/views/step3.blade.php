@@ -61,15 +61,15 @@
 <div class="row" id="step3">
     <div class="card shadow">
         <div class="card-body">
-            <form action="{{ route('formBookingRoom', ['id' => $_GET['booking_id']]) }}"
-                enctype="multipart/form-data">
+            <form action="{{ route('formBookingRoom', ['id' => $_GET['booking_id']]) }}" enctype="multipart/form-data">
                 @csrf
                 @php
                     $str_date = date('Y-m-d');
                     $end_date = date('Y-m-d', strtotime('+1 day'));
 
                     $str_time = date('H:i:s');
-                    $end_time = date('H:i:s', strtotime('+10 hour'));
+                    $end_time = date('H:i:s');
+                    // $end_time = date('H:i:s', strtotime('+6 hour'));
 
                     $image = explode(',', $room->room_img_path);
                     $diagram = explode(',', $room->room_diagram_path);
@@ -77,24 +77,34 @@
                 @endphp
                 <div class="row">
                     <div class="col-12 col-sm-6 col-md-3 mb-3">
-                        <label for="bk_str_date" class="form-label">วันที่จัดงาน : <span>*</span></label>
-                        <input type="date" class="form-control shadow-sm" name="bk_str_date" id="bk_str_date"
-                            value="{{ $str_date }}" required>
+                        <label for="bk_str_date" class="form-label">วันที่จัดงาน <span>*</span></label>
+                        <input type="date" class="form-control shadow-sm" name="bk_str_date"
+                            min="{{ $str_date }}" id="bk_str_date" value="{{ $str_date }}" required>
                     </div>
                     <div class="col-12 col-sm-6 col-md-3 mb-3">
-                        <label for="bk_end_date" class="form-label">วันที่เสร็จงาน : <span>*</span></label>
-                        <input type="date" class="form-control shadow-sm" name="bk_end_date" id="bk_end_date"
-                            value="{{ $end_date }}" required>
+                        <label for="bk_end_date" class="form-label">วันที่เสร็จงาน <span>*</span></label>
+                        <input type="date" class="form-control shadow-sm" name="bk_end_date"
+                            min="{{ $str_date }}" id="bk_end_date" value="{{ $end_date }}" required>
                     </div>
                     <div class="col-12 col-sm-6 col-md-3 mb-3">
-                        <label for="bk_str_time" class="form-label">เวลาเข้า : <span>*</span></label>
+                        <label for="bk_str_time" class="form-label">เวลาเข้า <span>*</span></label>
                         <input type="time" class="form-control shadow-sm" name="bk_str_time" id="bk_str_time"
                             value="{{ $str_time }}" required onchange="Calculate()">
                     </div>
                     <div class="col-12 col-sm-6 col-md-3 mb-3">
-                        <label for="bk_end_time" class="form-label">เวลาออก : <span>*</span></label>
+                        <label for="bk_end_time" class="form-label">เวลาออก <span>*</span></label>
                         <input type="time" class="form-control shadow-sm" name="bk_end_time" id="bk_end_time"
                             value="{{ $end_time }}" required onchange="Calculate()">
+                    </div>
+                    <div class="col-12 col-sm-9 col-md-9 mb-3">
+                        <label for="bk_location_for" class="form-label">ความประสงค์ขอใช้สถานที่ <span>*</span></label>
+                        <input type="text" class="form-control shadow-sm" name="bk_location_for" id="bk_location_for"
+                            required>
+                    </div>
+                    <div class="col-12 col-sm-3 col-md-3 mb-3">
+                        <label for="bk_people_number" class="form-label">ผู้มาร่วมงาน (โดยประมาณ) <span>*</span></label>
+                        <input type="number" class="form-control shadow-sm" name="bk_people_number"
+                            id="bk_people_number" required>
                     </div>
                     {{-- <div class="col-12 col-md-6 mb-3">
                         <label for="room_name" class="form-label">ชื่อหอประชุม <span>*</span></label>
@@ -139,11 +149,13 @@
                             <p class="mx-5">
                                 - แบบที่ 1 : วงดนตรีครบชุดมีเพาเวอร์แอมป์ ตู้ลำโพงมาเอง <small
                                     style="margin-right: 13.5rem"></small>
-                                <input class="form-check-input" type="radio" name="bk_music_brand" id="bk_music_brand1">
+                                <input class="form-check-input" type="radio" name="bk_music_brand"
+                                    id="bk_music_brand1">
                                 <label class="form-check-label" for="bk_music_brand1">
                                     ใช้
                                 </label>
-                                <input class="form-check-input" type="radio" name="bk_music_brand" id="bk_music_brand2">
+                                <input class="form-check-input" type="radio" name="bk_music_brand"
+                                    id="bk_music_brand2">
                                 <label class="form-check-label" for="bk_music_brand2">
                                     ไม่ใช้
                                 </label>

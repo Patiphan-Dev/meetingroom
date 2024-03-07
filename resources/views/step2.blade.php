@@ -63,11 +63,8 @@
             หากในระหว่างการใช้อาคารสถานที่ปรากฏว่าอาคารสถานที่ที่ขอใช้สูญหายหรือเกิดความชำรุดเสียหาย
             อันเนื่องมาจากการใช้งาน ผู้ได้รับอนุญาตต้องรับผิดชอบชดใช้ต่อการสูญหายหรือเสียหาย และมหาวิทยาลัยมีสิทธิ
             เรียกค่าเสียหายเพิ่ม (หากมี) ได้เต็มจำนวนความเสียหาย หรือจัดการซ่อมแซมให้อยู่ในสภาพเดิม แล้วแต่กรณี
-            @php
-                echo $_GET['step'] . '/' . $_GET['booking_id'];
-            @endphp
             <div class="row justify-content-center text-center align-items-center">
-                <form action="{{ route('ConfirmRoom', ['id' => $_GET['booking_id']]) }}">
+                <form action="{{ route('ConfirmRoom', ['id' => $_GET['booking_id'],'id' => $room->id]) }}">
                     <div class="d-flex col-auto form-check">
                         
                         <input class="form-check-input" type="radio" name="bk_confirm" id="confirm1" value="1"
