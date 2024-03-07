@@ -485,27 +485,33 @@
             </div>
             <div class="d-flex justify-content-center my-4">
                 <a href="javascript:history.back()" class="d-inline mx-2 btn btn-secondary">ย้อนกลับ</a>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
                     ชำระค่ามัดจำ
-                  </button>
+                </button>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">ชำระค่ามัดจำ {{$bk->room_name}}</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">ชำระค่ามัดจำ {{ $bk->room_name }}
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form action="">
+                                <div class="modal-body">
+                                    @include('step5')
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger">ยกเลิกการจอง</button>
+                                    <input type="submit" class="btn btn-primary" value="ชำระเงิน">
+                                </div>
+                            </form>
                         </div>
-                        <div class="modal-body">
-                          @include('step5')
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                      </div>
                     </div>
-                  </div>
+                </div>
             </div>
         </div>
     @endif

@@ -12,31 +12,31 @@ use Carbon\Carbon;
 
 class BookingController extends Controller
 {
-    public function index($id)
-    {
-        $data = [
-            'title' => 'จองหอประชุม'
-        ];
-        $booking = Booking::where('bk_room_id', $id)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
-        $history = Booking::where('bk_user_id', auth()->user()->username)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->paginate(10);
-        $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
-        $room = Room::find($id);
-        $rooms = Room::all();
-        return view('booking', compact('booking', 'bookings', 'rooms', 'room', 'history'), $data);
-    }
+    // public function index($id)
+    // {
+    //     $data = [
+    //         'title' => 'จองหอประชุม'
+    //     ];
+    //     $booking = Booking::where('bk_room_id', $id)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
+    //     $history = Booking::where('bk_user_id', auth()->user()->username)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->paginate(10);
+    //     $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
+    //     $room = Room::find($id);
+    //     $rooms = Room::all();
+    //     return view('booking', compact('booking', 'bookings', 'rooms', 'room', 'history'), $data);
+    // }
 
-    public function indexAll()
-    {
-        $data = [
-            'title' => 'จองหอประชุม'
-        ];
-        $booking = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
-        $history = Booking::where('bk_user_id', auth()->user()->username)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
-        $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
-        $rooms = Room::all();
-        $search = '';
-        return view('booking', compact('booking', 'bookings', 'rooms', 'search', 'history'), $data);
-    }
+    // public function indexAll()
+    // {
+    //     $data = [
+    //         'title' => 'จองหอประชุม'
+    //     ];
+    //     $booking = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
+    //     $history = Booking::where('bk_user_id', auth()->user()->username)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
+    //     $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
+    //     $rooms = Room::all();
+    //     $search = '';
+    //     return view('booking', compact('booking', 'bookings', 'rooms', 'search', 'history'), $data);
+    // }
 
     public function getRoom($id)
     {
@@ -46,11 +46,11 @@ class BookingController extends Controller
         $booking = Booking::where('bk_room_id', $id)
             ->join('rooms', 'bookings.bk_room_id', 'rooms.id')
             ->join('users', 'bookings.bk_user_id', 'users.id')
-            ->select('bookings.*', 'rooms.*', 'users.*')->get();
-        $history = Booking::where('bk_user_id', auth()->user()->username)
+            ->select('rooms.*', 'users.*', 'bookings.*')->get();
+        $history = Booking::where('bk_user_id', auth()->user()->id)
             ->join('rooms', 'bookings.bk_room_id', 'rooms.id')
             ->join('users', 'bookings.bk_user_id', 'users.id')
-            ->select('bookings.*', 'rooms.*', 'users.*')->get(10);
+            ->select('rooms.*', 'users.*', 'bookings.*')->get();
         $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
 
         $rooms = Room::all();
@@ -61,51 +61,6 @@ class BookingController extends Controller
 
     public function addBooking(Request $request, $id)
     {
-        // $room = Room::find($id);
-        // เช็กช่วงเวลาที่จอง
-        // $bk_room_id = $request->bk_room_id;
-        // $bk_str_date = $request->bk_str_date;
-        // $checkin = $request->bk_str_time;
-        // $checkout = $request->bk_end_time;
-
-        // $booking = Booking::where(function ($query) use ($bk_room_id, $bk_str_date, $checkin, $checkout) {
-        //     $query->where(function ($query) use ($bk_room_id, $bk_str_date, $checkin, $checkout) {
-        //         $query->where('bk_room_id', $bk_room_id)
-        //             ->where('bk_date', $bk_str_date)
-        //             ->where('bk_str_time', '>=', $checkin)
-        //             ->where('bk_str_time', '<', $checkout);
-        //     })
-        //         ->orWhere(function ($query) use ($bk_room_id, $bk_str_date, $checkin, $checkout) {
-        //             $query->where('bk_room_id', $bk_room_id)
-        //                 ->where('bk_date', $bk_str_date)
-        //                 ->where('bk_end_time', '>', $checkin)
-        //                 ->where('bk_end_time', '<=', $checkout);
-        //         });
-        // })
-        //     ->orWhere(function ($query) use ($bk_room_id, $bk_str_date, $checkin, $checkout) {
-        //         $query->where('bk_room_id', $bk_room_id)
-        //             ->where('bk_date', $bk_str_date)
-        //             ->where('bk_str_time', '<=', $checkin)
-        //             ->where('bk_end_time', '>=', $checkout);
-        //     })
-        //     ->first();
-
-
-        // // คำนวณจำนวนชั่วโมง
-        // $hoursCheckIn = Carbon::parse($request->bk_str_time);
-        // $hoursCheckOut = Carbon::parse($request->bk_end_time);
-        // // Calculate the difference in minutes
-        // $minutes = $hoursCheckIn->diffInMinutes($hoursCheckOut);
-
-        // $getprice = Room::find($request->bk_room_id);
-
-        // $price = ($getprice->room_price / 60) * $minutes;
-        // $totalPrice = round($price);
-
-
-        // dd($booking);
-        // if ($booking == null) {
-        //บันทึกข้อมูล;
         $booking = new Booking;
         $booking->bk_room_id = $id;
         $booking->bk_user_id = auth()->user()->id;
@@ -113,14 +68,7 @@ class BookingController extends Controller
         $booking->save();
         $booking_id = $booking->id;
 
-
-        // Alert::success('สำเร็จ', 'จองหอประชุมสำเสร็จ');
         return redirect()->route('getRoom', ['id' => $id, 'step' => 2, 'booking_id' => $booking_id])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
-        // } else {
-
-        //     Alert::error('ไม่สำเร็จ', 'ไม่สามารถจองในช่วงเวลาดังกล่าวได้');
-        //     return redirect()->back()->with('ไม่สำเร็จ', 'ไม่สามารถจองในช่วงเวลาดังกล่าวได้');
-        // }
     }
 
     public function Confirm(Request $request, $id)
@@ -167,6 +115,12 @@ class BookingController extends Controller
         );
 
         return redirect()->route('getRoom', ['id' => $request->room_id, 'step' => 4, 'booking_id' => $id])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
+    }
+
+    public function PayDeposit(Request $request, $id)
+    {
+        $Booking = Booking::find($id);
+        return view('booking', compact('Booking'));
     }
 
     public function editBooking($id)

@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="col-12 text-center mt-3">
                 <label for="bk_end_time" class="form-label">
-                    หลักฐานการชาระเงิน <span>*</span>
+                    หลักฐานการชำระเงิน {{ $bk->id }} <span>*</span>
                 </label>
                 <img id="img_bk_slip{{ $bk->id }}" alt="อัพโหลดสลิปโอนเงิน"
                     @if ($bk->bk_slip != null) src="{{ asset($bk->bk_slip) }}" @endif
@@ -14,9 +14,10 @@
         </div>
     @endif
 </div>
-<script>.
+<script>
 
     function displayImage(id) {
+        console.log(id);
         const input = document.getElementById("bk_slip" + id);
         const file = input.files[0];
         if (file) {

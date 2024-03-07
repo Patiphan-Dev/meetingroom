@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Room;
+use App\Models\Booking;
+
 use RealRashid\SweetAlert\Facades\Alert;
 use File;
 
@@ -15,8 +17,12 @@ class RoomController extends Controller
         $data = [
             'title' => 'หอประชุม'
         ];
+        $history = Booking::where('bk_user_id', auth()->user()->id)
+            ->join('rooms', 'bookings.bk_room_id', 'rooms.id')
+            ->join('users', 'bookings.bk_user_id', 'users.id')
+            ->select('rooms.*', 'users.*', 'bookings.*')->get();
         $rooms = Room::all();
-        return view('admin.room', compact('rooms'), $data);
+        return view('admin.room', compact('rooms','history'), $data);
     }
 
     public function addRoom(Request $request)

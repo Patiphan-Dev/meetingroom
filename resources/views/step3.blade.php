@@ -74,210 +74,218 @@
                 $diagram = explode(',', $room->room_diagram_path);
 
             @endphp
-            <div class="row">
-                <input type="text" class="form-control" name="room_id" id="room_id"
-                    value="{{ $room->id }}" hidden required>
-                <div class="col-12 col-sm-6 col-md-3 mb-3">
-                    <label for="bk_str_date" class="form-label">วันที่จัดงาน <span>*</span></label>
-                    <input type="date" class="form-control shadow-sm" name="bk_str_date" min="{{ $str_date }}"
-                        id="bk_str_date" value="{{ $str_date }}" required>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mb-3">
-                    <label for="bk_end_date" class="form-label">วันที่เสร็จงาน <span>*</span></label>
-                    <input type="date" class="form-control shadow-sm" name="bk_end_date" min="{{ $str_date }}"
-                        id="bk_end_date" value="{{ $end_date }}" required>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mb-3">
-                    <label for="bk_str_time" class="form-label">เวลาเข้า <span>*</span></label>
-                    <input type="time" class="form-control shadow-sm" name="bk_str_time" id="bk_str_time"
-                        value="{{ $str_time }}" required onchange="Calculate()">
-                </div>
-                <div class="col-12 col-sm-6 col-md-3 mb-3">
-                    <label for="bk_end_time" class="form-label">เวลาออก <span>*</span></label>
-                    <input type="time" class="form-control shadow-sm" name="bk_end_time" id="bk_end_time"
-                        value="{{ $end_time }}" required onchange="Calculate()">
-                </div>
-                <div class="col-12 col-sm-9 col-md-9 mb-3">
-                    <label for="bk_location_for" class="form-label">ความประสงค์ขอใช้สถานที่ <span>*</span></label>
-                    <input type="text" class="form-control shadow-sm" name="bk_location_for" id="bk_location_for"
-                        required>
-                </div>
-                <div class="col-12 col-sm-3 col-md-3 mb-3">
-                    <label for="bk_people_number" class="form-label">ผู้มาร่วมงาน (โดยประมาณ) <span>*</span></label>
-                    <input type="number" class="form-control shadow-sm" name="bk_people_number" id="bk_people_number"
-                        required>
-                </div>
-                <div class="col-12 mb-3">
-                    <h6><b> วงดนตรีที่ผู้จัดงานเตรียมมานั้นเป็นแบบใด</b></h6>
-                    <div>
-                        <p class="mx-5">
-                            - แบบที่ 1 : วงดนตรีครบชุดมีเพาเวอร์แอมป์ ตู้ลำโพงมาเอง <small
-                                style="margin-right: 13.5rem"></small>
-                            <input class="form-check-input" type="radio" name="bk_music_brand" id="bk_music_brand1"
+            @foreach ($history as $row)
+                @if ($row->id == $_GET['booking_id'])
+                    <div class="row">
+                        <input type="text" class="form-control" name="room_id" id="room_id"
+                            value="{{ $room->id }}" hidden required>
+                        <div class="col-12 col-sm-6 col-md-3 mb-3">
+                            <label for="bk_str_date" class="form-label">วันที่จัดงาน <span>*</span></label>
+                            <input type="date" class="form-control shadow-sm" name="bk_str_date"
+                                min="{{ $str_date }}" id="bk_str_date"
+                                @if ($row->bk_str_date != null) value="{{ $row->bk_str_date }}" @else value="{{ $str_date }}" @endif
                                 required>
-                            <label class="form-check-label" for="bk_music_brand1">
-                                ใช้
-                            </label>
-                            <input class="form-check-input" type="radio" name="bk_music_brand" id="bk_music_brand2"
-                                required>
-                            <label class="form-check-label" for="bk_music_brand2">
-                                ไม่ใช้
-                            </label>
-                        </p>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-3 mb-3">
+                            <label for="bk_end_date" class="form-label">วันที่เสร็จงาน <span>*</span></label>
+                            <input type="date" class="form-control shadow-sm" name="bk_end_date"
+                                min="{{ $str_date }}" id="bk_end_date" @if ($row->bk_end_date != null) value="{{ $row->bk_end_date }}" @else value="{{ $end_date }}" @endif required>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-3 mb-3">
+                            <label for="bk_str_time" class="form-label">เวลาเข้า <span>*</span></label>
+                            <input type="time" class="form-control shadow-sm" name="bk_str_time" id="bk_str_time"
+                            @if ($row->bk_str_time != null) value="{{ $row->bk_str_time }}" @else value="{{ $str_time }}" @endif required onchange="Calculate()">
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-3 mb-3">
+                            <label for="bk_end_time" class="form-label">เวลาออก <span>*</span></label>
+                            <input type="time" class="form-control shadow-sm" name="bk_end_time" id="bk_end_time"
+                            @if ($row->bk_end_time != null) value="{{ $row->bk_end_time }}" @else value="{{ $end_time }}" @endif required onchange="Calculate()">
+                        </div>
+                        <div class="col-12 col-sm-9 col-md-9 mb-3">
+                            <label for="bk_location_for" class="form-label">ความประสงค์ขอใช้สถานที่
+                                <span>*</span></label>
+                            <input type="text" class="form-control shadow-sm" name="bk_location_for" @if ($row->bk_location_for != null) value="{{ $row->bk_location_for }}" @endif
+                                id="bk_location_for" required>
+                        </div>
+                        <div class="col-12 col-sm-3 col-md-3 mb-3">
+                            <label for="bk_people_number" class="form-label">ผู้มาร่วมงาน (โดยประมาณ)
+                                <span>*</span></label>
+                            <input type="number" class="form-control shadow-sm" name="bk_people_number"  @if ($row->bk_people_number != null) value="{{ $row->bk_people_number }}" @endif
+                                id="bk_people_number" required>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <h6><b> วงดนตรีที่ผู้จัดงานเตรียมมานั้นเป็นแบบใด</b></h6>
+                            <div>
+                                <p class="mx-5">
+                                    - แบบที่ 1 : วงดนตรีครบชุดมีเพาเวอร์แอมป์ ตู้ลำโพงมาเอง <small
+                                        style="margin-right: 13.5rem"></small>
+                                    <input class="form-check-input" type="radio" name="bk_music_brand"
+                                        id="bk_music_brand1" required>
+                                    <label class="form-check-label" for="bk_music_brand1">
+                                        ใช้
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="bk_music_brand"
+                                        id="bk_music_brand2" required>
+                                    <label class="form-check-label" for="bk_music_brand2">
+                                        ไม่ใช้
+                                    </label>
+                                </p>
+                            </div>
+                            <div>
+                                <p class="mx-5">
+                                    - แบบที่ 2 : มีเฉพาะเครื่องดนตรี เช่น กีต้าร์ กลอง ไม่มีเพาเวอร์แอมป์ ตู้ลำโพง
+                                    <small style="margin-right: 6rem"></small>
+                                    <input class="form-check-input" type="radio" name="bk_music_equipment"
+                                        id="bk_music_equipment1" required>
+                                    <label class="form-check-label" for="bk_music_equipment1">
+                                        ใช้
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="bk_music_equipment"
+                                        id="bk_music_equipment2" required>
+                                    <label class="form-check-label" for="bk_music_equipment2">
+                                        ไม่ใช้
+                                    </label>
+                                </p>
+                            </div>
+                            <div>
+                                <p class="mx-5">
+                                    - กรณีเป็นแบบที่ 2 ต้องการต่อเครื่องดนตรีเข้ากับระบบเสียงของหอประชุมหรือไม่ <small
+                                        style="margin-right: 5rem"></small>
+                                    <input class="form-check-input" type="radio" name="bk_music_details"
+                                        id="bk_music_details1" required>
+                                    <label class="form-check-label" for="bk_music_details1">
+                                        ใช้
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="bk_music_details"
+                                        id="bk_music_details2" required>
+                                    <label class="form-check-label" for="bk_music_details2">
+                                        ไม่ใช้
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <table class="table table-bordered border-dark mt-3">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>ที่</th>
+                                        <th>รายการ</th>
+                                        <th>ต้องการ</th>
+                                        <th>ไม่ต้องการ</th>
+                                        <th>หมายเหตุ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td>ระบบเสียงพร้อมไมค์โครโฟน 2 ตัว</td>
+                                        <td class="text-center">
+                                            <input class="form-check-input" type="radio" name="bk_sound"
+                                                id="bk_sound1" required>
+                                            <label class="form-check-label" for="bk_sound1">
+                                                ใช้
+                                            </label>
+                                        </td>
+                                        <td class="text-center">
+                                            <input class="form-check-input" type="radio" name="bk_sound"
+                                                id="bk_sound2" required>
+                                            <label class="form-check-label" for="bk_sound2">
+                                                ไม่ใช้
+                                            </label>
+                                        </td>
+                                        <td><input class="form-control" type="text" name="bk_sound_node"
+                                                id="bk_sound_note"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">2</td>
+                                        <td>จอภาพขนาดใหญ่บนเวที่ 1 จอ</td>
+                                        <td class="text-center">
+                                            <input class="form-check-input" type="radio" name="bk_screen_big"
+                                                id="bk_screen_big1" required>
+                                            <label class="form-check-label" for="bk_screen_big1">
+                                                ใช้
+                                            </label>
+                                        </td>
+                                        <td class="text-center">
+                                            <input class="form-check-input" type="radio" name="bk_screen_big"
+                                                id="bk_screen_big2" required>
+                                            <label class="form-check-label" for="bk_screen_big2">
+                                                ไม่ใช้
+                                            </label>
+                                        </td>
+                                        <td><input class="form-control" type="text" name="bk_screen_big_note"
+                                                id="bk_screen_big_note"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">3</td>
+                                        <td>จอภาพทีวีด้านข้างฝั่งซ้าย 4 จอ</td>
+                                        <td class="text-center">
+                                            <input class="form-check-input" type="radio" name="bk_tv_left"
+                                                id="bk_tv_left1" required>
+                                            <label class="form-check-label" for="bk_tv_left2">
+                                                ใช้
+                                            </label>
+                                        </td>
+                                        <td class="text-center">
+                                            <input class="form-check-input" type="radio" name="bk_tv_left"
+                                                id="bk_tv_left1" required>
+                                            <label class="form-check-label" for="bk_tv_left2">
+                                                ไม่ใช้
+                                            </label>
+                                        </td>
+                                        <td><input class="form-control" type="text" name="bk_tv_left_note"
+                                                id="bk_tv_left_note">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">3</td>
+                                        <td>จอภาพทีวีด้านข้างฝั่งขวา 4 จอ</td>
+                                        <td class="text-center">
+                                            <input class="form-check-input" type="radio" name="bk_tv_right"
+                                                id="bk_tv_right1" required>
+                                            <label class="form-check-label" for="bk_tv_right1">
+                                                ใช้
+                                            </label>
+                                        </td>
+                                        <td class="text-center">
+                                            <input class="form-check-input" type="radio" name="bk_tv_right"
+                                                id="bk_tv_right2" required>
+                                            <label class="form-check-label" for="bk_tv_right2">
+                                                ไม่ใช้
+                                            </label>
+                                        </td>
+                                        <td><input class="form-control" type="text" name="bk_tv_right_note"
+                                                id="bk_tv_right_note">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">4</td>
+                                        <td>โต๊ะปฏิบัติการหน้าขาว 10 ตัว</td>
+                                        <td class="text-center">
+                                            <input class="form-check-input" type="radio" name="bk_table"
+                                                id="bk_table1" required>
+                                            <label class="form-check-label" for="bk_table1">
+                                                ใช้
+                                            </label>
+                                        </td>
+                                        <td class="text-center">
+                                            <input class="form-check-input" type="radio" name="bk_table"
+                                                id="bk_table2" required>
+                                            <label class="form-check-label" for="bk_table2">
+                                                ไม่ใช้
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="text" name="bk_table_note"
+                                                id="bk_table_note">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div>
-                        <p class="mx-5">
-                            - แบบที่ 2 : มีเฉพาะเครื่องดนตรี เช่น กีต้าร์ กลอง ไม่มีเพาเวอร์แอมป์ ตู้ลำโพง <small
-                                style="margin-right: 6rem"></small>
-                            <input class="form-check-input" type="radio" name="bk_music_equipment"
-                                id="bk_music_equipment1" required>
-                            <label class="form-check-label" for="bk_music_equipment1">
-                                ใช้
-                            </label>
-                            <input class="form-check-input" type="radio" name="bk_music_equipment"
-                                id="bk_music_equipment2" required>
-                            <label class="form-check-label" for="bk_music_equipment2">
-                                ไม่ใช้
-                            </label>
-                        </p>
-                    </div>
-                    <div>
-                        <p class="mx-5">
-                            - กรณีเป็นแบบที่ 2 ต้องการต่อเครื่องดนตรีเข้ากับระบบเสียงของหอประชุมหรือไม่ <small
-                                style="margin-right: 5rem"></small>
-                            <input class="form-check-input" type="radio" name="bk_music_details"
-                                id="bk_music_details1" required>
-                            <label class="form-check-label" for="bk_music_details1">
-                                ใช้
-                            </label>
-                            <input class="form-check-input" type="radio" name="bk_music_details"
-                                id="bk_music_details2" required>
-                            <label class="form-check-label" for="bk_music_details2">
-                                ไม่ใช้
-                            </label>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-12 mb-3">
-                    <table class="table table-bordered border-dark mt-3">
-                        <thead class="text-center">
-                            <tr>
-                                <th>ที่</th>
-                                <th>รายการ</th>
-                                <th>ต้องการ</th>
-                                <th>ไม่ต้องการ</th>
-                                <th>หมายเหตุ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>ระบบเสียงพร้อมไมค์โครโฟน 2 ตัว</td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="bk_sound" id="bk_sound1"
-                                        required>
-                                    <label class="form-check-label" for="bk_sound1">
-                                        ใช้
-                                    </label>
-                                </td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="bk_sound" id="bk_sound2"
-                                        required>
-                                    <label class="form-check-label" for="bk_sound2">
-                                        ไม่ใช้
-                                    </label>
-                                </td>
-                                <td><input class="form-control" type="text" name="bk_sound_node"
-                                        id="bk_sound_note"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">2</td>
-                                <td>จอภาพขนาดใหญ่บนเวที่ 1 จอ</td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="bk_screen_big"
-                                        id="bk_screen_big1" required>
-                                    <label class="form-check-label" for="bk_screen_big1">
-                                        ใช้
-                                    </label>
-                                </td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="bk_screen_big"
-                                        id="bk_screen_big2" required>
-                                    <label class="form-check-label" for="bk_screen_big2">
-                                        ไม่ใช้
-                                    </label>
-                                </td>
-                                <td><input class="form-control" type="text" name="bk_screen_big_note"
-                                        id="bk_screen_big_note"></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">3</td>
-                                <td>จอภาพทีวีด้านข้างฝั่งซ้าย 4 จอ</td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="bk_tv_left"
-                                        id="bk_tv_left1" required>
-                                    <label class="form-check-label" for="bk_tv_left2">
-                                        ใช้
-                                    </label>
-                                </td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="bk_tv_left"
-                                        id="bk_tv_left1" required>
-                                    <label class="form-check-label" for="bk_tv_left2">
-                                        ไม่ใช้
-                                    </label>
-                                </td>
-                                <td><input class="form-control" type="text" name="bk_tv_left_note"
-                                        id="bk_tv_left_note">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">3</td>
-                                <td>จอภาพทีวีด้านข้างฝั่งขวา 4 จอ</td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="bk_tv_right"
-                                        id="bk_tv_right1" required>
-                                    <label class="form-check-label" for="bk_tv_right1">
-                                        ใช้
-                                    </label>
-                                </td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="bk_tv_right"
-                                        id="bk_tv_right2" required>
-                                    <label class="form-check-label" for="bk_tv_right2">
-                                        ไม่ใช้
-                                    </label>
-                                </td>
-                                <td><input class="form-control" type="text" name="bk_tv_right_note"
-                                        id="bk_tv_right_note">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">4</td>
-                                <td>โต๊ะปฏิบัติการหน้าขาว 10 ตัว</td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="bk_table" id="bk_table1"
-                                        required>
-                                    <label class="form-check-label" for="bk_table1">
-                                        ใช้
-                                    </label>
-                                </td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="bk_table" id="bk_table2"
-                                        required>
-                                    <label class="form-check-label" for="bk_table2">
-                                        ไม่ใช้
-                                    </label>
-                                </td>
-                                <td>
-                                    <input class="form-control" type="text" name="bk_table_note"
-                                        id="bk_table_note">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                @endif
+            @endforeach
             <div class="d-flex justify-content-center my-4">
                 <a href="javascript:history.back()" class="d-inline mx-2 btn btn-secondary">ย้อนกลับ</a>
                 <input type="submit" class="d-inline mx-2 btn btn-primary" id="submit" value="ถัดไป">
