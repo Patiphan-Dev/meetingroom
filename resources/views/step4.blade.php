@@ -87,9 +87,9 @@
                 <p>เรียน อธิการบดีมหาวิทยาลัยเทคโนโลยีราชมงคลสุวรรณภูมิ</p>
                 <p class="fw-bold">ส่วนที่ 1 สำหรับผู้ขอใช้อาคารสถานที่</p>
                 <p style="text-indent:5vw">
-                    ข้าพเจ้า.....................{{ $bk->fullname }}...............................อยู่บ้านเลขที่............{{ $bk->housenumber }}...............หมู่ที่..............{{ $bk->village }}..............ถนน.......................{{ $bk->road }}...........................................................
+                    ข้าพเจ้า.................{{ $bk->fullname }}...................อยู่บ้านเลขที่..........{{ $bk->housenumber }}.............หมู่ที่.........{{ $bk->village }}..........ถนน.................{{ $bk->road }}..........................................
                 </p>
-                <p>ตำบล/แขวง..................{{ $bk->subdistrict }}.........................อำเภอ/เขต..................{{ $bk->district }}.............................จังหวัด..................{{ $bk->province }}.....................................................................
+                <p>ตำบล/แขวง...............{{ $bk->subdistrict }}.....................อำเภอ/เขต..................{{ $bk->district }}.............................จังหวัด..................{{ $bk->province }}................................................................
                 </p>
                 <p>หมายเลขโทรศัพท์.........{{ $bk->phone }}...................มีความประสงค์ขอใช้...........{{ $bk->bk_location_for }}...........................ดังต่อไปนี้
                 </p>
@@ -209,12 +209,12 @@
                     <div>- แบบที่ 1 : วงดนตรีครบชุดมีเพาเวอร์แอมป์ ตู้ลำโพงมาเอง<small
                             style="margin-right: 11.7rem"></small>
                         <span class="mx-5">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" value="1"
                                 id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 ใช้
                             </label>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault"
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" value="2"
                                 id="flexRadioDefault2">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 ไม่ใช้
@@ -400,15 +400,27 @@
                             และมหาวิทยาลัยมีสิทธิ
                             เรียกค่าเสียหายเพิ่ม (หากมี) ได้เต็มจำนวนความเสียหาย หรือจัดการซ่อมแซมให้อยู่ในสภาพเดิม
                             แล้วแต่กรณี
-                            <div class="row justify-content-center text-center align-items-center">
+                            <div class="row justify-content-center text-center align-items-center my-3">
                                 <div class="d-flex col-auto form-check">
-                                    <input class="form-check-input" type="radio" name="bk_confirm" id="confirm1">
+                                    @if ($bk->bk_confirm == 1)
+                                        <img src="{{ asset('assets/images/block-true.jpg') }}" style="width:30px"
+                                            alt="">
+                                    @else
+                                        <img src="{{ asset('assets/images/square.jpg') }}" style="width:25px"
+                                            alt="">
+                                    @endif
                                     <label class="form-check-label" for="confirm1">
                                         ยินดีให้มหาวิทยาลัยหักเงินประกันความเสียหาย
                                     </label>
                                 </div>
                                 <div class="col-auto form-check">
-                                    <input class="form-check-input" type="radio" name="bk_confirm" id="confirm2">
+                                    @if ($bk->bk_confirm == 2)
+                                        <img src="{{ asset('assets/images/block-true.jpg') }}" style="width:30px"
+                                            alt="">
+                                    @else
+                                        <img src="{{ asset('assets/images/square.jpg') }}" style="width:25px"
+                                            alt="">
+                                    @endif
                                     <label class="form-check-label" for="confirm2">
                                         ยินดีแก้ไขให้กลับสู่สภาพเดิม
                                     </label>
@@ -476,7 +488,7 @@
                         <div class="col-6 form-check">
                             <p>(........................................................................................)
                             </p>
-                            <p> ................................................................................. </p>
+                            <p> ........................ {{auth()->user()->fullname}} ........................ </p>
                             <p> ผู้ขอใช้บริการสถานที่ </p>
                             <p> .............../......................../..................... </p>
                         </div>

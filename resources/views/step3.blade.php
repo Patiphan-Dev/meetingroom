@@ -119,12 +119,12 @@
                                 <p class="mx-5">
                                     - แบบที่ 1 : วงดนตรีครบชุดมีเพาเวอร์แอมป์ ตู้ลำโพงมาเอง <small
                                         style="margin-right: 13.5rem"></small>
-                                    <input class="form-check-input" type="radio" name="bk_music_brand"
+                                    <input class="form-check-input" type="radio" name="bk_music_brand" value="1"
                                         id="bk_music_brand1" required>
                                     <label class="form-check-label" for="bk_music_brand1">
                                         ใช้
                                     </label>
-                                    <input class="form-check-input" type="radio" name="bk_music_brand"
+                                    <input class="form-check-input" type="radio" name="bk_music_brand" value="2"
                                         id="bk_music_brand2" required>
                                     <label class="form-check-label" for="bk_music_brand2">
                                         ไม่ใช้
@@ -135,12 +135,12 @@
                                 <p class="mx-5">
                                     - แบบที่ 2 : มีเฉพาะเครื่องดนตรี เช่น กีต้าร์ กลอง ไม่มีเพาเวอร์แอมป์ ตู้ลำโพง
                                     <small style="margin-right: 6rem"></small>
-                                    <input class="form-check-input" type="radio" name="bk_music_equipment"
+                                    <input class="form-check-input" type="radio" name="bk_music_equipment" value="1"
                                         id="bk_music_equipment1" required>
                                     <label class="form-check-label" for="bk_music_equipment1">
                                         ใช้
                                     </label>
-                                    <input class="form-check-input" type="radio" name="bk_music_equipment"
+                                    <input class="form-check-input" type="radio" name="bk_music_equipment" value="2"
                                         id="bk_music_equipment2" required>
                                     <label class="form-check-label" for="bk_music_equipment2">
                                         ไม่ใช้
@@ -151,12 +151,12 @@
                                 <p class="mx-5">
                                     - กรณีเป็นแบบที่ 2 ต้องการต่อเครื่องดนตรีเข้ากับระบบเสียงของหอประชุมหรือไม่ <small
                                         style="margin-right: 5rem"></small>
-                                    <input class="form-check-input" type="radio" name="bk_music_details"
+                                    <input class="form-check-input" type="radio" name="bk_music_details" value="1"
                                         id="bk_music_details1" required>
                                     <label class="form-check-label" for="bk_music_details1">
                                         ใช้
                                     </label>
-                                    <input class="form-check-input" type="radio" name="bk_music_details"
+                                    <input class="form-check-input" type="radio" name="bk_music_details" value="2"
                                         id="bk_music_details2" required>
                                     <label class="form-check-label" for="bk_music_details2">
                                         ไม่ใช้
@@ -180,14 +180,14 @@
                                         <td class="text-center">1</td>
                                         <td>ระบบเสียงพร้อมไมค์โครโฟน 2 ตัว</td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_sound"
+                                            <input class="form-check-input" type="radio" name="bk_sound" value="1"
                                                 id="bk_sound1" required>
                                             <label class="form-check-label" for="bk_sound1">
                                                 ใช้
                                             </label>
                                         </td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_sound"
+                                            <input class="form-check-input" type="radio" name="bk_sound" value="2"
                                                 id="bk_sound2" required>
                                             <label class="form-check-label" for="bk_sound2">
                                                 ไม่ใช้
@@ -200,14 +200,14 @@
                                         <td class="text-center">2</td>
                                         <td>จอภาพขนาดใหญ่บนเวที่ 1 จอ</td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_screen_big"
+                                            <input class="form-check-input" type="radio" name="bk_screen_big" value="1"
                                                 id="bk_screen_big1" required>
                                             <label class="form-check-label" for="bk_screen_big1">
                                                 ใช้
                                             </label>
                                         </td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_screen_big"
+                                            <input class="form-check-input" type="radio" name="bk_screen_big" value="2"
                                                 id="bk_screen_big2" required>
                                             <label class="form-check-label" for="bk_screen_big2">
                                                 ไม่ใช้
@@ -220,14 +220,14 @@
                                         <td class="text-center">3</td>
                                         <td>จอภาพทีวีด้านข้างฝั่งซ้าย 4 จอ</td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_tv_left"
+                                            <input class="form-check-input" type="radio" name="bk_tv_left" value="1"
                                                 id="bk_tv_left1" required>
                                             <label class="form-check-label" for="bk_tv_left2">
                                                 ใช้
                                             </label>
                                         </td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_tv_left"
+                                            <input class="form-check-input" type="radio" name="bk_tv_left" value="2"
                                                 id="bk_tv_left1" required>
                                             <label class="form-check-label" for="bk_tv_left2">
                                                 ไม่ใช้
@@ -241,14 +241,14 @@
                                         <td class="text-center">3</td>
                                         <td>จอภาพทีวีด้านข้างฝั่งขวา 4 จอ</td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_tv_right"
+                                            <input class="form-check-input" type="radio" name="bk_tv_right" value="1"
                                                 id="bk_tv_right1" required>
                                             <label class="form-check-label" for="bk_tv_right1">
                                                 ใช้
                                             </label>
                                         </td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_tv_right"
+                                            <input class="form-check-input" type="radio" name="bk_tv_right" value="2"
                                                 id="bk_tv_right2" required>
                                             <label class="form-check-label" for="bk_tv_right2">
                                                 ไม่ใช้
@@ -262,14 +262,14 @@
                                         <td class="text-center">4</td>
                                         <td>โต๊ะปฏิบัติการหน้าขาว 10 ตัว</td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_table"
+                                            <input class="form-check-input" type="radio" name="bk_table" value="1"
                                                 id="bk_table1" required>
                                             <label class="form-check-label" for="bk_table1">
                                                 ใช้
                                             </label>
                                         </td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_table"
+                                            <input class="form-check-input" type="radio" name="bk_table" value="2"
                                                 id="bk_table2" required>
                                             <label class="form-check-label" for="bk_table2">
                                                 ไม่ใช้
