@@ -45,9 +45,11 @@
                                 @if ($row->bk_status == 1)
                                     <span class="badge text-bg-warning"> รอชำระเงิน</span>
                                 @elseif ($row->bk_status == 2)
-                                    <span class="badge text-bg-primary"> รอตรวจสอบ</span>
+                                    <span class="badge text-bg-info"> รอตรวจสอบ</span>
                                 @elseif ($row->bk_status == 3)
-                                    <span class="badge text-bg-success"> ยืนยัน</span>
+                                    <span class="badge text-bg-primary"> อนุมัติ</span>
+                                @elseif ($row->bk_status == 4)
+                                    <span class="badge text-bg-success"> สำเร็จ</span>
                                 @else
                                     <span class="badge text-bg-danger"> ยกเลิก</span>
                                 @endif

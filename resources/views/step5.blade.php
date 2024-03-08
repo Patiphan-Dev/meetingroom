@@ -13,15 +13,15 @@
 </style>
 <div class="row">
     <div class="col-12 text-center mt-3">
-        <label for="bk_end_time" class="form-label">
+        <label for="PayDeposit" class="form-label">
             หลักฐานการชำระเงิน <span>*</span>
         </label>
         <img id="img_bk_slip{{ $bk->id }}" alt="อัพโหลดสลิปโอนเงิน"
             @if ($bk->bk_slip != null) src="{{ asset($bk->bk_slip) }}" @endif
             class="mx-auto d-block img-thumbnail mb-3 img_bk_slip">
-        <input type="text" value="{{ $_GET['booking_id'] }}" name="booking_id" hidden>
         <input type="file" id="bk_slip{{ $bk->id }}" name="bk_slip" class="form-control mb-3"
             accept="image/png, image/jpeg" onchange="displayImage('{{ $bk->id }}')">
+        <input type="text" value="{{ $_GET['booking_id'] }}" name="booking_id" hidden>
     </div>
 </div>
 <script>

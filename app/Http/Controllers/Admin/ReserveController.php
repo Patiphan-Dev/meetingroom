@@ -18,7 +18,7 @@ class ReserveController extends Controller
             'title' => 'การจอง'
         ];
         // ดึงข้อมูลตาราง bookings join ตาราง rooms
-        $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
+        $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->join('users', 'bookings.bk_user_id', 'users.id')->select('bookings.*', 'rooms.room_name','users.fullname')->get();
         //ดึงข้อมูลตาราง Room ทั้งหมด
         $rooms = Room::all();
         return view('admin.reserve', compact('bookings', 'rooms'), $data);

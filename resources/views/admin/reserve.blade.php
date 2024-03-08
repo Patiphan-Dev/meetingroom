@@ -2,9 +2,9 @@
 
 @section('body')
     <div class="d-grid gap-2 d-md-flex justify-content-end">
-        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addroom">
+        {{-- <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addroom">
             <i class="fa-solid fa-plus"></i> จองหอประชุม
-        </button>
+        </button> --}}
         <div class="modal fade" id="addroom" aria-hidden="true" aria-labelledby="addroomLabel" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -40,8 +40,8 @@
                     <tr>
                         <th scope="row">{{ $key + 1 }}</th>
                         <td>{{ $row->room_name }}</td>
-                        <td>{{ $row->bk_username }}</td>
-                        <td>{{ $row->bk_date }}</td>
+                        <td>{{ $row->fullname }}</td>
+                        <td>{{ $row->bk_str_date }} ถึง {{ $row->bk_end_date }}</td>
                         <td>{{ $row->bk_str_time }} ถึง {{ $row->bk_end_time }}</td>
                         <td class="text-center">
                             @if ($row->bk_status == 1)
@@ -49,13 +49,18 @@
                             @elseif ($row->bk_status == 2)
                                 <span class="badge text-bg-primary"> รอตรวจสอบ</span>
                             @elseif ($row->bk_status == 3)
-                                <span class="badge text-bg-success"> ยืนยัน</span>
+                                <span class="badge text-bg-success"> อนุมัติ</span>
+                            @elseif ($row->bk_status == 4)
+                                <span class="badge text-bg-success"> สำเร็จ</span>
                             @else
                                 <span class="badge text-bg-danger"> ยกเลิก</span>
                             @endif
                         </td>
                         <td>{{ $row->created_at }}</td>
                         <td>
+                            <a href="{{ route('downloadPDF', ['id' => $row->id]) }}" class="btn badge text-bg-primary">
+                                <i class="fa-regular fa-file-pdf"></i>
+                            </a>
                             <button type="button" class="btn badge text-bg-warning" data-bs-toggle="modal"
                                 data-bs-target="#confirm{{ $row->id }}">
                                 <i class="fa-regular fa-pen-to-square"></i>
@@ -170,5 +175,4 @@
             });
         }
     </script>
-
 @endsection

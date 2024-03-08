@@ -1,4 +1,4 @@
-<style>
+{{-- <style>
     #booking {
         background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20230721/pngtree-desolate-soccer-arena-in-the-evening-depicted-in-3d-image_3869215.jpg");
         background-color: #737475;
@@ -58,65 +58,66 @@
         document.getElementById("bk_total_price").value = `${roundedNumber}`;
     }
 </script>
-{{-- <div class="row bg-dark rounded-bottom-5" id="booking">
-    <div class="booking-form py-md-4 mt-3"> --}}
-<form action="{{ route('addBooking') }}" method="post" enctype="multipart/form-data">
-    @csrf
-    @php
-        $date = date('Y-m-d');
-        $str_time = date('00:00:00');
-        $end_time = date('00:00:00', strtotime('+1 hour'));
-    @endphp
-    <div class="row justify-content-center mb-3">
-        <div class="col-12 col-sm-12 col-md-12 mb-3">
-            <label for="room_id" class="form-label">หอประชุม :</label>
-            <select class="form-select" name="bk_room_id" id="bk_room_id" required onchange="Calculate()">
-                <option value="" disabled selected>--- กรุณาเลือกหอประชุม ---</option>
-                @foreach ($rooms as $room)
-                    <option value="{{ $room->id }}" data-price="{{ $room->room_price }}"
-                        @if (!empty($search)) @if ($search->id == $room->id) selected @endif
-                        @endif>
-                        {{ $room->room_name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 mb-3">
-            <label for="bk_price" class="form-label">ราคา/ชั่วโมง : </label>
-            <input type="text" class="form-control" name="bk_price" id="bk_price" value="" disabled required>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 mb-3">
-            <label for="bk_date" class="form-label">วันที่จอง : </label>
-            <input type="date" class="form-control" name="bk_date" id="bk_date" value="{{ $date }}"
-                required>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 mb-3">
-            <label for="bk_str_time" class="form-label">เวลาเข้า : </label>
-            <input type="time" class="form-control" name="bk_str_time" id="bk_str_time" value="" required
-                onchange="Calculate()">
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 mb-3">
-            <label for="bk_end_time" class="form-label">เวลาออก : </label>
-            <input type="time" class="form-control" name="bk_end_time" id="bk_end_time" value="" required
-                onchange="Calculate()">
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 mb-3">
-            <label for="bk_sumtime" class="form-label">เวลาเช่า (นาที)</label>
-            <input type="text" class="form-control" name="bk_sumtime" id="bk_sumtime" value="" disabled
-                required>
-        </div>
-        <div class="col-12 col-sm-6 col-md-6 mb-3">
-            <label for="bk_total_price" class="form-label">ราคารวม</label>
-            <input type="text" class="form-control" name="bk_total_price" id="bk_total_price" value="" disabled
-                required>
-        </div>
-        <div class="col-8 col-sm-6 col-md-6 mt-3">
-            <div class="form-btn">
-                <button type="submit" class="btn btn-primary w-100">
-                    <i class="fa-regular fa-calendar-plus"></i> จองหอประชุม
-                </button>
+<div class="row bg-dark rounded-bottom-5" id="booking">
+    <div class="booking-form py-md-4 mt-3">
+        <form action="{{ route('addBooking') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            @php
+                $date = date('Y-m-d');
+                $str_time = date('00:00:00');
+                $end_time = date('00:00:00', strtotime('+1 hour'));
+            @endphp
+            <div class="row justify-content-center mb-3">
+                <div class="col-12 col-sm-12 col-md-12 mb-3">
+                    <label for="room_id" class="form-label">หอประชุม :</label>
+                    <select class="form-select" name="bk_room_id" id="bk_room_id" required onchange="Calculate()">
+                        <option value="" disabled selected>--- กรุณาเลือกหอประชุม ---</option>
+                        @foreach ($rooms as $room)
+                            <option value="{{ $room->id }}" data-price="{{ $room->room_price }}"
+                                @if (!empty($search)) @if ($search->id == $room->id) selected @endif
+                                @endif>
+                                {{ $room->room_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 mb-3">
+                    <label for="bk_price" class="form-label">ราคา/ชั่วโมง : </label>
+                    <input type="text" class="form-control" name="bk_price" id="bk_price" value="" disabled
+                        required>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 mb-3">
+                    <label for="bk_date" class="form-label">วันที่จอง : </label>
+                    <input type="date" class="form-control" name="bk_date" id="bk_date" value="{{ $date }}"
+                        required>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 mb-3">
+                    <label for="bk_str_time" class="form-label">เวลาเข้า : </label>
+                    <input type="time" class="form-control" name="bk_str_time" id="bk_str_time" value=""
+                        required onchange="Calculate()">
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 mb-3">
+                    <label for="bk_end_time" class="form-label">เวลาออก : </label>
+                    <input type="time" class="form-control" name="bk_end_time" id="bk_end_time" value=""
+                        required onchange="Calculate()">
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 mb-3">
+                    <label for="bk_sumtime" class="form-label">เวลาเช่า (นาที)</label>
+                    <input type="text" class="form-control" name="bk_sumtime" id="bk_sumtime" value="" disabled
+                        required>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 mb-3">
+                    <label for="bk_total_price" class="form-label">ราคารวม</label>
+                    <input type="text" class="form-control" name="bk_total_price" id="bk_total_price" value=""
+                        disabled required>
+                </div>
+                <div class="col-8 col-sm-6 col-md-6 mt-3">
+                    <div class="form-btn">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fa-regular fa-calendar-plus"></i> จองหอประชุม
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
-</form>
-{{-- </div>
 </div> --}}

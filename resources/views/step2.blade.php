@@ -69,19 +69,23 @@
                     เรียกค่าเสียหายเพิ่ม (หากมี) ได้เต็มจำนวนความเสียหาย หรือจัดการซ่อมแซมให้อยู่ในสภาพเดิม แล้วแต่กรณี
                     <div class="row justify-content-center text-center align-items-center">
 
-                        <div class="d-flex justify-content-center form-check align-items-center">
-                            <input class="form-check-input" type="radio" name="bk_confirm" id="confirm1"
-                                value="1" required>
-                            <label class="form-check-label mx-3" for="confirm1">
-                                ยินดีให้มหาวิทยาลัยหักเงินประกันความเสียหาย
-                            </label>
+                        @foreach ($booking as $bk)
+                            @if ($bk->id == $_GET['booking_id'])
+                                <div class="d-flex justify-content-center form-check align-items-center">
+                                    <input class="form-check-input" type="radio" name="bk_confirm" id="confirm1"
+                                        value="1" required @if ($bk->bk_confirm == 1) checked @endif>
+                                    <label class="form-check-label mx-3" for="confirm1">
+                                        ยินดีให้มหาวิทยาลัยหักเงินประกันความเสียหาย
+                                    </label>
 
-                            <input class="form-check-input mx-3" type="radio" name="bk_confirm" id="confirm2"
-                                value="2" required>
-                            <label class="form-check-label" for="confirm2">
-                                ยินดีแก้ไขให้กลับสู่สภาพเดิม
-                            </label>
-                        </div>
+                                    <input class="form-check-input mx-3" type="radio" name="bk_confirm" id="confirm2"
+                                        value="2" required @if ($bk->bk_confirm == 2) checked @endif>
+                                    <label class="form-check-label" for="confirm2">
+                                        ยินดีแก้ไขให้กลับสู่สภาพเดิม
+                                    </label>
+                                </div>
+                            @endif
+                        @endforeach
                         <span style="color: #ff0000">( *** กรุณาเลือกเพื่อดำเนินการต่อ *** )</span>
                         <input type="text" name="booking_id" value="{{ $_GET['booking_id'] }}" hidden>
                     </div>

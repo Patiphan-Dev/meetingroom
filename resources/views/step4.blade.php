@@ -4,6 +4,7 @@
         counter-reset: item;
         margin: 0;
         padding: 0;
+        padding-right:
     }
 
     ol>li {
@@ -209,14 +210,14 @@
                     <div>- แบบที่ 1 : วงดนตรีครบชุดมีเพาเวอร์แอมป์ ตู้ลำโพงมาเอง<small
                             style="margin-right: 11.7rem"></small>
                         <span class="mx-5">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" value="1"
-                                id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" name="bk_music_brand" value="1"
+                                @if ($bk->bk_music_brand == 1) checked @endif id="bk_music_brand1">
+                            <label class="form-check-label" for="bk_music_brand1">
                                 ใช้
                             </label>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" value="2"
-                                id="flexRadioDefault2">
-                            <label class="form-check-label" for="flexRadioDefault2">
+                            <input class="form-check-input" type="radio" name="bk_music_brand" value="2"
+                                @if ($bk->bk_music_brand == 2) checked @endif id="bk_music_brand2">
+                            <label class="form-check-label" for="bk_music_brand2">
                                 ไม่ใช้
                             </label>
                         </span>
@@ -224,14 +225,14 @@
                     <div>- แบบที่ 2 : มีเฉพาะเครื่องดนตรี เช่น กีต้าร์ กลอง ไม่มีเพาเวอร์แอมป์ ตู้ลำโพง<small
                             style="margin-right: 4.3rem"></small>
                         <span class="mx-5">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                id="flexRadioDefault3">
-                            <label class="form-check-label" for="flexRadioDefault3">
+                            <input class="form-check-input" type="radio" name="bk_music_equipment"
+                                @if ($bk->bk_music_equipment == 1) checked @endif id="bk_music_equipment1">
+                            <label class="form-check-label" for="bk_music_equipment1">
                                 ใช้
                             </label>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                id="flexRadioDefault4">
-                            <label class="form-check-label" for="flexRadioDefault4">
+                            <input class="form-check-input" type="radio" name="bk_music_equipment"
+                                @if ($bk->bk_music_equipment == 2) checked @endif id="bk_music_equipment2">
+                            <label class="form-check-label" for="bk_music_equipment2">
                                 ไม่ใช้
                             </label>
                         </span>
@@ -239,14 +240,14 @@
                     <div> - กรณีเป็นแบบที่ 2 ต้องการต่อเครื่องดนตรีเข้ากับระบบเสียงของหอประชุมหรือไม่ <small
                             style="margin-right: 3rem"></small>
                         <span class="mx-5">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                id="flexRadioDefault5">
-                            <label class="form-check-label" for="flexRadioDefault5">
+                            <input class="form-check-input" type="radio" name="bk_music_details"
+                                @if ($bk->bk_music_details == 1) checked @endif id="bk_music_details1">
+                            <label class="form-check-label" for="bk_music_details1">
                                 ใช้
                             </label>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                id="flexRadioDefault6">
-                            <label class="form-check-label" for="flexRadioDefault6">
+                            <input class="form-check-input" type="radio" name="bk_music_details"
+                                @if ($bk->bk_music_details == 2) checked @endif id="bk_music_details2">
+                            <label class="form-check-label" for="bk_music_details2">
                                 ไม่ใช้
                             </label>
                         </span>
@@ -260,124 +261,126 @@
                             ในวันที่
                             ....................................................................</b>
                     </div>
-                    <table class="table table-bordered border-dark mt-3">
-                        <thead class="text-center">
-                            <tr>
-                                <th>ที่</th>
-                                <th>รายการ</th>
-                                <th>ต้องการ</th>
-                                <th>ไม่ต้องการ</th>
-                                <th>หมายเหตุ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>ระบบเสียงพร้อมไมค์โครโฟน 2 ตัว</td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault3">
-                                    <label class="form-check-label" for="flexRadioDefault3">
-                                        ใช้
-                                    </label>
-                                </td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault4">
-                                    <label class="form-check-label" for="flexRadioDefault4">
-                                        ไม่ใช้
-                                    </label>
-                                </td>
-                                <td>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">2</td>
-                                <td>จอภาพขนาดใหญ่บนเวที่ 1 จอ</td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault3">
-                                    <label class="form-check-label" for="flexRadioDefault3">
-                                        ใช้
-                                    </label>
-                                </td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault4">
-                                    <label class="form-check-label" for="flexRadioDefault4">
-                                        ไม่ใช้
-                                    </label>
-                                </td>
-                                <td>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">3</td>
-                                <td>จอภาพทีวีด้านข้างฝั่งซ้าย 4 จอ</td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault3">
-                                    <label class="form-check-label" for="flexRadioDefault3">
-                                        ใช้
-                                    </label>
-                                </td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault4">
-                                    <label class="form-check-label" for="flexRadioDefault4">
-                                        ไม่ใช้
-                                    </label>
-                                </td>
-                                <td>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">3</td>
-                                <td>จอภาพทีวีด้านข้างฝั่งขวา 4 จอ</td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault3">
-                                    <label class="form-check-label" for="flexRadioDefault3">
-                                        ใช้
-                                    </label>
-                                </td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault4">
-                                    <label class="form-check-label" for="flexRadioDefault4">
-                                        ไม่ใช้
-                                    </label>
-                                </td>
-                                <td>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">4</td>
-                                <td>โต๊ะปฏิบัติการหน้าขาว 10 ตัว</td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault3">
-                                    <label class="form-check-label" for="flexRadioDefault3">
-                                        ใช้
-                                    </label>
-                                </td>
-                                <td class="text-center">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault4">
-                                    <label class="form-check-label" for="flexRadioDefault4">
-                                        ไม่ใช้
-                                    </label>
-                                </td>
-                                <td>
-
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="col-12 mb-3">
+                        <table class="table table-bordered border-dark mt-3">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>ที่</th>
+                                    <th>รายการ</th>
+                                    <th>ต้องการ</th>
+                                    <th>ไม่ต้องการ</th>
+                                    <th>หมายเหตุ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td>ระบบเสียงพร้อมไมค์โครโฟน 2 ตัว</td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="radio" name="bk_sound"
+                                            value="1" id="bk_sound1" required
+                                            @if ($bk->bk_sound == 1) checked @endif>
+                                        <label class="form-check-label" for="bk_sound1">
+                                            ใช้
+                                        </label>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="radio" name="bk_sound"
+                                            value="2" id="bk_sound2" required
+                                            @if ($bk->bk_sound == 2) checked @endif>
+                                        <label class="form-check-label" for="bk_sound2">
+                                            ไม่ใช้
+                                        </label>
+                                    </td>
+                                    <td>{{ $bk->bk_sound_node }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">2</td>
+                                    <td>จอภาพขนาดใหญ่บนเวที่ 1 จอ</td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="radio" name="bk_screen_big"
+                                            value="1" id="bk_screen_big1" required
+                                            @if ($bk->bk_screen_big == 1) checked @endif>
+                                        <label class="form-check-label" for="bk_screen_big1">
+                                            ใช้
+                                        </label>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="radio" name="bk_screen_big"
+                                            value="2" id="bk_screen_big2" required
+                                            @if ($bk->bk_screen_big == 2) checked @endif>
+                                        <label class="form-check-label" for="bk_screen_big2">
+                                            ไม่ใช้
+                                        </label>
+                                    </td>
+                                    <td>{{ $bk->bk_screen_big_note }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">3</td>
+                                    <td>จอภาพทีวีด้านข้างฝั่งซ้าย 4 จอ</td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="radio" name="bk_tv_left"
+                                            value="1" id="bk_tv_left1" required
+                                            @if ($bk->bk_tv_left == 1) checked @endif>
+                                        <label class="form-check-label" for="bk_tv_left2">
+                                            ใช้
+                                        </label>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="radio" name="bk_tv_left"
+                                            value="2" id="bk_tv_left1" required
+                                            @if ($bk->bk_tv_left == 2) checked @endif>
+                                        <label class="form-check-label" for="bk_tv_left2">
+                                            ไม่ใช้
+                                        </label>
+                                    </td>
+                                    <td>{{ $bk->bk_tv_left_note }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">3</td>
+                                    <td>จอภาพทีวีด้านข้างฝั่งขวา 4 จอ</td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="radio" name="bk_tv_right"
+                                            value="1" id="bk_tv_right1" required
+                                            @if ($bk->bk_tv_right == 1) checked @endif>
+                                        <label class="form-check-label" for="bk_tv_right1">
+                                            ใช้
+                                        </label>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="radio" name="bk_tv_right"
+                                            value="2" id="bk_tv_right2" required
+                                            @if ($bk->bk_tv_right == 2) checked @endif>
+                                        <label class="form-check-label" for="bk_tv_right2">
+                                            ไม่ใช้
+                                        </label>
+                                    </td>
+                                    <td>{{ $bk->bk_tv_right_note }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">4</td>
+                                    <td>โต๊ะปฏิบัติการหน้าขาว 10 ตัว</td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="radio" name="bk_table"
+                                            value="1" id="bk_table1" required
+                                            @if ($bk->bk_music_details == 1) checked @endif>
+                                        <label class="form-check-label" for="bk_table1">
+                                            ใช้
+                                        </label>
+                                    </td>
+                                    <td class="text-center">
+                                        <input class="form-check-input" type="radio" name="bk_table"
+                                            value="2" id="bk_table2" required
+                                            @if ($bk->bk_music_details == 2) checked @endif>
+                                        <label class="form-check-label" for="bk_table2">
+                                            ไม่ใช้
+                                        </label>
+                                    </td>
+                                    <td>{{ $bk->bk_table_note }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -403,11 +406,11 @@
                             <div class="row justify-content-center text-center align-items-center my-3">
                                 <div class="d-flex col-auto form-check">
                                     @if ($bk->bk_confirm == 1)
-                                        <img src="{{ asset('assets/images/block-true.jpg') }}" style="width:30px"
+                                        <img src="{{ asset('assets/images/block-true.jpg') }}" style="width:30px;"
                                             alt="">
                                     @else
-                                        <img src="{{ asset('assets/images/square.jpg') }}" style="width:25px"
-                                            alt="">
+                                        <img src="{{ asset('assets/images/square.jpg') }}"
+                                            style="width:40px; padding-right: 15px" alt="">
                                     @endif
                                     <label class="form-check-label" for="confirm1">
                                         ยินดีให้มหาวิทยาลัยหักเงินประกันความเสียหาย
@@ -418,8 +421,8 @@
                                         <img src="{{ asset('assets/images/block-true.jpg') }}" style="width:30px"
                                             alt="">
                                     @else
-                                        <img src="{{ asset('assets/images/square.jpg') }}" style="width:25px"
-                                            alt="">
+                                        <img src="{{ asset('assets/images/square.jpg') }}"
+                                            style="width:40px; padding-right: 15px" alt="">
                                     @endif
                                     <label class="form-check-label" for="confirm2">
                                         ยินดีแก้ไขให้กลับสู่สภาพเดิม
@@ -512,7 +515,8 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <form action="{{ route('PayDeposit', ['id' => $bk->id]) }}" enctype="multipart/form-data">
+                            <form action="{{ route('PayDeposit') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="modal-body">
                                     @include('step5')
                                 </div>

@@ -11,6 +11,9 @@ use App\Http\Controllers\Admin\RuleController;
 use App\Http\Controllers\Users\HomeController;
 use App\Http\Controllers\Users\BookingController;
 
+use App\Http\Controllers\PDFController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,19 +39,17 @@ Route::group(['middleware' => ['login_auth']], function () { // ล็อคอ�
 
 
 
+    Route::get('/rule', [RuleController::class, 'index'])->name('rule');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
 
     Route::get('/room/{id}', [BookingController::class, 'getRoom'])->name('getRoom');
     Route::get('/room/{id}/booking', [BookingController::class, 'index'])->name('bookingRoom');
     Route::get('/booking/{id}/confirm', [BookingController::class, 'Confirm'])->name('ConfirmBooking');
     Route::get('/booking/{id}/formbooking', [BookingController::class, 'formBooking'])->name('formBooking');
-    Route::get('/booking/{id}/paydeposit', [BookingController::class, 'PayDeposit'])->name('PayDeposit');
-
+    Route::post('/booking/paydeposit', [BookingController::class, 'PayDeposit'])->name('PayDeposit');
+    Route::post('/booking/paypervice', [BookingController::class, 'PayService'])->name('PayService');
     
-
-
-    Route::get('/rule', [RuleController::class, 'index'])->name('rule');
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
     Route::get('/booking/{id}', [BookingController::class, 'index'])->name('booking');
     Route::get('/booking', [BookingController::class,  'indexAll'])->name('bookingAll');
     Route::get('/addbooking/{id}', [BookingController::class, 'addBooking'])->name('addBooking');
@@ -74,5 +75,7 @@ Route::group(['middleware' => ['login_auth']], function () { // ล็อคอ�
 
         Route::post('/addrule', [RuleController::class, 'addRule'])->name('addRule');
         Route::post('/updaterule', [RuleController::class, 'updateRule'])->name('updateRule');
+
+        Route::get('/downloadPDF/{id}', [PDFController::class, 'downloadPDF'])->name('downloadPDF');
     });
 });
