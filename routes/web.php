@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\RuleController;
 use App\Http\Controllers\Users\HomeController;
 use App\Http\Controllers\Users\BookingController;
 
-use App\Http\Controllers\PDFController;
+use App\Http\Controllers\PDF\PDFController;
 
 
 
@@ -37,11 +37,8 @@ Route::group(['middleware' => ['login_auth']], function () { // ล็อคอ�
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/history/{id}', [HomeController::class, 'history'])->name('history');
 
-
-
     Route::get('/rule', [RuleController::class, 'index'])->name('rule');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
 
     Route::get('/room/{id}', [BookingController::class, 'getRoom'])->name('getRoom');
     Route::get('/room/{id}/booking', [BookingController::class, 'index'])->name('bookingRoom');
@@ -56,6 +53,8 @@ Route::group(['middleware' => ['login_auth']], function () { // ล็อคอ�
     Route::get('/editbooking', [BookingController::class, 'editBooking'])->name('editBooking');
     Route::post('/updatebooking/{id}', [BookingController::class, 'updateBooking'])->name('updateBooking');
     Route::post('/deletebooking/{id}', [BookingController::class, 'deleteBooking'])->name('deleteBooking');
+
+    Route::get('/downloadPDF/{id}', [PDFController::class, 'index'])->name('downloadPDF');
 
     Route::group(['middleware' => ['admin_auth']], function () { // สถานะ 9 หรือแอดมินถึงจะเข้าได้
 
@@ -76,6 +75,5 @@ Route::group(['middleware' => ['login_auth']], function () { // ล็อคอ�
         Route::post('/addrule', [RuleController::class, 'addRule'])->name('addRule');
         Route::post('/updaterule', [RuleController::class, 'updateRule'])->name('updateRule');
 
-        Route::get('/downloadPDF/{id}', [PDFController::class, 'downloadPDF'])->name('downloadPDF');
     });
 });

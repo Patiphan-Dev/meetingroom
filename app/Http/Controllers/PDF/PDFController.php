@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\PDF;
 
-use PDF;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use PDF;
 
 class PDFController extends Controller
 {
-    public function downloadPDF($id)
+    public function index($id)
     {
         $data = [
             'title' => 'ปริ้นเอกสารการจอง'
@@ -23,7 +24,7 @@ class PDFController extends Controller
             )->where('bookings.id', $id)->get();
 
 
-        $pdf = PDF::loadView('PDF', compact('booking'), $data)->setOptions(['defaultFont' => 'sans-serif']);
+        $pdf = PDF::loadView('PDF', compact('booking'), $data);
         return $pdf->download('เอกสารการจอง.pdf');
     }
 }
