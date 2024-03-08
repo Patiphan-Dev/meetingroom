@@ -29,7 +29,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link fw-bold py-1 {{ $current_route == 'history' ? 'active' : '' }}"
-                        href="{{ route('history', ['id' => auth()->user()->id]) }}">ประวัติการจอง</a>
+                        href="{{ route('history', ['id' => auth()->user()->id,'user' =>  auth()->user()->username]) }}">ประวัติการจอง</a>
                 </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link fw-bold py-1 {{ $current_route == 'bookingAll' ? 'active' : '' }}"

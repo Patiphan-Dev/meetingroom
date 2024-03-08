@@ -50,7 +50,7 @@
     }
 </style>
 <div class="row" id="step2">
-    <form action="{{ route('ConfirmRoom', ['id' => $_GET['booking_id'], 'id' => $room->id]) }}">
+    <form action="{{ route('ConfirmBooking', ['id' => $_GET['booking_id'], 'id' => $room->id]) }}">
 
         <div class="col-12 my-5 px-5">
             <h5 class="text-center"><b>ข้อตกลงในการใช้อาคารสถานที่ของมหาวิทยาลัยเทคโนโลยีราชมงคลสุวรรณภูมิ</b></h5>

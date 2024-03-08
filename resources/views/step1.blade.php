@@ -74,9 +74,8 @@
     <div class="col-md-2 text-center">
         <div class="position-sticky" style="top: 8.5rem;">
             <h1 class="fst-italic">
-                <a href="{{ route('addBooking', ['id' => $room->id]) }}"
-                    class="btn btn-warning btn-md create_booking" id="create_booking{{ $room->id }}"><b> <i
-                            class="fa-solid fa-check"></i> สร้างการจอง</b></a>
+                <a href="{{ route('addBooking', ['id' => $room->id]) }}" class="btn btn-warning btn-md create_booking"
+                    id="create_booking{{ $room->id }}"><b> <i class="fa-solid fa-check"></i> สร้างการจอง</b></a>
             </h1>
         </div>
     </div>

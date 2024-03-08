@@ -488,7 +488,7 @@
                         <div class="col-6 form-check">
                             <p>(........................................................................................)
                             </p>
-                            <p> ........................ {{auth()->user()->fullname}} ........................ </p>
+                            <p> ........................ {{ auth()->user()->fullname }} ........................ </p>
                             <p> ผู้ขอใช้บริการสถานที่ </p>
                             <p> .............../......................../..................... </p>
                         </div>
@@ -512,7 +512,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <form action="">
+                            <form action="{{ route('PayDeposit', ['id' => $bk->id]) }}" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     @include('step5')
                                 </div>

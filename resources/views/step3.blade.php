@@ -60,7 +60,7 @@
 </style>
 <div class="row" id="step3">
     <div class="card-body">
-        <form action="{{ route('formBookingRoom', ['id' => $_GET['booking_id']]) }}" enctype="multipart/form-data">
+        <form action="{{ route('formBooking', ['id' => $_GET['booking_id']]) }}" enctype="multipart/form-data">
             @csrf
             @php
                 $str_date = date('Y-m-d');
@@ -89,43 +89,49 @@
                         <div class="col-12 col-sm-6 col-md-3 mb-3">
                             <label for="bk_end_date" class="form-label">วันที่เสร็จงาน <span>*</span></label>
                             <input type="date" class="form-control shadow-sm" name="bk_end_date"
-                                min="{{ $str_date }}" id="bk_end_date" @if ($row->bk_end_date != null) value="{{ $row->bk_end_date }}" @else value="{{ $end_date }}" @endif required>
+                                min="{{ $str_date }}" id="bk_end_date"
+                                @if ($row->bk_end_date != null) value="{{ $row->bk_end_date }}" @else value="{{ $end_date }}" @endif
+                                required>
                         </div>
                         <div class="col-12 col-sm-6 col-md-3 mb-3">
                             <label for="bk_str_time" class="form-label">เวลาเข้า <span>*</span></label>
                             <input type="time" class="form-control shadow-sm" name="bk_str_time" id="bk_str_time"
-                            @if ($row->bk_str_time != null) value="{{ $row->bk_str_time }}" @else value="{{ $str_time }}" @endif required onchange="Calculate()">
+                                @if ($row->bk_str_time != null) value="{{ $row->bk_str_time }}" @else value="{{ $str_time }}" @endif
+                                required onchange="Calculate()">
                         </div>
                         <div class="col-12 col-sm-6 col-md-3 mb-3">
                             <label for="bk_end_time" class="form-label">เวลาออก <span>*</span></label>
                             <input type="time" class="form-control shadow-sm" name="bk_end_time" id="bk_end_time"
-                            @if ($row->bk_end_time != null) value="{{ $row->bk_end_time }}" @else value="{{ $end_time }}" @endif required onchange="Calculate()">
+                                @if ($row->bk_end_time != null) value="{{ $row->bk_end_time }}" @else value="{{ $end_time }}" @endif
+                                required onchange="Calculate()">
                         </div>
                         <div class="col-12 col-sm-9 col-md-9 mb-3">
                             <label for="bk_location_for" class="form-label">ความประสงค์ขอใช้สถานที่
                                 <span>*</span></label>
-                            <input type="text" class="form-control shadow-sm" name="bk_location_for" @if ($row->bk_location_for != null) value="{{ $row->bk_location_for }}" @endif
+                            <input type="text" class="form-control shadow-sm" name="bk_location_for"
+                                @if ($row->bk_location_for != null) value="{{ $row->bk_location_for }}" @endif
                                 id="bk_location_for" required>
                         </div>
                         <div class="col-12 col-sm-3 col-md-3 mb-3">
                             <label for="bk_people_number" class="form-label">ผู้มาร่วมงาน (โดยประมาณ)
                                 <span>*</span></label>
-                            <input type="number" class="form-control shadow-sm" name="bk_people_number"  @if ($row->bk_people_number != null) value="{{ $row->bk_people_number }}" @endif
+                            <input type="number" class="form-control shadow-sm" name="bk_people_number"
+                                @if ($row->bk_people_number != null) value="{{ $row->bk_people_number }}" @endif
                                 id="bk_people_number" required>
                         </div>
                         <div class="col-12 mb-3">
                             <h6><b> วงดนตรีที่ผู้จัดงานเตรียมมานั้นเป็นแบบใด</b></h6>
                             <div>
                                 <p class="mx-5">
-                                    - แบบที่ 1 : วงดนตรีครบชุดมีเพาเวอร์แอมป์ ตู้ลำโพงมาเอง <small
-                                        style="margin-right: 13.5rem"></small>
+                                    - แบบที่ 1 : วงดนตรีครบชุดมีเพาเวอร์แอมป์ ตู้ลำโพงมาเอง
+                                    <small style="margin-right: 13.5rem"></small>
                                     <input class="form-check-input" type="radio" name="bk_music_brand" value="1"
-                                        id="bk_music_brand1" required>
+                                        id="bk_music_brand1" required @if ($row->bk_music_brand == 1) checked @endif>
                                     <label class="form-check-label" for="bk_music_brand1">
                                         ใช้
                                     </label>
                                     <input class="form-check-input" type="radio" name="bk_music_brand" value="2"
-                                        id="bk_music_brand2" required>
+                                        id="bk_music_brand2" required @if ($row->bk_music_brand == 2) checked @endif>
                                     <label class="form-check-label" for="bk_music_brand2">
                                         ไม่ใช้
                                     </label>
@@ -135,13 +141,15 @@
                                 <p class="mx-5">
                                     - แบบที่ 2 : มีเฉพาะเครื่องดนตรี เช่น กีต้าร์ กลอง ไม่มีเพาเวอร์แอมป์ ตู้ลำโพง
                                     <small style="margin-right: 6rem"></small>
-                                    <input class="form-check-input" type="radio" name="bk_music_equipment" value="1"
-                                        id="bk_music_equipment1" required>
+                                    <input class="form-check-input" type="radio" name="bk_music_equipment"
+                                        value="1" id="bk_music_equipment1" required
+                                        @if ($row->bk_music_equipment == 1) checked @endif>
                                     <label class="form-check-label" for="bk_music_equipment1">
                                         ใช้
                                     </label>
-                                    <input class="form-check-input" type="radio" name="bk_music_equipment" value="2"
-                                        id="bk_music_equipment2" required>
+                                    <input class="form-check-input" type="radio" name="bk_music_equipment"
+                                        value="2" id="bk_music_equipment2" required
+                                        @if ($row->bk_music_equipment == 2) checked @endif>
                                     <label class="form-check-label" for="bk_music_equipment2">
                                         ไม่ใช้
                                     </label>
@@ -149,15 +157,17 @@
                             </div>
                             <div>
                                 <p class="mx-5">
-                                    - กรณีเป็นแบบที่ 2 ต้องการต่อเครื่องดนตรีเข้ากับระบบเสียงของหอประชุมหรือไม่ <small
-                                        style="margin-right: 5rem"></small>
-                                    <input class="form-check-input" type="radio" name="bk_music_details" value="1"
-                                        id="bk_music_details1" required>
+                                    - กรณีเป็นแบบที่ 2 ต้องการต่อเครื่องดนตรีเข้ากับระบบเสียงของหอประชุมหรือไม่
+                                    <small style="margin-right: 5rem"></small>
+                                    <input class="form-check-input" type="radio" name="bk_music_details"
+                                        value="1" id="bk_music_details1"
+                                        @if ($row->bk_music_details == 1) checked @endif>
                                     <label class="form-check-label" for="bk_music_details1">
                                         ใช้
                                     </label>
-                                    <input class="form-check-input" type="radio" name="bk_music_details" value="2"
-                                        id="bk_music_details2" required>
+                                    <input class="form-check-input" type="radio" name="bk_music_details"
+                                        value="2" id="bk_music_details2"
+                                        @if ($row->bk_music_details == 2) checked @endif>
                                     <label class="form-check-label" for="bk_music_details2">
                                         ไม่ใช้
                                     </label>
@@ -180,104 +190,104 @@
                                         <td class="text-center">1</td>
                                         <td>ระบบเสียงพร้อมไมค์โครโฟน 2 ตัว</td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_sound" value="1"
-                                                id="bk_sound1" required>
+                                            <input class="form-check-input" type="radio" name="bk_sound"
+                                                value="1" id="bk_sound1" required @if ($row->bk_sound == 1) checked @endif>
                                             <label class="form-check-label" for="bk_sound1">
                                                 ใช้
                                             </label>
                                         </td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_sound" value="2"
-                                                id="bk_sound2" required>
+                                            <input class="form-check-input" type="radio" name="bk_sound"
+                                                value="2" id="bk_sound2" required @if ($row->bk_sound == 2) checked @endif>
                                             <label class="form-check-label" for="bk_sound2">
                                                 ไม่ใช้
                                             </label>
                                         </td>
                                         <td><input class="form-control" type="text" name="bk_sound_node"
-                                                id="bk_sound_note"></td>
+                                                id="bk_sound_note" @if ($row->bk_sound_node != null) value="{{ $row->bk_sound_node }}" @endif></td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">2</td>
                                         <td>จอภาพขนาดใหญ่บนเวที่ 1 จอ</td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_screen_big" value="1"
-                                                id="bk_screen_big1" required>
+                                            <input class="form-check-input" type="radio" name="bk_screen_big"
+                                                value="1" id="bk_screen_big1" required @if ($row->bk_screen_big == 1) checked @endif>
                                             <label class="form-check-label" for="bk_screen_big1">
                                                 ใช้
                                             </label>
                                         </td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_screen_big" value="2"
-                                                id="bk_screen_big2" required>
+                                            <input class="form-check-input" type="radio" name="bk_screen_big"
+                                                value="2" id="bk_screen_big2" required @if ($row->bk_screen_big == 2) checked @endif>
                                             <label class="form-check-label" for="bk_screen_big2">
                                                 ไม่ใช้
                                             </label>
                                         </td>
                                         <td><input class="form-control" type="text" name="bk_screen_big_note"
-                                                id="bk_screen_big_note"></td>
+                                                id="bk_screen_big_note" @if ($row->bk_screen_big_note != null) value="{{ $row->bk_screen_big_note }}" @endif></td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">3</td>
                                         <td>จอภาพทีวีด้านข้างฝั่งซ้าย 4 จอ</td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_tv_left" value="1"
-                                                id="bk_tv_left1" required>
+                                            <input class="form-check-input" type="radio" name="bk_tv_left"
+                                                value="1" id="bk_tv_left1" required @if ($row->bk_tv_left == 1) checked @endif>
                                             <label class="form-check-label" for="bk_tv_left2">
                                                 ใช้
                                             </label>
                                         </td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_tv_left" value="2"
-                                                id="bk_tv_left1" required>
+                                            <input class="form-check-input" type="radio" name="bk_tv_left"
+                                                value="2" id="bk_tv_left1" required @if ($row->bk_tv_left == 2) checked @endif>
                                             <label class="form-check-label" for="bk_tv_left2">
                                                 ไม่ใช้
                                             </label>
                                         </td>
                                         <td><input class="form-control" type="text" name="bk_tv_left_note"
-                                                id="bk_tv_left_note">
+                                                id="bk_tv_left_note" @if ($row->bk_tv_left_note != null) value="{{ $row->bk_tv_left_note }}" @endif>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">3</td>
                                         <td>จอภาพทีวีด้านข้างฝั่งขวา 4 จอ</td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_tv_right" value="1"
-                                                id="bk_tv_right1" required>
+                                            <input class="form-check-input" type="radio" name="bk_tv_right"
+                                                value="1" id="bk_tv_right1" required @if ($row->bk_tv_right == 1) checked @endif>
                                             <label class="form-check-label" for="bk_tv_right1">
                                                 ใช้
                                             </label>
                                         </td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_tv_right" value="2"
-                                                id="bk_tv_right2" required>
+                                            <input class="form-check-input" type="radio" name="bk_tv_right"
+                                                value="2" id="bk_tv_right2" required @if ($row->bk_tv_right == 2) checked @endif>
                                             <label class="form-check-label" for="bk_tv_right2">
                                                 ไม่ใช้
                                             </label>
                                         </td>
                                         <td><input class="form-control" type="text" name="bk_tv_right_note"
-                                                id="bk_tv_right_note">
+                                                id="bk_tv_right_note" @if ($row->bk_tv_right_note != null) value="{{ $row->bk_tv_right_note }}" @endif>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">4</td>
                                         <td>โต๊ะปฏิบัติการหน้าขาว 10 ตัว</td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_table" value="1"
-                                                id="bk_table1" required>
+                                            <input class="form-check-input" type="radio" name="bk_table"
+                                                value="1" id="bk_table1" required @if ($row->bk_music_details == 1) checked @endif>
                                             <label class="form-check-label" for="bk_table1">
                                                 ใช้
                                             </label>
                                         </td>
                                         <td class="text-center">
-                                            <input class="form-check-input" type="radio" name="bk_table" value="2"
-                                                id="bk_table2" required>
+                                            <input class="form-check-input" type="radio" name="bk_table"
+                                                value="2" id="bk_table2" required @if ($row->bk_music_details == 2) checked @endif>
                                             <label class="form-check-label" for="bk_table2">
                                                 ไม่ใช้
                                             </label>
                                         </td>
                                         <td>
                                             <input class="form-control" type="text" name="bk_table_note"
-                                                id="bk_table_note">
+                                                id="bk_table_note" @if ($row->bk_table_note != null) value="{{ $row->bk_table_note }}" @endif>
                                         </td>
                                     </tr>
                                 </tbody>

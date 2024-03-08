@@ -34,10 +34,17 @@ Route::group(['middleware' => ['login_auth']], function () { // ล็อคอ�
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/history/{id}', [HomeController::class, 'history'])->name('history');
 
+
+
+
     Route::get('/room/{id}', [BookingController::class, 'getRoom'])->name('getRoom');
     Route::get('/room/{id}/booking', [BookingController::class, 'index'])->name('bookingRoom');
-    Route::get('/room/{id}/confirm', [BookingController::class, 'Confirm'])->name('ConfirmRoom');
-    Route::get('/room/{id}/formbooking', [BookingController::class, 'formBooking'])->name('formBookingRoom');
+    Route::get('/booking/{id}/confirm', [BookingController::class, 'Confirm'])->name('ConfirmBooking');
+    Route::get('/booking/{id}/formbooking', [BookingController::class, 'formBooking'])->name('formBooking');
+    Route::get('/booking/{id}/paydeposit', [BookingController::class, 'PayDeposit'])->name('PayDeposit');
+
+    
+
 
     Route::get('/rule', [RuleController::class, 'index'])->name('rule');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
