@@ -24,7 +24,7 @@ class PDFController extends Controller
             )->where('bookings.id', $id)->get();
 
 
-        $pdf = PDF::loadView('PDF', compact('booking'), $data);
+        $pdf = PDF::loadView('PDF', compact('booking'), $data)->setOptions(['defaultFont' => 'sans-serif']);
         return $pdf->download('เอกสารการจอง.pdf');
     }
 }
