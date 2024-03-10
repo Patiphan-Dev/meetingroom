@@ -22,5 +22,22 @@
         "bold": "C:\\Users\\patiphan\\Desktop\\laravel\\meetingroom\\storage\\fonts\/thsarabunnew_bold_9f186987dc8a11f2943f7a4eb0d5bf72",
         "italic": "C:\\Users\\patiphan\\Desktop\\laravel\\meetingroom\\storage\\fonts\/thsarabunnew_italic_ed6e1e09ca4e2453879dcb416c0823ef",
         "bold_italic": "thsarabunnew_bold_italic_c74be7377ccb458182dc3b76320ac9dc"
+    },
+    "font awesome 6 brands": {
+        "normal": "font_awesome_6_brands_normal_6d28cbedf2b3132f58520d6a619eceae"
+    },
+    "font awesome 6 free": {
+        "normal": "C:\\Users\\patiphan\\Desktop\\laravel\\meetingroom\\storage\\fonts\/font_awesome_6_free_normal_6741e90968eb0c21eff14367518191b4",
+        "900": "font_awesome_6_free_900_1c7e013816b57de67a750c458f216e4f"
+    },
+    "font awesome 5 brands": {
+        "normal": "font_awesome_5_brands_normal_6d28cbedf2b3132f58520d6a619eceae"
+    },
+    "font awesome 5 free": {
+        "900": "C:\\Users\\patiphan\\Desktop\\laravel\\meetingroom\\storage\\fonts\/font_awesome_5_free_900_1c7e013816b57de67a750c458f216e4f",
+        "normal": "font_awesome_5_free_normal_6741e90968eb0c21eff14367518191b4"
+    },
+    "fontawesome": {
+        "normal": "fontawesome_normal_ddeb9d9d3324e2191aadfdd6169f69e7"
     }
 }

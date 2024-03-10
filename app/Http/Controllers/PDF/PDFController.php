@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use PDF;
+use Illuminate\Support\Facades\App;
 
 class PDFController extends Controller
 {
@@ -29,7 +30,13 @@ class PDFController extends Controller
             ]
         );
 
-        $pdf = PDF::loadView('PDF', compact('booking'), $data)->setOptions(['defaultFont' => 'sans-serif']);
-        return $pdf->download('เอกสารการจอง.pdf');
+        // $pdf = PDF::loadView('PDF', compact('booking'), $data)->setOptions(['defaultFont' => 'sans-serif']);
+        // return $pdf->download('เอกสารการจอง.pdf');
+
+        $pdf = App::make('dompdf.wrapper');
+            $html = view('pdf', compact('booking'), $data)->render();
+            $pdf->loadHTML($html)->setPaper('A4', 'portrait');
+
+            return $pdf->stream();
     }
 }

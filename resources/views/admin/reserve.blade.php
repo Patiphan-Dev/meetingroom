@@ -154,7 +154,7 @@
                             <a href="{{ route('viewReserve', ['id' => $row->id]) }}" class="btn badge text-bg-primary">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
-                            <a href="{{ route('downloadPDF', ['id' => $row->id]) }}" class="btn badge text-bg-danger">
+                            <a href="{{ route('downloadPDF', ['id' => $row->id]) }}" class="btn badge text-bg-danger" target="_blank">
                                 <i class="fa-regular fa-file-pdf"></i>
                             </a>
                             {{-- <button type="button" class="btn badge text-bg-danger"
