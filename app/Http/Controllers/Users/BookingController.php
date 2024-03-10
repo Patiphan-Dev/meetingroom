@@ -9,35 +9,10 @@ use App\Models\Room;
 use RealRashid\SweetAlert\Facades\Alert;
 use File;
 use Carbon\Carbon;
+use Phattarachai\LineNotify\Facade\Line;
 
 class BookingController extends Controller
 {
-    // public function index($id)
-    // {
-    //     $data = [
-    //         'title' => 'จองหอประชุม'
-    //     ];
-    //     $booking = Booking::where('bk_room_id', $id)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
-    //     $history = Booking::where('bk_user_id', auth()->user()->username)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->paginate(10);
-    //     $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
-    //     $room = Room::find($id);
-    //     $rooms = Room::all();
-    //     return view('booking', compact('booking', 'bookings', 'rooms', 'room', 'history'), $data);
-    // }
-
-    // public function indexAll()
-    // {
-    //     $data = [
-    //         'title' => 'จองหอประชุม'
-    //     ];
-    //     $booking = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
-    //     $history = Booking::where('bk_user_id', auth()->user()->username)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
-    //     $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
-    //     $rooms = Room::all();
-    //     $search = '';
-    //     return view('booking', compact('booking', 'bookings', 'rooms', 'search', 'history'), $data);
-    // }
-
     public function getRoom($id)
     {
         $data = [
@@ -68,12 +43,14 @@ class BookingController extends Controller
         $booking->save();
         $booking_id = $booking->id;
 
+        // $bk = Booking::find($booking_id)->join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name');
+
+        // Line::send("มีการจองห้องประชุม" . "\n โดย: " . auth()->user()->fullname . "\n หอประชุม : " . $booking->room_name . "\n วันที่ : " . $booking->bk_str_date .' ถึง '. $booking->bk_end_date);
         return redirect()->route('getRoom', ['id' => $id, 'step' => 2, 'booking_id' => $booking_id])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
     }
 
     public function Confirm(Request $request, $id)
     {
-        $booking = Booking::find($id);
 
         Booking::find($request->booking_id)->update(
             [
@@ -81,11 +58,14 @@ class BookingController extends Controller
             ]
         );
 
-        return redirect()->route('getRoom', ['id' => $id, 'step' => 3, 'booking_id' => $request->booking_id])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
+        return redirect()->route('getRoom', ['id' => $id, 'step' => 3, 'booking_id' => $request->booking_id])->with('สำเร็จ', 'ชำระค่ามัดจำสำเสร็จ');
     }
 
     public function formBooking(Request $request, $id)
     {
+
+        $booking = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->find($id);
+
         Booking::find($id)->update(
             [
 
@@ -110,16 +90,16 @@ class BookingController extends Controller
                 'bk_tv_right_note' => $request->bk_tv_right_note,
                 'bk_table' => $request->bk_table,
                 'bk_table_note' => $request->bk_table_note,
-
             ]
         );
 
+        
+        Line::send("มีการจองห้องประชุม " . "\n โดย: " . auth()->user()->fullname . "\n หอประชุม : " . $booking->room_name . "\n วันที่ : " . $booking->bk_str_date .' ถึง '. $booking->bk_end_date);
         return redirect()->route('getRoom', ['id' => $request->room_id, 'step' => 4, 'booking_id' => $id])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
     }
 
     public function PayDeposit(Request $request)
     {
-        // dd($request->input('bk_slip'));
         // ตึงข้อมูลตามไอดีมาตรวจสอบสลิป
         $booking = Booking::find($request->booking_id);
 
@@ -168,6 +148,15 @@ class BookingController extends Controller
                 ]
             );
         }
+        // dd(request()->root().'/'.$image_url);
+
+        Line::imageUrl(request()->root().'/'.$image_url)->send("ชำระค่ามัดจำ " . "\n โดย: " . auth()->user()->fullname . "\n หอประชุม : " . $booking->room_name . "\n วันที่ : " . $booking->bk_str_date .' ถึง '. $booking->bk_end_date);
+        // Line::imageUrl(request()->root().'/'.$image_url)->send('message');
+
+    //     Line::thumbnailUrl('https://lorempixel.com/240/240/')
+    // ->imageUrl('https://lorempixel.com/1024/1024/')
+    // ->imagePath('/path/to/your/image.png')
+    // ->send('message');
 
         return redirect()->route('history', ['id' => auth()->user()->id, 'user' =>  auth()->user()->username])->with('สำเร็จ', 'ชำระเงินค่ามัดจำสำเสร็จ');
     }
@@ -180,7 +169,7 @@ class BookingController extends Controller
 
         $date = date("Y-m-d");
         $time = date("His");
-        $file = $request->file('bk_slip');
+        $file = $request->file('bk_slip2');
 
         // ลบรูปภาพในโฟลเดอร์
         $img_path = $booking->bk_slip;
@@ -224,6 +213,7 @@ class BookingController extends Controller
             );
         }
 
+        Line::imageUrl(request()->root().'/'.$image_url)->send("ชำระค่าบริการ " . "\n โดย: " . auth()->user()->fullname . "\n หอประชุม : " . $booking->room_name . "\n วันที่ : " . $booking->bk_str_date .' ถึง '. $booking->bk_end_date);
         return redirect()->route('history', ['id' => auth()->user()->id, 'user' =>  auth()->user()->username])->with('สำเร็จ', 'ชำระเงินค่ามัดจำสำเสร็จ');
     }
 
