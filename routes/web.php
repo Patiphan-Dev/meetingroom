@@ -71,6 +71,8 @@ Route::group(['middleware' => ['login_auth']], function () { // ล็อคอ�
         Route::get('/editreserve', [ReserveController::class, 'editReserve'])->name('editReserve');
         Route::post('/updatereserve/{id}', [ReserveController::class, 'updateReserve'])->name('updateReserve');
         Route::post('/deletereserve/{id}', [ReserveController::class, 'deleteReserve'])->name('deleteReserve');
+        Route::get('/viewreserve/{id}', [ReserveController::class, 'viewReserve'])->name('viewReserve');
+
 
         Route::post('/addrule', [RuleController::class, 'addRule'])->name('addRule');
         Route::post('/updaterule', [RuleController::class, 'updateRule'])->name('updateRule');

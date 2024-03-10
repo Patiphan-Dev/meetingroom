@@ -23,10 +23,10 @@
                     <a class="nav-link fw-bold py-1 {{ $current_route == 'home' ? 'active' : '' }}" aria-current="page"
                         href="{{ route('home') }}">หน้าแรก</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link fw-bold py-1 {{ $current_route == 'about' ? 'active' : '' }}"
                         href="{{ route('about') }}">เกี่ยวกับเรา</a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link fw-bold py-1 {{ $current_route == 'history' ? 'active' : '' }}"
                         href="{{ route('history', ['id' => auth()->user()->id,'user' =>  auth()->user()->username]) }}">ประวัติการจอง</a>

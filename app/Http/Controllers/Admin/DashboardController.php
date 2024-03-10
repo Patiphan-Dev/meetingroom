@@ -19,8 +19,8 @@ class DashboardController extends Controller
         $rooms = Room::all();
         $bookings = Booking::all();
         $bookday = Booking::where('bk_str_date', Carbon::now()->toDateString())->get();
-        $bookstatus = Booking::where('bk_status', 2)->get();
+        $bookstatus = Booking::whereBetween('bk_status', [2, 3])->get();
         // dd(Carbon::now()->toDateString());
-        return view('admin.dashboard', compact('rooms', 'bookings', 'bookday','bookstatus'), $data);
+        return view('admin.dashboard', compact('rooms', 'bookings', 'bookday', 'bookstatus'), $data);
     }
 }

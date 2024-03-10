@@ -16,5 +16,11 @@
         "600": "C:\\Users\\patiphan\\Desktop\\Laravel\\warehouse\\storage\\fonts\/sarabun_600_d1b6ac4445657ae19e1bbc350318956b",
         "bold": "C:\\Users\\patiphan\\Desktop\\Laravel\\warehouse\\storage\\fonts\/sarabun_bold_681e04cb4e36d6793599121d224f6f86",
         "800": "sarabun_800_aff3e6b5654af5461fc9e8b8ba89faf1"
+    },
+    "thsarabunnew": {
+        "normal": "C:\\Users\\patiphan\\Desktop\\laravel\\meetingroom\\storage\\fonts\/thsarabunnew_normal_3adcdb262270b34e8799a0181cacf826",
+        "bold": "C:\\Users\\patiphan\\Desktop\\laravel\\meetingroom\\storage\\fonts\/thsarabunnew_bold_9f186987dc8a11f2943f7a4eb0d5bf72",
+        "italic": "C:\\Users\\patiphan\\Desktop\\laravel\\meetingroom\\storage\\fonts\/thsarabunnew_italic_ed6e1e09ca4e2453879dcb416c0823ef",
+        "bold_italic": "thsarabunnew_bold_italic_c74be7377ccb458182dc3b76320ac9dc"
     }
 }

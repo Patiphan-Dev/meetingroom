@@ -23,6 +23,11 @@ class PDFController extends Controller
                 'bookings.*'
             )->where('bookings.id', $id)->get();
 
+        Booking::find($id)->update(
+            [
+                'bk_status' => 3,
+            ]
+        );
 
         $pdf = PDF::loadView('PDF', compact('booking'), $data)->setOptions(['defaultFont' => 'sans-serif']);
         return $pdf->download('เอกสารการจอง.pdf');
