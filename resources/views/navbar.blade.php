@@ -1,17 +1,16 @@
 @php
-    $current_route = request()
-        ->route()
-        ->getName();
+    $current_route = request()->route()->getName();
 @endphp
 <style>
-    .navbar-collapse{
+    .navbar-collapse {
         text-align: center;
-    }  
+    }
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 position-sticky fixed-top">{{-- fixed-top --}}
     <div class="container">
         <a class="navbar-brand" href="{{ URL('/') }}">
-            <img src="{{ asset('assets/images/logo.png') }}" alt="" style="width: 100%;height:8vh" class="border border-white">
+            <img src="{{ asset('assets/images/logo.jpg') }}" alt="" style="width: 100%;height:8vh"
+                class="border border-white">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,8 +27,13 @@
                         href="{{ route('about') }}">เกี่ยวกับเรา</a>
                 </li> --}}
                 <li class="nav-item">
-                    <a class="nav-link fw-bold py-1 {{ $current_route == 'history' ? 'active' : '' }}"
-                        href="{{ route('history', ['id' => auth()->user()->id,'user' =>  auth()->user()->username]) }}">ประวัติการจอง</a>
+                    <a class="nav-link fw-bold py-1 position-relative {{ $current_route == 'history' ? 'active' : '' }}"
+                        href="{{ route('history', ['id' => auth()->user()->id, 'user' => auth()->user()->username]) }}">ประวัติการจอง
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{ $booking }}
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </a>
                 </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link fw-bold py-1 {{ $current_route == 'bookingAll' ? 'active' : '' }}"

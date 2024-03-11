@@ -29,12 +29,13 @@ use App\Http\Controllers\PDF\PDFController;
 Route::get('/login', [AuthController::class, 'getLogin'])->name('getLogin');
 Route::post('/login', [AuthController::class, 'postLogin'])->name('postLogin');
 
+Route::get('/navbar', [HomeController::class, 'show'])->name('navbar');
+
 Route::get('/register', [AuthController::class, 'getRegister'])->name('getRegister');
 Route::post('/register', [AuthController::class, 'postRegister'])->name('postRegister');
 
 Route::group(['middleware' => ['login_auth']], function () { // ล็อคอินถึงจะเข้าได้
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/history/{id}', [HomeController::class, 'history'])->name('history');
 
     Route::get('/rule', [RuleController::class, 'index'])->name('rule');
@@ -67,7 +68,7 @@ Route::group(['middleware' => ['login_auth']], function () { // ล็อคอ�
         Route::post('/deleteroom/{id}', [RoomController::class, 'deleteRoom'])->name('deleteRoom');
 
         Route::get('/reserve', [ReserveController::class, 'index'])->name('reserve');
-        Route::post('/addreserve', [ReserveController::class, 'addReserve'])->name('addReserve');
+        // Route::post('/addreserve', [ReserveController::class, 'addReserve'])->name('addReserve');
         Route::get('/editreserve', [ReserveController::class, 'editReserve'])->name('editReserve');
         Route::post('/updatereserve/{id}', [ReserveController::class, 'updateReserve'])->name('updateReserve');
         Route::post('/deletereserve/{id}', [ReserveController::class, 'deleteReserve'])->name('deleteReserve');

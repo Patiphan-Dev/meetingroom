@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Users;
 
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
+use View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Room;
@@ -17,8 +20,9 @@ class HomeController extends Controller
             'title' => 'หน้าแรก'
         ];
         $rooms = Room::all();
+        $booking = Room::where('bk_user_id',auth()->user()->id);
         $rules = Rule::find(1);
-        return view('home', compact('rooms', 'rules'), $data);
+        return view('home', compact('rooms', 'rules','booking'), $data);
     }
 
     public function about()

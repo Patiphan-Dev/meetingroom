@@ -11,7 +11,7 @@
 <div class="d-flex d-none d-md-block flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
     <div class="text-center align-items-center">
     <a class="navbar-brand" href="{{ URL('/') }}">
-        <img src="{{ asset('assets/images/logo.png') }}" alt="" style="width:10vw">
+        <img src="{{ asset('assets/images/logo.jpg') }}" alt="" style="width:10vw">
     </a><br>
     <a href="/" class="align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <span class="fs-4">ระบบจองหอประชุม</span>

@@ -12,7 +12,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <!-- Ionicons -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo.jpg') }}">
     <!-- Tempusdominus Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -34,28 +34,32 @@
                         <div class="row text-center my-3">
                             <h1>ตารางการใช้งานหอประชุม</h1>
                         </div>
-                        <div id="carouselExample" class="carousel slide">
+                        <div id="carouselrooms" class="carousel slide rounded-5">
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="assets/images/img-1.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="assets/images/img-2.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="assets/images/img-3.jpg" class="d-block w-100" alt="...">
-                                </div>
+                                @foreach ($rooms as $key => $row)
+                                    @php
+                                        $image = explode(',', $row->room_img_path);
+                                    @endphp
+                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                        <img src="{{ asset($image[0]) }}" class=" rounded-5 img-thumbnail d-block w-100"
+                                            alt="...">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h2>{{ $row->row_name }}</h2>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselrooms"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselrooms"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 p-3 p-md-5 ">

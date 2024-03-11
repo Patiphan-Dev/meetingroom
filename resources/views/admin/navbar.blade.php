@@ -12,7 +12,7 @@
     {{-- fixed-top --}}
     <div class="container">
         <a class="navbar-brand" href="{{ URL('/') }}">
-            <img src="{{ asset('assets/images/logo.png') }}" alt="" style="width:10vw">
+            <img src="{{ asset('assets/images/logo.jpg') }}" alt="" style="width:10vw">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

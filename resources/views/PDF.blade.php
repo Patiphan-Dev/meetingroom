@@ -220,7 +220,7 @@
                         @if ($bk->bk_confirm == 1) checked @endif id="bk_confirm1">
                     <label class="form-check-label" for="bk_confirm1">
                         ยินดีให้มหาวิทยาลัยหักเงินประกันความเสียหาย
-                    </label> 
+                    </label>
                     <input type="radio" name="bk_confirm" value="2"
                         @if ($bk->bk_confirm == 2) checked @endif id="bk_confirm2">
                     <label class="form-check-label" for="bk_confirm2">
@@ -329,13 +329,13 @@
                 <div>- แบบที่ 2 : มีเฉพาะเครื่องดนตรี เช่น กีต้าร์ กลอง ไม่มีเพาเวอร์แอมป์ ตู้ลำโพง<small
                         style="padding-right: 50px"></small>
                     <span class="mx-5">
-                        <input type="radio" name="bk_music_equipment"
-                            @if ($bk->bk_music_equipment == 1) checked @endif id="bk_music_equipment1">
+                        <input type="radio" name="bk_music_equipment" @if ($bk->bk_music_equipment == 1) checked @endif
+                            id="bk_music_equipment1">
                         <label class="form-check-label" for="bk_music_equipment1">
                             ใช้
                         </label>
-                        <input type="radio" name="bk_music_equipment"
-                            @if ($bk->bk_music_equipment == 2) checked @endif id="bk_music_equipment2">
+                        <input type="radio" name="bk_music_equipment" @if ($bk->bk_music_equipment == 2) checked @endif
+                            id="bk_music_equipment2">
                         <label class="form-check-label" for="bk_music_equipment2">
                             ไม่ใช้
                         </label>
@@ -344,13 +344,13 @@
                 <div> - กรณีเป็นแบบที่ 2 ต้องการต่อเครื่องดนตรีเข้ากับระบบเสียงของหอประชุมหรือไม่ <small
                         style="padding-right: 45px"></small>
                     <span class="mx-5">
-                        <input type="radio" name="bk_music_details"
-                            @if ($bk->bk_music_details == 1) checked @endif id="bk_music_details1">
+                        <input type="radio" name="bk_music_details" @if ($bk->bk_music_details == 1) checked @endif
+                            id="bk_music_details1">
                         <label class="form-check-label" for="bk_music_details1">
                             ใช้
                         </label>
-                        <input type="radio" name="bk_music_details"
-                            @if ($bk->bk_music_details == 2) checked @endif id="bk_music_details2">
+                        <input type="radio" name="bk_music_details" @if ($bk->bk_music_details == 2) checked @endif
+                            id="bk_music_details2">
                         <label class="form-check-label" for="bk_music_details2">
                             ไม่ใช้
                         </label>
@@ -380,15 +380,15 @@
                                 <td class="text-center">1</td>
                                 <td>ระบบเสียงพร้อมไมค์โครโฟน 2 ตัว</td>
                                 <td class="text-center">
-                                    <input type="radio" name="bk_sound" value="1"
-                                        id="bk_sound1" required @if ($bk->bk_sound == 1) checked @endif>
+                                    <input type="radio" name="bk_sound" value="1" id="bk_sound1" required
+                                        @if ($bk->bk_sound == 1) checked @endif>
                                     <label class="form-check-label" for="bk_sound1">
                                         ใช้
                                     </label>
                                 </td>
                                 <td class="text-center">
-                                    <input type="radio" name="bk_sound" value="2"
-                                        id="bk_sound2" required @if ($bk->bk_sound == 2) checked @endif>
+                                    <input type="radio" name="bk_sound" value="2" id="bk_sound2" required
+                                        @if ($bk->bk_sound == 2) checked @endif>
                                     <label class="form-check-label" for="bk_sound2">
                                         ไม่ใช้
                                     </label>
@@ -399,17 +399,15 @@
                                 <td class="text-center">2</td>
                                 <td>จอภาพขนาดใหญ่บนเวที่ 1 จอ</td>
                                 <td class="text-center">
-                                    <input type="radio" name="bk_screen_big" value="1"
-                                        id="bk_screen_big1" required
-                                        @if ($bk->bk_screen_big == 1) checked @endif>
+                                    <input type="radio" name="bk_screen_big" value="1" id="bk_screen_big1"
+                                        required @if ($bk->bk_screen_big == 1) checked @endif>
                                     <label class="form-check-label" for="bk_screen_big1">
                                         ใช้
                                     </label>
                                 </td>
                                 <td class="text-center">
-                                    <input type="radio" name="bk_screen_big" value="2"
-                                        id="bk_screen_big2" required
-                                        @if ($bk->bk_screen_big == 2) checked @endif>
+                                    <input type="radio" name="bk_screen_big" value="2" id="bk_screen_big2"
+                                        required @if ($bk->bk_screen_big == 2) checked @endif>
                                     <label class="form-check-label" for="bk_screen_big2">
                                         ไม่ใช้
                                     </label>
@@ -420,15 +418,15 @@
                                 <td class="text-center">3</td>
                                 <td>จอภาพทีวีด้านข้างฝั่งซ้าย 4 จอ</td>
                                 <td class="text-center">
-                                    <input type="radio" name="bk_tv_left" value="1"
-                                        id="bk_tv_left1" required @if ($bk->bk_tv_left == 1) checked @endif>
+                                    <input type="radio" name="bk_tv_left" value="1" id="bk_tv_left1" required
+                                        @if ($bk->bk_tv_left == 1) checked @endif>
                                     <label class="form-check-label" for="bk_tv_left2">
                                         ใช้
                                     </label>
                                 </td>
                                 <td class="text-center">
-                                    <input type="radio" name="bk_tv_left" value="2"
-                                        id="bk_tv_left1" required @if ($bk->bk_tv_left == 2) checked @endif>
+                                    <input type="radio" name="bk_tv_left" value="2" id="bk_tv_left1" required
+                                        @if ($bk->bk_tv_left == 2) checked @endif>
                                     <label class="form-check-label" for="bk_tv_left2">
                                         ไม่ใช้
                                     </label>
@@ -439,15 +437,15 @@
                                 <td class="text-center">3</td>
                                 <td>จอภาพทีวีด้านข้างฝั่งขวา 4 จอ</td>
                                 <td class="text-center">
-                                    <input type="radio" name="bk_tv_right" value="1"
-                                        id="bk_tv_right1" required @if ($bk->bk_tv_right == 1) checked @endif>
+                                    <input type="radio" name="bk_tv_right" value="1" id="bk_tv_right1"
+                                        required @if ($bk->bk_tv_right == 1) checked @endif>
                                     <label class="form-check-label" for="bk_tv_right1">
                                         ใช้
                                     </label>
                                 </td>
                                 <td class="text-center">
-                                    <input type="radio" name="bk_tv_right" value="2"
-                                        id="bk_tv_right2" required @if ($bk->bk_tv_right == 2) checked @endif>
+                                    <input type="radio" name="bk_tv_right" value="2" id="bk_tv_right2"
+                                        required @if ($bk->bk_tv_right == 2) checked @endif>
                                     <label class="form-check-label" for="bk_tv_right2">
                                         ไม่ใช้
                                     </label>
@@ -458,15 +456,15 @@
                                 <td class="text-center">4</td>
                                 <td>โต๊ะปฏิบัติการหน้าขาว 10 ตัว</td>
                                 <td class="text-center">
-                                    <input type="radio" name="bk_table" value="1"
-                                        id="bk_table1" required @if ($bk->bk_music_details == 1) checked @endif>
+                                    <input type="radio" name="bk_table" value="1" id="bk_table1" required
+                                        @if ($bk->bk_music_details == 1) checked @endif>
                                     <label class="form-check-label" for="bk_table1">
                                         ใช้
                                     </label>
                                 </td>
                                 <td class="text-center">
-                                    <input type="radio" name="bk_table" value="2"
-                                        id="bk_table2" required @if ($bk->bk_music_details == 2) checked @endif>
+                                    <input type="radio" name="bk_table" value="2" id="bk_table2" required
+                                        @if ($bk->bk_music_details == 2) checked @endif>
                                     <label class="form-check-label" for="bk_table2">
                                         ไม่ใช้
                                     </label>
@@ -478,7 +476,6 @@
                 </div>
             </div>
 
-        </div>
         </div>
     @endforeach
 

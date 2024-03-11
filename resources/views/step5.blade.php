@@ -1,11 +1,12 @@
 <style>
     .img_bk_slip {
         max-width: 280px;
+        max-height: 350px;
         border: 1px solid #88888850;
         border-radius: 6px;
         padding: 6px;
         width: 50vw;
-        height: 40vh;
+        height: 60vh;
         background-color: rgb(255, 242, 228);
         align-items: center;
         text-align: center

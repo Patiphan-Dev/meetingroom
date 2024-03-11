@@ -151,7 +151,7 @@
                         <td>{{ $row->created_at }}</td>
                         <td>
 
-                            <a href="{{ route('viewReserve', ['id' => $row->id]) }}" class="btn badge text-bg-primary">
+                            <a href="{{ route('viewReserve', ['id' => $row->id]) }}" class="btn badge text-bg-primary" target="_blank">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
                             <a href="{{ route('downloadPDF', ['id' => $row->id]) }}" class="btn badge text-bg-danger" target="_blank">
