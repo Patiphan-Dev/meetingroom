@@ -34,9 +34,9 @@ class PDFController extends Controller
         // return $pdf->download('เอกสารการจอง.pdf');
 
         $pdf = App::make('dompdf.wrapper');
-            $html = view('pdf', compact('booking'), $data)->render();
-            $pdf->loadHTML($html)->setPaper('A4', 'portrait');
+        $html = view('pdf', compact('booking'), $data)->render();
+        $pdf->loadHTML($html)->setPaper('A4', 'portrait');
 
-            return $pdf->stream();
+        return $pdf->stream();
     }
 }

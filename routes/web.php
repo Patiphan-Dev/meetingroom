@@ -29,7 +29,7 @@ use App\Http\Controllers\PDF\PDFController;
 Route::get('/login', [AuthController::class, 'getLogin'])->name('getLogin');
 Route::post('/login', [AuthController::class, 'postLogin'])->name('postLogin');
 
-Route::get('/navbar', [HomeController::class, 'show'])->name('navbar');
+Route::get('/navbar', [HomeController::class, 'index'])->name('navbar');
 
 Route::get('/register', [AuthController::class, 'getRegister'])->name('getRegister');
 Route::post('/register', [AuthController::class, 'postRegister'])->name('postRegister');

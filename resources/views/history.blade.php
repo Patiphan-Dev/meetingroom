@@ -53,53 +53,58 @@
                             @endif
                         </td>
                         <td>
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#slip{{ $row->room_name }}"
-                                class="btn badge text-bg-info">
-                                <i class="fa-solid fa-money-bill-transfer"></i>
-                            </a>
+                            @if ($row->bk_status == 3)
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#slip{{ $row->room_name }}"
+                                    class="btn badge text-bg-info">
+                                    <i class="fa-solid fa-money-bill-transfer"></i>
+                                </a>
+                                <div class="modal fade" id="slip{{ $row->room_name }}" tabindex="-1"
+                                    aria-labelledby="slip{{ $row->room_name }}Label" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="slip{{ $row->room_name }}Label">
+                                                    หลักฐานค่าบริการ {{ $row->room_name }}
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{ route('PayService', ['id' => $row->id]) }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="col-12 text-center mt-3">
+                                                        <img id="img_bk_slip2{{ $row->id }}" alt="อัพโหลดสลิปโอนเงิน"
+                                                            @if ($row->bk_slip2 != null) src="{{ asset($row->bk_slip2) }}" @endif
+                                                            class="mx-auto d-block img-thumbnail mb-3 img_bk_slip2">
+                                                        <input type="file" id="bk_slip2{{ $row->id }}"
+                                                            name="bk_slip2" class="form-control mb-3"
+                                                            accept="image/png, image/jpeg"
+                                                            onchange="displayImage('{{ $row->id }}')">
+                                                    </div>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">ปิด</button>
+                                                    <input type="submit" class="btn btn-primary" value="บันทึก">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                             <a href="{{ route('viewReserve', ['id' => $row->id]) }}" class="btn badge text-bg-primary"
                                 target="_blank">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
-                            <div class="modal fade" id="slip{{ $row->room_name }}" tabindex="-1"
-                                aria-labelledby="slip{{ $row->room_name }}Label" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="slip{{ $row->room_name }}Label">
-                                                หลักฐานค่าบริการ {{ $row->room_name }}
-                                            </h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="{{ route('PayService', ['id' => $row->id]) }}" method="POST"
-                                                enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="col-12 text-center mt-3">
-                                                    <img id="img_bk_slip2{{ $row->id }}" alt="อัพโหลดสลิปโอนเงิน"
-                                                        @if ($row->bk_slip2 != null) src="{{ asset($row->bk_slip2) }}" @endif
-                                                        class="mx-auto d-block img-thumbnail mb-3 img_bk_slip2">
-                                                    <input type="file" id="bk_slip2{{ $row->id }}" name="bk_slip2"
-                                                        class="form-control mb-3" accept="image/png, image/jpeg"
-                                                        onchange="displayImage('{{ $row->id }}')">
-                                                </div>
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">ปิด</button>
-                                                <input type="submit" class="btn btn-primary" value="บันทึก">
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <a href="{{ route('getRoom', ['id' => $row->bk_room_id, 'step' => 2, 'booking_id' => $row->id]) }}"
-                                class="btn badge text-bg-warning">
+                                class="btn badge text-bg-warning" target="_blank">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
-                            <button type="button" class="btn badge text-bg-danger"
-                                onclick="deleteBooking('{{ $row->id }}')">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </button>
+                            @if ($row->bk_status != 3 && $row->bk_status != 4)
+                                <button type="button" class="btn badge text-bg-danger"
+                                    onclick="deleteBooking('{{ $row->id }}')">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

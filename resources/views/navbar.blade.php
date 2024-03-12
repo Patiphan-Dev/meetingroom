@@ -29,16 +29,23 @@
                 <li class="nav-item">
                     <a class="nav-link fw-bold py-1 position-relative {{ $current_route == 'history' ? 'active' : '' }}"
                         href="{{ route('history', ['id' => auth()->user()->id, 'user' => auth()->user()->username]) }}">ประวัติการจอง
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            {{ $booking }}
-                            <span class="visually-hidden">unread messages</span>
-                        </span>
+
+                        @foreach ($history as $row)
+                            @php
+                                $str_date = date('Y-m-d');
+                                $check_date = date('Y-m-d', strtotime($row->bk_str_date)); // Convert to timestamp
+                                $bk_str_date = date('Y-m-d', strtotime('+7 days', strtotime($check_date))); // Add 7 days to the check_date
+                            @endphp
+
+                            @if ($bk_str_date == $str_date)
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{ $countbooking }}
+                                </span>
+                            @endif
+                        @endforeach
                     </a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link fw-bold py-1 {{ $current_route == 'bookingAll' ? 'active' : '' }}"
-                        href="{{ route('bookingAll') }}">จองหอประชุม</a>
-                </li> --}}
             </ul>
             <ul class="navbar-nav ms-auto">
                 @guest
