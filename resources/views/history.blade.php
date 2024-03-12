@@ -14,7 +14,7 @@
             text-align: center
         }
     </style>
-    <div class="row mt-5 my-5">
+    <div class="row mt-5 mx-5 my-5">
         <h3 class="strong">รายงานการจองหอประชุม</h3>
         <table class="display responsive nowrap" id="historyTable" style="width:100%">
             <thead>
