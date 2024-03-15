@@ -75,9 +75,9 @@
                     @foreach ($bookings as $row)
                         {
                             id: '{{ $row->id }}',
-                            title: '{{ $row->std_name }}',
-                            start: '{{ date($row->bk_date) }}T{{ date($row->bk_str_time) }}',
-                            end: '{{ date($row->bk_date) }}T{{ date($row->bk_end_time) }}',
+                            title: '{{ $row->room_name }}',
+                            start: '{{ date($row->bk_str_date) }}T{{ date($row->bk_str_time) }}',
+                            end: '{{ date($row->bk_end_date) }}T{{ date($row->bk_end_time) }}',
                             allDay: false,
                             // url: "{{ '/stadium/' . $row->bk_std_id }}",
                             status: '{{ $row->bk_status }}',
@@ -85,9 +85,12 @@
                                 backgroundColor: '#FFBF00',
                                 borderColor: '#FFBF00',
                             @elseif ($row->bk_status == '2')
+                                backgroundColor: '#00FFFF',
+                                    borderColor: '#00FFFF',
+                            @elseif ($row->bk_status == '3')
                                 backgroundColor: '#0000FF',
                                     borderColor: '#0000FF',
-                            @elseif ($row->bk_status == '3')
+                            @elseif ($row->bk_status == '4')
                                 backgroundColor: '#008000',
                                     borderColor: '#008000',
                             @else
@@ -110,6 +113,22 @@
             calendar.render();
         })
     </script>
+    <style>
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 4% !important;
+            background-color: rgb(140, 140, 140);
+            color: blue;
+            height: 5% !important;
+            top: 50% !important;
+            border-radius: 50%;
+            max-width: 50px;
+            min-width: 30px;
+        }
+        .carousel-item{
+           max-height: 880px;
+        }
+    </style>
 </head>
 
 <body>
@@ -122,19 +141,23 @@
                         <div class="row text-center my-3">
                             <h1>ตารางการใช้งานหอประชุม</h1>
                         </div>
-                        <div id="carouselrooms" class="carousel carousel-dark slide rounded-5"  data-bs-ride="true">
+                        <div id="carouselrooms" class="carousel carousel-dark slide rounded-5" data-bs-ride="true">
                             <div class="carousel-inner">
                                 {{-- ปฏิทิน --}}
                                 <div class="carousel-item active">
-                                    <div id="calendar"></div>
+                                    <div class="row justify-content-center">
+                                        <div class="col-11">
+                                            <div id="calendar"></div>
+                                        </div>
+                                    </div>
                                 </div>
                                 @foreach ($rooms as $key => $row)
                                     @php
                                         $image = explode(',', $row->room_img_path);
                                     @endphp
                                     <div class="carousel-item">
-                                        <img src="{{ asset($image[0]) }}"
-                                            class=" rounded-5 img-thumbnail d-block w-100" alt="...">
+                                        <img src="{{ asset($image[0]) }}" class=" rounded-5 img-fluid d-block w-100"
+                                            alt="...">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h2>{{ $row->row_name }}</h2>
                                         </div>
