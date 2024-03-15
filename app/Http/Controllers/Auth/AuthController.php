@@ -19,8 +19,8 @@ class AuthController extends Controller
             'title' => 'จองหอประชุม'
         ];
         $rooms = Room::all();
-        // $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->orderBy('created_at', 'desc')->get();
-        return view('auth.login',compact( 'rooms'), $data);
+        $bookings = Booking::join('rooms', 'bookings.bk_room_id', 'rooms.id')->select('bookings.*', 'rooms.room_name')->get();
+        return view('auth.login',compact( 'rooms','bookings'), $data);
     }
 
     public function postLogin(Request $request)

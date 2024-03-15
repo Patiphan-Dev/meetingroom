@@ -22,6 +22,94 @@
     <!-- Tempusdominus Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- moment lib -->
+    <script src='https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js'></script>
+
+    <!-- fullcalendar bundle -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+
+    <!-- the moment-to-fullcalendar connector. must go AFTER the moment lib -->
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/moment@6.1.10/index.global.min.js'></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    {{-- JS ปฏิทิน  --}}
+    <script>
+        var calendar; // สร้างตัวแปรไว้ด้านนอก เพื่อให้สามารถอ้างอิงแบบ global ได้
+        $(document).ready(function() {
+
+            var date = new Date()
+            var d = date.getDate(),
+                m = date.getMonth(),
+                y = date.getFullYear()
+            var Calendar = FullCalendar.Calendar;
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new Calendar(calendarEl, {
+                // initialView: 'listWeek',
+                editable: true,
+                locale: 'th',
+                timeZone: 'Asia/Bangkok',
+                titleFormat: {
+                    month: 'long',
+                    year: 'numeric',
+                    day: 'numeric'
+                },
+                buttonText: {
+                    today: 'วันนี้',
+                    timeGridDay: 'วัน',
+                    timeGridWeek: 'สัปดาห์',
+                    dayGridMonth: 'เดือน'
+
+                },
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay',
+
+                },
+                themeSystem: 'bootstrap5',
+                events: [
+                    @foreach ($bookings as $row)
+                        {
+                            id: '{{ $row->id }}',
+                            title: '{{ $row->std_name }}',
+                            start: '{{ date($row->bk_date) }}T{{ date($row->bk_str_time) }}',
+                            end: '{{ date($row->bk_date) }}T{{ date($row->bk_end_time) }}',
+                            allDay: false,
+                            // url: "{{ '/stadium/' . $row->bk_std_id }}",
+                            status: '{{ $row->bk_status }}',
+                            @if ($row->bk_status == '1')
+                                backgroundColor: '#FFBF00',
+                                borderColor: '#FFBF00',
+                            @elseif ($row->bk_status == '2')
+                                backgroundColor: '#0000FF',
+                                    borderColor: '#0000FF',
+                            @elseif ($row->bk_status == '3')
+                                backgroundColor: '#008000',
+                                    borderColor: '#008000',
+                            @else
+                                backgroundColor: '#FF0000',
+                                borderColor: '#FF0000',
+                            @endif
+                            color: 'orange',
+                            textColor: 'black',
+                        },
+                    @endforeach
+                ],
+
+                eventClick: function(info) {
+                    $('#eventModal' + info.event.id).modal('show');
+                    // $('#eventModalTitle' + info.event.id).html(info.event.title);
+                }
+
+            });
+
+            calendar.render();
+        })
+    </script>
 </head>
 
 <body>
@@ -34,15 +122,19 @@
                         <div class="row text-center my-3">
                             <h1>ตารางการใช้งานหอประชุม</h1>
                         </div>
-                        <div id="carouselrooms" class="carousel slide rounded-5">
+                        <div id="carouselrooms" class="carousel carousel-dark slide rounded-5"  data-bs-ride="true">
                             <div class="carousel-inner">
+                                {{-- ปฏิทิน --}}
+                                <div class="carousel-item active">
+                                    <div id="calendar"></div>
+                                </div>
                                 @foreach ($rooms as $key => $row)
                                     @php
                                         $image = explode(',', $row->room_img_path);
                                     @endphp
-                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                        <img src="{{ asset($image[0]) }}" class=" rounded-5 img-thumbnail d-block w-100"
-                                            alt="...">
+                                    <div class="carousel-item">
+                                        <img src="{{ asset($image[0]) }}"
+                                            class=" rounded-5 img-thumbnail d-block w-100" alt="...">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h2>{{ $row->row_name }}</h2>
                                         </div>
@@ -84,7 +176,8 @@
                             <div class="form-group mb-3">
                                 <label class="label" for="username">Username</label>
                                 <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                    placeholder="Username" id="username" name="username" value="{{ old('username') }}">
+                                    placeholder="Username" id="username" name="username"
+                                    value="{{ old('username') }}">
                                 @if ($errors->has('username'))
                                     <span class="text-danger">{{ $errors->first('username') }}</span>
                                 @endif
