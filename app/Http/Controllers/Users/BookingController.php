@@ -94,7 +94,7 @@ class BookingController extends Controller
         );
 
         
-        Line::send("มีการจองห้องประชุม " . "\n โดย: " . auth()->user()->fullname . "\n หอประชุม : " . $booking->room_name . "\n วันที่ : " . $booking->bk_str_date .' ถึง '. $booking->bk_end_date);
+        Line::send("มีการจองห้องประชุม " . "\n โดย: " . auth()->user()->fullname . "\n หอประชุม : " . $booking->room_name . "\n วันที่ : " . $request->bk_str_date .' ถึง '. $request->bk_end_date);
         return redirect()->route('getRoom', ['id' => $request->room_id, 'step' => 4, 'booking_id' => $id])->with('สำเร็จ', 'จองหอประชุมสำเสร็จ');
     }
 

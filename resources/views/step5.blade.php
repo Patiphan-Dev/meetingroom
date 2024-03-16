@@ -13,7 +13,11 @@
     }
 </style>
 <div class="row">
-    <div class="col-12 text-center mt-3">
+    <div class="col-12 col-md-6 text-center mt-3">
+        <img id="qrcode" alt="อัพโหลดสลิปโอนเงิน" src="/assets/images/qrcode.jpg"
+            class="mx-auto d-block img-thumbnail mb-3">
+    </div>
+    <div class="col-12 col-md-6 text-center mt-3">
         <label for="PayDeposit" class="form-label">
             หลักฐานการชำระเงิน <span>*</span>
         </label>

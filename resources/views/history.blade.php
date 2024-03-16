@@ -31,7 +31,7 @@
             <tbody>
                 @foreach ($history as $key => $row)
                     <tr>
-                        <td>{{ $row->room_name }}{{ $row->id }}</td>
+                        <td>{{ $row->room_name }}</td>
                         <td>{{ $row->bk_str_date }} ถึง {{ $row->bk_end_date }}</td>
                         <td class="text-end">{{ $row->damage_insurance }}.00</td>
                         <td class="text-end">
