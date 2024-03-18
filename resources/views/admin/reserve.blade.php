@@ -43,7 +43,7 @@
                         <td>{{ $row->fullname }}</td>
                         <td>{{ $row->bk_str_date }} ถึง {{ $row->bk_end_date }}</td>
                         <td>{{ $row->bk_str_time }} ถึง {{ $row->bk_end_time }}</td>
-                        <td class="text-center"> 
+                        <td class="text-center">
                             <a type="button" data-bs-toggle="modal" data-bs-target="#status{{ $row->room_name }}">
                                 @if ($row->bk_status == 1)
                                     <span class="badge w-100 text-bg-warning"> รอชำระเงิน</span>
@@ -151,12 +151,16 @@
                         <td>{{ $row->created_at }}</td>
                         <td>
 
-                            <a href="{{ route('viewReserve', ['id' => $row->id]) }}" class="btn badge text-bg-primary" target="_blank">
+                            <a href="{{ route('viewReserve', ['id' => $row->id]) }}" class="btn badge text-bg-primary"
+                                target="_blank">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
-                            <a href="{{ route('downloadPDF', ['id' => $row->id]) }}" class="btn badge text-bg-danger" target="_blank">
-                                <i class="fa-regular fa-file-pdf"></i>
-                            </a>
+                            @if ($row->bk_status >= 2)
+                                <a href="{{ route('downloadPDF', ['id' => $row->id]) }}" class="btn badge text-bg-danger"
+                                    target="_blank">
+                                    <i class="fa-regular fa-file-pdf"></i>
+                                </a>
+                            @endif
                             {{-- <button type="button" class="btn badge text-bg-danger"
                                 onclick="deleteReserve('{{ $row->id }}')">
                                 <i class="fa-regular fa-trash-can"></i>
