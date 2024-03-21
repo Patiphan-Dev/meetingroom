@@ -150,7 +150,7 @@ class BookingController extends Controller
         }
         // dd(request()->root().'/'.$image_url);
 
-        Line::imageUrl(request()->root().'/'.$image_url)->send("ชำระค่ามัดจำ " . "\n โดย: " . auth()->user()->fullname . "\n หอประชุม : " . $booking->room_name . "\n วันที่ : " . $booking->bk_str_date .' ถึง '. $booking->bk_end_date);
+        Line::imagePath($image_url)->send("ชำระค่ามัดจำ " . "\n โดย: " . auth()->user()->fullname . "\n หอประชุม : " . $booking->room_name . "\n วันที่ : " . $booking->bk_str_date .' ถึง '. $booking->bk_end_date);
         // Line::imageUrl(request()->root().'/'.$image_url)->send('message');
 
     //     Line::thumbnailUrl('https://lorempixel.com/240/240/')
@@ -213,7 +213,7 @@ class BookingController extends Controller
             );
         }
 
-        Line::imageUrl(request()->root().'/'.$image_url)->send("ชำระค่าบริการ " . "\n โดย: " . auth()->user()->fullname . "\n หอประชุม : " . $booking->room_name . "\n วันที่ : " . $booking->bk_str_date .' ถึง '. $booking->bk_end_date);
+        Line::imagePath($image_url)->send("ชำระค่าบริการ " . "\n โดย: " . auth()->user()->fullname . "\n หอประชุม : " . $booking->room_name . "\n วันที่ : " . $booking->bk_str_date .' ถึง '. $booking->bk_end_date);
         return redirect()->route('history', ['id' => auth()->user()->id, 'user' =>  auth()->user()->username])->with('สำเร็จ', 'ชำระเงินค่ามัดจำสำเสร็จ');
     }
 
